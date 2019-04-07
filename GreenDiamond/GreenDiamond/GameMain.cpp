@@ -3,7 +3,6 @@
 static void DrawWall(void)
 {
 	DrawCurtain();
-	DrawRect(P_WHITEBOX, 100, 100, SCREEN_W - 200, SCREEN_H - 200);
 }
 void GameMain(void)
 {
@@ -18,6 +17,9 @@ void GameMain(void)
 		{
 			break;
 		}
+
+		//
+
 		DrawWall();
 		EachFrame();
 	}

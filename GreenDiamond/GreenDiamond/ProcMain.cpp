@@ -3,12 +3,14 @@
 void ProcMain(void)
 {
 #if !LOG_ENABLED
-	Test0001();
-#elif 1 // test
+	TitleMenu();
+#elif 0 // test
 	TitleMenu();
 #elif 1 // test
-	Test0001();
+	GameInit();
+	GameMain();
+	GameFnlz();
 #else // test
-	Test0001();
+	TitleMenu();
 #endif
 }

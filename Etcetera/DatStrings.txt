@@ -1,4 +1,4 @@
 GreenDiamond
 cerulean.charlotte
-(c) 20xx cerulean.charlotte
+(c) 2019 cerulean.charlotte
 %s %s
