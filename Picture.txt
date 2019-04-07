@@ -1,0 +1,15 @@
+C:\Dat\Dummy.png
+C:\Dat\WhiteBox_8x8.png
+C:\Dat\WhiteCircle.png
+Resource\主人公\主人公立ち.png
+Resource\主人公\主人公走り_01.png
+Resource\主人公\主人公走り_02.png
+Resource\主人公\主人公ジャンプ.png
+Resource\主人公\主人公しゃがみ.png
+Resource\主人公\主人公しゃがみ攻撃.png
+Resource\主人公\主人公攻撃.png
+Resource\敵\Alpha\歩く_01.png
+Resource\敵\Alpha\歩く_02.png
+Resource\壁\岩.png
+Resource\壁\上り坂.png
+Resource\壁\下り坂.png
