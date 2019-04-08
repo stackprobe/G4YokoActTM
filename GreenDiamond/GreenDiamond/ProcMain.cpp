@@ -4,7 +4,7 @@ void ProcMain(void)
 {
 #if !LOG_ENABLED
 	TitleMenu();
-#elif 0 // test
+#elif 1 // test
 	TitleMenu();
 #elif 1 // test
 	GameInit();
