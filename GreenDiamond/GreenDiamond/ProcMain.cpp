@@ -4,13 +4,13 @@ void ProcMain(void)
 {
 #if !LOG_ENABLED
 	TitleMenu();
-#elif 1 // test
+#elif 0 // test
 	TitleMenu();
-#elif 1 // test
+#elif 0 // test
 	GameInit();
 	GameMain();
 	GameFnlz();
 #else // test
-	TitleMenu();
+	Test0001();
 #endif
 }

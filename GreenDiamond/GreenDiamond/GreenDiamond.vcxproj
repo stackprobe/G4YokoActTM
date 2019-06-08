@@ -137,7 +137,7 @@
     <ClCompile Include="Common\taskList.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMain.cpp" />
-    <ClCompile Include="Test0001.cpp" />
+    <ClCompile Include="Tests\Test0001.cpp" />
     <ClCompile Include="ProcMain.cpp" />
     <ClCompile Include="TitleMenu.cpp" />
   </ItemGroup>
@@ -200,7 +200,8 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMain.h" />
-    <ClInclude Include="Test0001.h" />
+    <ClInclude Include="Tests\all.h" />
+    <ClInclude Include="Tests\Test0001.h" />
     <ClInclude Include="ProcMain.h" />
     <ClInclude Include="TitleMenu.h" />
   </ItemGroup>

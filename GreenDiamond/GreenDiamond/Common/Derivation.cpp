@@ -48,6 +48,36 @@ static void CreateDerList(void)
 
 	// app > @ AddDer
 
+	for(int y = 0; y < 2; y++)
+	for(int x = 0; x < 5; x++)
+	{
+		AddAnimation(P_PLAYER, x * 208, 16 + y * 144, 94, 112, 2, 1, 96); // D_PLAYER_STAND_*_00, D_PLAYER_TALK_*_00
+	}
+	AddDer(P_PLAYER, 0, 304, 94, 112); // D_PLAYER_SHAGAMI
+
+	for(int x = 0; x < 3; x++)
+	{
+		AddAnimation(P_PLAYER, 112 + x * 208, 304, 94, 112, 2, 1, 96); // D_PLAYER_WALK_00, D_PLAYER_DASH_00, D_PLAYER_STOP_00
+	}
+	for(int x = 0; x < 3; x++)
+	{
+		AddDer(P_PLAYER, 736 + x * 112, 304, 94, 112); // D_PLAYER_JUMP_*
+	}
+	for(int x = 0; x < 2; x++)
+	{
+		AddDer(P_PLAYER,   0 + x * 112, 448, 94, 112); // D_PLAYER_ATTACK, D_PLAYER_ATTACK_SHAGAMI
+	}
+	for(int x = 0; x < 2; x++)
+	{
+		AddAnimation(P_PLAYER, 224 + x * 208, 448, 94, 112, 2, 1, 96); // D_PLAYER_ATTACK_WALK_00, D_PLAYER_ATTACK_DASH_00
+	}
+	AddDer(P_PLAYER, 640, 448, 94, 112); // D_PLAYER_ATTACK_JUMP
+
+	for(int x = 0; x < 8; x++)
+	{
+		AddDer(P_PLAYER,   0 + x * 112, 592, 94, 112); // D_PLAYER_DAMAGE_00
+	}
+
 	// < app
 
 	errorCase(DerList->GetCount() != D_MAX);
