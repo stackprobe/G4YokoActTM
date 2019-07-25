@@ -75,7 +75,7 @@ typedef unsigned __int64 uint64;
 // app > @ define SCREEN_WH
 
 #define SCREEN_W 800
-#define SCREEN_H 600
+#define SCREEN_H 480
 
 // < app
 
@@ -318,5 +318,7 @@ d2D_t;
 	((value) == 0 ? 1 : 0)
 
 // app > @ define
+
+#define RELEASE_SIG_FILE "Release.sig"
 
 // < app

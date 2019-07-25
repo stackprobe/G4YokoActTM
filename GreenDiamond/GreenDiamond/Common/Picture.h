@@ -10,6 +10,7 @@ enum
 	// app > @ P_
 
 	P_PLAYER,
+	ENUM_RANGE(P_WALL_00, 2)
 
 	// < app
 

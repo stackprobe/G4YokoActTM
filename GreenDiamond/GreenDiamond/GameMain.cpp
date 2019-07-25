@@ -18,7 +18,7 @@ void GameMain(void)
 			break;
 		}
 
-		//
+
 
 		DrawWall();
 		EachFrame();
