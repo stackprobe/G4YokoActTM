@@ -1,7 +1,7 @@
 typedef struct MapCell_st
 {
 	int Wall; // •Çƒtƒ‰ƒO
-	int PicId;
+	int PicId; // -1 == ‰æ‘œ–³‚µ
 
 	// <---- access free
 }

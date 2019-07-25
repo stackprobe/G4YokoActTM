@@ -10,7 +10,7 @@ enum
 	// app > @ P_
 
 	P_PLAYER,
-	ENUM_RANGE(P_WALL_00, 2)
+	ENUM_RANGE(P_MAP_TILE_00, 2) // Resource\MapTile\*.png
 
 	// < app
 

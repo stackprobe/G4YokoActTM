@@ -4,7 +4,8 @@ MapCell_t *CreateMapCell(void)
 {
 	MapCell_t *i = nb(MapCell_t);
 
-	i->PicId = P_WALL_00 + 0;
+//	i->PicId = P_MAP_TILE_00 + 0;
+	i->PicId = -1;
 
 	return i;
 }

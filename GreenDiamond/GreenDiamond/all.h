@@ -8,7 +8,7 @@
 #include "TitleMenu.h"
 #include "Game.h"
 #include "GameMain.h"
-#include "Map.h"
 #include "MapCell.h"
+#include "Map.h"
 #include "MapLoader.h"
 #include "Utilities.h"

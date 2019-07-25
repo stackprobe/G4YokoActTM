@@ -317,8 +317,8 @@ d2D_t;
 #define m_10(value) \
 	((value) == 0 ? 1 : 0)
 
-// app > @ define
+// アプリケーション固有の定義は ..\Define.h へ！
 
-#define RELEASE_SIG_FILE "Release.sig"
+// app > @ define
 
 // < app
