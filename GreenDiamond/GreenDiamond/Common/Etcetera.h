@@ -16,4 +16,4 @@ enum
 /*
 	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 */
-oneObjectProto(resCluster<autoList<uchar> *>, GetEtcRes);
+autoList<uchar> *GetEtcFileData(int etcId);

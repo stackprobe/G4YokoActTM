@@ -1,17 +1,19 @@
 #include "all.h"
 
-#define MAP_DIR "..\\..\\Etcetera\\Map"
-
-void MapLoader(int etcId, char *localFile)
+void LoadMap(char *file)
 {
-	if(IsReleasedVersion())
-	{
-		GetEtcRes()->GetHandle(etcId);
+	autoList<uchar> *fileData = SH_LoadFile(file);
 
-		// TODO
-	}
-	else
-	{
-		// TODO
-	}
+	// TODO
+
+	delete fileData;
+}
+void SaveMap(char *file)
+{
+	autoList<uchar> *fileData = new autoList<uchar>();
+
+	// TODO
+
+	SH_SaveFile(file, fileData);
+	delete fileData;
 }
