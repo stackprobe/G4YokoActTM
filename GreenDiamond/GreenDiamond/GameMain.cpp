@@ -133,14 +133,12 @@ static void EditMain(void)
 				}
 			}
 		}
+		EditMenuEachFrame();
 
 		DrawWall();
 		DrawMap();
 
-		DPE_SetAlpha(0.8);
-		DPE_SetBright(GetColor(0, 0, 0));
-		DrawRect(P_WHITEBOX, MENU_L, MENU_T, MENU_W, MENU_H);
-		DPE_Reset();
+		DrawEditMenu();
 
 		EachFrame();
 	}
@@ -306,14 +304,14 @@ void GameMain(void)
 		// プレイヤー位置矯正
 		{
 			int touchSide_L = 
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X - 10.0, GDc.Player.Y - MAP_TILE_WH / 2))->Wall ||
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X - 10.0, GDc.Player.Y                  ))->Wall ||
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X - 10.0, GDc.Player.Y + MAP_TILE_WH / 2))->Wall;
+				GetMapCell(PointToMapCellPoint(GDc.Player.X - 10.0, GDc.Player.Y - MAP_TILE_WH / 2))->Wall ||
+				GetMapCell(PointToMapCellPoint(GDc.Player.X - 10.0, GDc.Player.Y                  ))->Wall ||
+				GetMapCell(PointToMapCellPoint(GDc.Player.X - 10.0, GDc.Player.Y + MAP_TILE_WH / 2))->Wall;
 
 			int touchSide_R =
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X + 10.0, GDc.Player.Y - MAP_TILE_WH / 2))->Wall ||
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X + 10.0, GDc.Player.Y                  ))->Wall ||
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X + 10.0, GDc.Player.Y + MAP_TILE_WH / 2))->Wall;
+				GetMapCell(PointToMapCellPoint(GDc.Player.X + 10.0, GDc.Player.Y - MAP_TILE_WH / 2))->Wall ||
+				GetMapCell(PointToMapCellPoint(GDc.Player.X + 10.0, GDc.Player.Y                  ))->Wall ||
+				GetMapCell(PointToMapCellPoint(GDc.Player.X + 10.0, GDc.Player.Y + MAP_TILE_WH / 2))->Wall;
 
 			if(touchSide_L && touchSide_R)
 			{
@@ -328,8 +326,8 @@ void GameMain(void)
 				GDc.Player.X = d2i(GDc.Player.X / MAP_TILE_WH) * MAP_TILE_WH - 10.0;
 			}
 
-			int touchCeiling_L = GetMapCell(PositionToMapCellPoint(GDc.Player.X - 9.0, GDc.Player.Y - MAP_TILE_WH))->Wall;
-			int touchCeiling_R = GetMapCell(PositionToMapCellPoint(GDc.Player.X + 9.0, GDc.Player.Y - MAP_TILE_WH))->Wall;
+			int touchCeiling_L = GetMapCell(PointToMapCellPoint(GDc.Player.X - 9.0, GDc.Player.Y - MAP_TILE_WH))->Wall;
+			int touchCeiling_R = GetMapCell(PointToMapCellPoint(GDc.Player.X + 9.0, GDc.Player.Y - MAP_TILE_WH))->Wall;
 			int touchCeiling = touchCeiling_L && touchCeiling_R;
 
 			if(touchCeiling_L && touchCeiling_R)
@@ -351,8 +349,8 @@ void GameMain(void)
 			}
 
 			GDc.Player.TouchGround =
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X - 9.0, GDc.Player.Y + MAP_TILE_WH))->Wall ||
-				GetMapCell(PositionToMapCellPoint(GDc.Player.X + 9.0, GDc.Player.Y + MAP_TILE_WH))->Wall;
+				GetMapCell(PointToMapCellPoint(GDc.Player.X - 9.0, GDc.Player.Y + MAP_TILE_WH))->Wall ||
+				GetMapCell(PointToMapCellPoint(GDc.Player.X + 9.0, GDc.Player.Y + MAP_TILE_WH))->Wall;
 
 			if(GDc.Player.TouchGround)
 			{

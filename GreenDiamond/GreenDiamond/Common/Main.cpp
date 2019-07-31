@@ -156,6 +156,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// app > @ INIT
 
+	InitEditMenu();
+
 	// < app
 
 	LOGPOS();

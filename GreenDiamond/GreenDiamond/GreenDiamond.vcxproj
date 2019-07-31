@@ -136,7 +136,7 @@
     <ClCompile Include="Common\System.cpp" />
     <ClCompile Include="Common\System2.cpp" />
     <ClCompile Include="Common\taskList.cpp" />
-    <ClCompile Include="DebugUtils.cpp" />
+    <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GameUtils.cpp" />
@@ -146,7 +146,6 @@
     <ClCompile Include="Tests\Test0001.cpp" />
     <ClCompile Include="ProcMain.cpp" />
     <ClCompile Include="TitleMenu.cpp" />
-    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="all.h" />
@@ -205,8 +204,8 @@
     <ClInclude Include="Common\System.h" />
     <ClInclude Include="Common\System2.h" />
     <ClInclude Include="Common\taskList.h" />
-    <ClInclude Include="DebugUtils.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="EditMenu.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameUtils.h" />
@@ -217,7 +216,6 @@
     <ClInclude Include="Tests\Test0001.h" />
     <ClInclude Include="ProcMain.h" />
     <ClInclude Include="TitleMenu.h" />
-    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
