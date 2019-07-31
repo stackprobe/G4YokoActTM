@@ -2,18 +2,6 @@
 
 static char *LastLoadedFile = NULL;
 
-void ML_InitMap(int w, int h)
-{
-	InitMap(w, h);
-
-	for(int x = 0; x < w; x++)
-	{
-		MapCell_t *cell = GetMapCell(x, h - 1);
-
-		cell->Wall = 1;
-		cell->PicId = P_MAP_TILE_00 + 0;
-	}
-}
 void ML_LoadMap(char *file)
 {
 	autoList<uchar> *fileData = SH_LoadFile(file);

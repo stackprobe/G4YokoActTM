@@ -7,7 +7,8 @@ void ProcMain(void)
 #elif 0 // test
 	TitleMenu();
 #elif 1 // test
-	ML_LoadMap("Map\\t0001.txt");
+	ML_LoadMap("Map\\t0002.txt");
+//	ML_LoadMap("Map\\t0001.txt");
 
 	GameInit();
 
@@ -16,8 +17,6 @@ void ProcMain(void)
 
 	GameMain();
 	GameFnlz();
-#elif 0 // make map ã‘‚«’ˆÓI
-//	MakeMap0001();
 #elif 1 // test
 	ML_InitMap(100, 30);
 	GameInit();

@@ -259,8 +259,8 @@ void GameMain(void)
 
 				if(GDc.Player.MoveSlow)
 				{
-					speed = GDc.Player.MoveFrame * 0.25;
-					m_minim(speed, 3.0);
+					speed = GDc.Player.MoveFrame * 0.2;
+					m_minim(speed, 2.0);
 				}
 				else
 					speed = 6.0;
