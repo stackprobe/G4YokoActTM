@@ -16,8 +16,16 @@ int GetMap_H(void)
 {
 	return GetTable()->GetHeight();
 }
+MapCell_t *GetMapCell(i2D_t pt)
+{
+	return GetMapCell(pt.X, pt.Y);
+}
 MapCell_t *GetMapCell(int x, int y)
 {
 //	return GetTable()->GetCell(x, y);
 	return GetTable()->RefCell(x, y, GetDefaultMapCell());
+}
+MapCell_t *TryGetMapCell(int x, int y, MapCell_t *defaultMapCell)
+{
+	return GetTable()->RefCell(x, y, defaultMapCell);
 }

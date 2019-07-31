@@ -9,8 +9,8 @@ void ProcMain(void)
 #elif 1 // test
 	ML_InitMap(100, 30);
 	GameInit();
-	GDc.Prm_StartX = GetMap_W() * MAP_TILE_WH / 2.0;
-	GDc.Prm_StartY = GetMap_H() * MAP_TILE_WH / 2.0;
+	GDc.Prm_StartX = GetMap_W() * MAP_TILE_WH * 0.5;
+	GDc.Prm_StartY = GetMap_H() * MAP_TILE_WH * 0.5;
 	GameMain();
 	GameFnlz();
 #else // test

@@ -136,8 +136,10 @@
     <ClCompile Include="Common\System.cpp" />
     <ClCompile Include="Common\System2.cpp" />
     <ClCompile Include="Common\taskList.cpp" />
+    <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameUtils.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapCell.cpp" />
     <ClCompile Include="MapLoader.cpp" />
@@ -203,9 +205,11 @@
     <ClInclude Include="Common\System.h" />
     <ClInclude Include="Common\System2.h" />
     <ClInclude Include="Common\taskList.h" />
+    <ClInclude Include="DebugUtils.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameUtils.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapCell.h" />
     <ClInclude Include="MapLoader.h" />

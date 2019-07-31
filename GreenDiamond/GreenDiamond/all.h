@@ -12,3 +12,5 @@
 #include "Map.h"
 #include "MapLoader.h"
 #include "Utilities.h"
+#include "GameUtils.h"
+#include "DebugUtils.h"

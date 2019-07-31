@@ -1,3 +1,6 @@
 #include "all.h"
 
-// none
+char *DebugInputString(char *prompt)
+{
+	
+}

@@ -9,7 +9,7 @@ void ML_InitMap(int w, int h)
 		MapCell_t *cell = GetMapCell(x, h - 1);
 
 		cell->Wall = 1;
-		cell->PicId = P_MAP_TILE_00 + 1;
+		cell->PicId = P_MAP_TILE_00 + 0;
 	}
 }
 void ML_LoadMap(char *file)
@@ -27,13 +27,15 @@ void ML_LoadMap(char *file)
 	{
 		MapCell_t *cell = GetMapCell(x, y);
 		char *line = nnReadLine(fileData, rIndex);
-		autoList<char *> *tokens = tokenize(line, ":");
+		autoList<char *> *tokens = tokenize(line, "\t");
 		int c = 0;
 
 		// 古い(項目が少ない)データを読み込んでも良いように RefElement を使用する。
 
-		cell->Wall  = atoi(tokens->RefElement(c++, "0"));
-		cell->PicId = atoi(tokens->RefElement(c++, "-1"));
+		cell->Wall    = atoi(tokens->RefElement(c++, "0"));
+		cell->PicId   = atoi(tokens->RefElement(c++, "-1"));
+		cell->EnemyId = atoi(tokens->RefElement(c++, "-1"));
+		strz(cell->EventName, tokens->RefElement(c++, ""));
 
 		// 新しい項目は、ここへ追加...
 
@@ -59,10 +61,12 @@ void ML_SaveMap(char *file)
 
 		tokens->AddElement(xcout("%d", cell->Wall));
 		tokens->AddElement(xcout("%d", cell->PicId));
+		tokens->AddElement(xcout("%d", cell->EnemyId));
+		tokens->AddElement(xcout("%s", cell->EventName));
 
 		// 新しい項目は、ここへ追加...
 
-		writeLine_x(fileData, untokenize(tokens, ":"));
+		writeLine_x(fileData, untokenize(tokens, "\t"));
 
 		releaseList(tokens, (void (*)(char *))memFree);
 	}

@@ -12,17 +12,23 @@ typedef struct GDc_st
 	{
 		double X;
 		double Y;
-		double XAdd;
-		double YAdd;
-		int Direction; // 4 or 6
-		int Walking; // ? 歩いている。
-		int Dashing; // ? 走っている。
-		int TouchGround; // ? 接地している。
+		double YSpeed;
+		int FacingLeft;
+		int MoveFrame;
+		int MoveSlow; // ? 低速移動
+		int JumpFrame;
+		int TouchGround;
+		int AirborneFrame;
 	}
 	Player;
 
 	int ICameraX;
 	int ICameraY;
+
+	int CamSlideMode; // ? モード中
+	int CamSlideCount;
+	int CamSlideX; // -1 ～ 1
+	int CamSlideY; // -1 ～ 1
 }
 GDc_t;
 
