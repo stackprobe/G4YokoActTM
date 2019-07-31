@@ -103,7 +103,7 @@ static void EditMain(void)
 		if(GetKeyInput(KEY_INPUT_E) == 1)
 			break;
 
-		if(1 <= GetKeyInput(KEY_INPUT_LSHIFT) || 1 <= GetKeyInput(KEY_INPUT_RSHIFT)) // 移動モード
+		if(1 <= GetKeyInput(KEY_INPUT_LSHIFT) || 1 <= GetKeyInput(KEY_INPUT_RSHIFT)) // シフト押下 -> 移動モード
 		{
 			if(1 <= GetMouInput(MOUBTN_L))
 			{
@@ -113,27 +113,8 @@ static void EditMain(void)
 		}
 		else // 編集モード
 		{
-			MapCell_t *cell = TryGetMapCell((MouseX + GDc.ICameraX) / MAP_TILE_WH, (MouseY + GDc.ICameraY) / MAP_TILE_WH);
-
-			if(cell)
-			{
-				if(1 <= GetMouInput(MOUBTN_L))
-				{
-					cell->Wall = 1;
-					cell->PicId = picId;
-					cell->EnemyId = enemyId;
-					strz(cell->EventName, eventName);
-				}
-				if(1 <= GetMouInput(MOUBTN_R))
-				{
-					cell->Wall = 0;
-					cell->PicId = -1;
-					cell->EnemyId = -1;
-					*cell->EventName = '\0';
-				}
-			}
+			EditMenuEachFrame();
 		}
-		EditMenuEachFrame();
 
 		DrawWall();
 		DrawMap();

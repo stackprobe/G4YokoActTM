@@ -16,7 +16,7 @@ static int DisplayEnemyIdFlag = 0;
 static int DisplayEventNameFlag = 0;
 
 static int Wall = 1;
-static int PicId = -1;
+static int PicId = P_MAP_TILE_00 + 0;
 static int EnemyId = -1;
 static char *EventName;
 
@@ -24,13 +24,38 @@ void InitEditMenu(void)
 {
 	EventName = strx("");
 }
-int IsOutOfEditMenu(double x, double y)
+static int IsOutOfEditMenu(double x, double y)
 {
 	return IsOut(x, y, MENU_L, MENU_T, MENU_W, MENU_H);
 }
 void EditMenuEachFrame(void)
 {
-	// TODO
+	if(IsOut(MouseX, MouseY, MENU_L, MENU_T, MENU_W, MENU_H))
+	{
+		MapCell_t *cell = TryGetMapCell((MouseX + GDc.ICameraX) / MAP_TILE_WH, (MouseY + GDc.ICameraY) / MAP_TILE_WH);
+
+		if(cell)
+		{
+			if(1 <= GetMouInput(MOUBTN_L))
+			{
+				if(InputWallFlag)      cell->Wall = Wall;
+				if(InputPicIdFlag)     cell->PicId = PicId;
+				if(InputEnemyIdFlag)   cell->EnemyId = EnemyId;
+				if(InputEventNameFlag) strz(cell->EventName, EventName);
+			}
+			if(1 <= GetMouInput(MOUBTN_R))
+			{
+				if(InputWallFlag)      cell->Wall = 0;
+				if(InputPicIdFlag)     cell->PicId = -1;
+				if(InputEnemyIdFlag)   cell->EnemyId = -1;
+				if(InputEventNameFlag) *cell->EventName = '\0';
+			}
+		}
+	}
+	else
+	{
+		// TODO ÉÅÉjÉÖÅ[ëÄçÏ
+	}
 }
 void DrawEditMenu(void)
 {
