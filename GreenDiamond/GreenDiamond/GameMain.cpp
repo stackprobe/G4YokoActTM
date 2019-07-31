@@ -127,8 +127,6 @@ static void EditMain(void)
 	SetMouseDispMode(0);
 
 	memFree(eventName);
-
-	ML_SaveMap();
 }
 void GameMain(void)
 {

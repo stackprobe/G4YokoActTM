@@ -1,5 +1,7 @@
 #include "all.h"
 
+static char *LastLoadedFile = NULL;
+
 void ML_InitMap(int w, int h)
 {
 	InitMap(w, h);
@@ -22,6 +24,8 @@ void ML_LoadMap(char *file)
 	errorCase(!m_isRange(w, 1, IMAX));
 	errorCase(!m_isRange(h, 1, IMAX));
 
+	InitMap(w, h);
+
 	for(int x = 0; x < w; x++)
 	for(int y = 0; y < h; y++)
 	{
@@ -43,6 +47,8 @@ void ML_LoadMap(char *file)
 		releaseList(tokens, (void (*)(char *))memFree);
 	}
 	delete fileData;
+
+	strz(LastLoadedFile, file);
 }
 void ML_SaveMap(char *file)
 {
@@ -72,4 +78,10 @@ void ML_SaveMap(char *file)
 	}
 	SH_SaveFile(file, fileData);
 	delete fileData;
+}
+void ML_SaveMapToLastLoadedFile(void)
+{
+	errorCase(!LastLoadedFile);
+
+	ML_SaveMap(LastLoadedFile);
 }

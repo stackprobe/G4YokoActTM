@@ -12,5 +12,4 @@
 #include "MapCell.h"
 #include "Map.h"
 #include "MapLoader.h"
-#include "MapLoader2.h"
 #include "EditMenu.h"

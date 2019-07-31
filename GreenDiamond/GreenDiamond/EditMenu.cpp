@@ -20,16 +20,28 @@ static int PicId = P_MAP_TILE_00 + 0;
 static int EnemyId = -1;
 static char *EventName;
 
+static char *LastStatus;
+
 void InitEditMenu(void)
 {
 	EventName = strx("");
+	LastStatus = strx("");
 }
-static int IsOutOfEditMenu(double x, double y)
+static void SetStatus(char *status)
 {
-	return IsOut(x, y, MENU_L, MENU_T, MENU_W, MENU_H);
+	strz_x(LastStatus, xcout(".......... %s", status));
 }
 void EditMenuEachFrame(void)
 {
+	if(ProcFrame % 6 == 0 && *LastStatus)
+		memmove(LastStatus, LastStatus + 1, strlen(LastStatus));
+
+	if(GetKeyInput(KEY_INPUT_S) == 1)
+	{
+		ML_SaveMapToLastLoadedFile();
+		SetStatus("SAVED");
+	}
+
 	if(IsOut(MouseX, MouseY, MENU_L, MENU_T, MENU_W, MENU_H))
 	{
 		MapCell_t *cell = TryGetMapCell((MouseX + GDc.ICameraX) / MAP_TILE_WH, (MouseY + GDc.ICameraY) / MAP_TILE_WH);
@@ -85,5 +97,11 @@ void DrawEditMenu(void)
 	PrintRet(); Print_x(xcout("CURR-PIC-ID: %d", currCell->PicId));
 	PrintRet(); Print_x(xcout("CURR-ENEMY-ID: %d", currCell->EnemyId));
 	PrintRet(); Print_x(xcout("CURR-EVENT-NAME: %s", currCell->EventName));
+	PE_Reset();
+
+	PE.Color = GetColor(255, 255, 128);
+	PE_Border(GetColor(64, 32, 0));
+	SetPrint(0, SCREEN_H - 16);
+	Print(LastStatus);
 	PE_Reset();
 }
