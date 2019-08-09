@@ -5,6 +5,12 @@
 #define MENU_W 200
 #define MENU_H SCREEN_H
 
+#define WALL_PIC_X 100
+#define WALL_PIC_Y 500
+
+#define ENEMY_PIC_X 100
+#define ENEMY_PIC_Y 600
+
 static int InputWallFlag = 1;
 static int InputPicIdFlag = 1;
 static int InputEnemyIdFlag = 1;
@@ -20,21 +26,24 @@ static int PicId = P_MAP_TILE_00 + 0;
 static int EnemyId = -1;
 static char *EventName;
 
-static char *LastStatus;
+static char *Status;
+static int CursorMenuItemIndex = -1; // -1 == 未フォーカス
 
 void InitEditMenu(void)
 {
 	EventName = strx("");
-	LastStatus = strx("");
+	Status = strx("");
 }
 static void SetStatus(char *status)
 {
-	strz_x(LastStatus, xcout(".......... %s", status));
+	strz_x(Status, xcout(".......... %s", status));
 }
 void EditMenuEachFrame(void)
 {
-	if(ProcFrame % 6 == 0 && *LastStatus)
-		memmove(LastStatus, LastStatus + 1, strlen(LastStatus));
+	CursorMenuItemIndex = -1;
+
+	if(ProcFrame % 6 == 0 && *Status)
+		memmove(Status, Status + 1, strlen(Status));
 
 	if(GetKeyInput(KEY_INPUT_S) == 1)
 	{
@@ -66,7 +75,36 @@ void EditMenuEachFrame(void)
 	}
 	else
 	{
-		// TODO メニュー操作
+		CursorMenuItemIndex = MouseY / 16;
+
+		if(!m_isRange(CursorMenuItemIndex, 0, 7)) // メニュー項目数と同期すること。
+			CursorMenuItemIndex = -1;
+
+		int flag = -1;
+
+		if(1 <= GetMouInput(MOUBTN_L)) flag = 1;
+		if(1 <= GetMouInput(MOUBTN_R)) flag = 0;
+
+		if(flag != -1)
+		{
+			switch(CursorMenuItemIndex)
+			{
+			case -1:
+				break;
+
+			case 0: InputWallFlag = flag; break;
+			case 1: InputPicIdFlag = flag; break;
+			case 2: InputEnemyIdFlag = flag; break;
+			case 3: InputEventNameFlag = flag; break;
+			case 4: DisplayWallFlag = flag; break;
+			case 5: DisplayPicIdFlag = flag; break;
+			case 6: DisplayEnemyIdFlag = flag; break;
+			case 7: DisplayEventNameFlag = flag; break;
+
+			default:
+				error();
+			}
+		}
 	}
 }
 void DrawEditMenu(void)
@@ -75,6 +113,14 @@ void DrawEditMenu(void)
 	DPE_SetAlpha(0.8);
 	DrawRect(P_WHITEBOX, MENU_L, MENU_T, MENU_W, MENU_H);
 	DPE_Reset();
+
+	if(CursorMenuItemIndex != -1)
+	{
+		DPE_SetBright(GetColor(128, 0, 255));
+		DPE_SetAlpha(0.5);
+		DrawRect(P_WHITEBOX, MENU_L, MENU_T + CursorMenuItemIndex * 16, MENU_W, 16);
+		DPE_Reset();
+	}
 
 	i2D_t currCellPt = PointToMapCellPoint(GDc.ICameraX + MouseX, GDc.ICameraY + MouseY);
 	MapCell_t *currCell = GetMapCell(currCellPt);
@@ -102,6 +148,6 @@ void DrawEditMenu(void)
 	PE.Color = GetColor(255, 255, 128);
 	PE_Border(GetColor(64, 32, 0));
 	SetPrint(0, SCREEN_H - 16);
-	Print(LastStatus);
+	Print(Status);
 	PE_Reset();
 }
