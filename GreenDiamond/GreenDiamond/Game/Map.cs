@@ -9,8 +9,13 @@ namespace Charlotte.Game
 {
 	public static class Map
 	{
-		private static AutoTable<MapCell> Table = new AutoTable<MapCell>(100, 30);
 		private static MapCell DefaultCell = new MapCell();
+		private static AutoTable<MapCell> Table;
+
+		public static void INIT()
+		{
+			Init(100, 30);
+		}
 
 		public static int Get_W()
 		{
@@ -34,22 +39,32 @@ namespace Charlotte.Game
 
 		public static MapCell GetCell(int x, int y, MapCell defCell)
 		{
-			MapCell cell = Table[x, y];
+			if (
+				x < 0 || Table.W <= x ||
+				y < 0 || Table.H <= y
+				)
+				return defCell;
 
-			if (cell == null)
-				cell = defCell;
-
-			return cell;
+			return Table[x, y];
 		}
 
 		public static void Init(int w, int h)
 		{
-			Table = new AutoTable<MapCell>(w, h);
-		}
+			if (
+				w < 1 || IntTools.IMAX < w ||
+				h < 1 || IntTools.IMAX < h
+				)
+				throw new GameError();
 
-		public static void SetCell(int x, int y, MapCell cell)
-		{
-			Table[x, y] = cell;
+			Table = new AutoTable<MapCell>(w, h);
+
+			for (int x = 0; x < w; x++)
+			{
+				for (int y = 0; y < h; y++)
+				{
+					Table[x, y] = new MapCell();
+				}
+			}
 		}
 	}
 }

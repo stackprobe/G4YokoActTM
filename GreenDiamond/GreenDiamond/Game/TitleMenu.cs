@@ -42,6 +42,8 @@ namespace Charlotte.Game
 				{
 					case 0:
 						{
+							MapLoader.Load(@"Map\t0001.txt");
+
 							this.LeaveTitleMenu();
 
 							AGame.I = new AGame();

@@ -45,6 +45,8 @@ namespace Charlotte
 				// < Font
 
 				Ground.I = new Ground();
+
+				Map.INIT();
 			};
 
 			GameAdditionalEvents.Save = lines =>

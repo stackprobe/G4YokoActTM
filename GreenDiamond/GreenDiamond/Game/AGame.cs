@@ -10,8 +10,8 @@ namespace Charlotte.Game
 		public static AGame I = null;
 
 		// Param {
-		public double Prm_StartX;
-		public double Prm_StartY;
+		public double Prm_StartX = Map.Get_W() * Consts.MAP_TILE_WH / 2.0;
+		public double Prm_StartY = Map.Get_H() * Consts.MAP_TILE_WH / 2.0;
 		// }
 
 		// Return {

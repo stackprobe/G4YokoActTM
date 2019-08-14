@@ -26,7 +26,7 @@ namespace Charlotte.Game
 			for (; ; )
 			{
 				GameUtils.Approach(ref GameGround.Camera.X, AGame.I.Player.X - GameConsts.Screen_W / 2 + (AGame.I.CamSlideX * GameConsts.Screen_W / 3), 0.8);
-				GameUtils.Approach(ref GameGround.Camera.Y, AGame.I.Player.X - GameConsts.Screen_H / 2 + (AGame.I.CamSlideY * GameConsts.Screen_H / 3), 0.8);
+				GameUtils.Approach(ref GameGround.Camera.Y, AGame.I.Player.Y - GameConsts.Screen_H / 2 + (AGame.I.CamSlideY * GameConsts.Screen_H / 3), 0.8);
 
 				GameUtils.Range(ref GameGround.Camera.X, 0.0, Map.Get_W() * Consts.MAP_TILE_WH - GameConsts.Screen_W);
 				GameUtils.Range(ref GameGround.Camera.Y, 0.0, Map.Get_H() * Consts.MAP_TILE_WH - GameConsts.Screen_H);
@@ -102,22 +102,22 @@ namespace Charlotte.Game
 
 					if (camSlide)
 					{
-						if (1 <= GameInput.DIR_4.GetInput())
+						if (GameInput.DIR_4.IsPound())
 						{
 							AGame.I.CamSlideCount++;
 							AGame.I.CamSlideX--;
 						}
-						if (1 <= GameInput.DIR_6.GetInput())
+						if (GameInput.DIR_6.IsPound())
 						{
 							AGame.I.CamSlideCount++;
 							AGame.I.CamSlideX++;
 						}
-						if (1 <= GameInput.DIR_8.GetInput())
+						if (GameInput.DIR_8.IsPound())
 						{
 							AGame.I.CamSlideCount++;
 							AGame.I.CamSlideY--;
 						}
-						if (1 <= GameInput.DIR_2.GetInput())
+						if (GameInput.DIR_2.IsPound())
 						{
 							AGame.I.CamSlideCount++;
 							AGame.I.CamSlideY++;
@@ -334,16 +334,16 @@ namespace Charlotte.Game
 			}
 		}
 
+		private static int PlayerLookLeftFrm = 0;
+
 		private static void DrawPlayer()
 		{
-			int lookLeftFrm = 0;
+			if (PlayerLookLeftFrm == 0 && GameUtils.Random() < 0.002) // キョロキョロするレート
+				PlayerLookLeftFrm = 150 + (int)(GameUtils.Random() * 90.0);
 
-			if (lookLeftFrm == 0 && GameUtils.Random() < 0.002) // キョロキョロするレート
-				lookLeftFrm = 150 + (int)(GameUtils.Random() * 90.0);
+			GameUtils.CountDown(ref PlayerLookLeftFrm);
 
-			GameUtils.CountDown(ref lookLeftFrm);
-
-			GamePicture picture = Ground.I.Picture.PlayerStands[120 < lookLeftFrm ? 1 : 0][(GameEngine.ProcFrame / 20) % 2, 0];
+			GamePicture picture = Ground.I.Picture.PlayerStands[120 < PlayerLookLeftFrm ? 1 : 0][(GameEngine.ProcFrame / 20) % 2, 0];
 
 			if (1 <= AGame.I.Player.MoveFrame)
 			{

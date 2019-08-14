@@ -26,21 +26,21 @@ namespace Charlotte.Game
 			{
 				for (int y = 0; y < h; y++)
 				{
-					MapCell cell = new MapCell();
+					if (lines.Length <= c)
+						goto endLoad;
 
-					if (c < lines.Length)
-					{
-						string[] tokens = lines[c++].Split('\t');
-						int d = 0;
+					MapCell cell = Map.GetCell(x, y);
+					string[] tokens = lines[c++].Split('\t');
+					int d = 0;
 
-						cell.Wall = int.Parse(tokens[d++]) != 0;
-						cell.MCPicture = MapCellPictureUtils.GetPicture(tokens[d++]);
-						cell.Enemy = EnemyUtils.GetEnemy(tokens[d++]);
-						cell.EventName = tokens[d++];
-					}
-					Map.SetCell(x, y, cell);
+					cell.Wall = int.Parse(tokens[d++]) != 0;
+					cell.MCPicture = MapCellPictureUtils.GetPicture(tokens[d++]);
+					cell.Enemy = EnemyUtils.GetEnemy(tokens[d++]);
+					cell.EventName = tokens[d++];
 				}
 			}
+		endLoad:
+			;
 		}
 
 		public static void Save(string file)
