@@ -7,6 +7,13 @@ namespace Charlotte.Game
 {
 	public class Enemy
 	{
-		// TODO
+		public string Name;
+
+		public Enemy()
+		{
+			// TODO
+
+			EnemyUtils.Enemies.Add(this);
+		}
 	}
 }

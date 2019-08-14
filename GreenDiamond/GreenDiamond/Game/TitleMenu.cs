@@ -45,7 +45,7 @@ namespace Charlotte.Game
 							this.LeaveTitleMenu();
 
 							AGame.I = new AGame();
-							AGameMain.GameMain();
+							AGameMain.Perform();
 							AGame.I = null;
 
 							this.ReturnTitleMenu();

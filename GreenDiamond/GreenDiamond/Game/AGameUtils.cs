@@ -10,7 +10,10 @@ namespace Charlotte.Game
 	{
 		public static I2Point PointToMapCellPoint(double x, double y)
 		{
-			throw new NotImplementedException();
+			int mapTileX = (int)(x / Consts.MAP_TILE_WH);
+			int mapTileY = (int)(y / Consts.MAP_TILE_WH);
+
+			return new I2Point(mapTileX, mapTileY);
 		}
 	}
 }

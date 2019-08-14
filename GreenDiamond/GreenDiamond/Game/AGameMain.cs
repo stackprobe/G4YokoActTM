@@ -10,7 +10,7 @@ namespace Charlotte.Game
 {
 	public static class AGameMain
 	{
-		public static void GameMain()
+		public static void Perform()
 		{
 			AGame.I.Player.X = AGame.I.Prm_StartX;
 			AGame.I.Player.Y = AGame.I.Prm_StartY;
@@ -28,15 +28,15 @@ namespace Charlotte.Game
 				GameUtils.Approach(ref GameGround.Camera.X, AGame.I.Player.X - GameConsts.Screen_W / 2 + (AGame.I.CamSlideX * GameConsts.Screen_W / 3), 0.8);
 				GameUtils.Approach(ref GameGround.Camera.Y, AGame.I.Player.X - GameConsts.Screen_H / 2 + (AGame.I.CamSlideY * GameConsts.Screen_H / 3), 0.8);
 
-				GameUtils.Range(ref GameGround.Camera.X, 0.0, Map.Get_W() + Consts.MAP_TILE_WH - GameConsts.Screen_W);
-				GameUtils.Range(ref GameGround.Camera.Y, 0.0, Map.Get_W() + Consts.MAP_TILE_WH - GameConsts.Screen_W);
+				GameUtils.Range(ref GameGround.Camera.X, 0.0, Map.Get_W() * Consts.MAP_TILE_WH - GameConsts.Screen_W);
+				GameUtils.Range(ref GameGround.Camera.Y, 0.0, Map.Get_H() * Consts.MAP_TILE_WH - GameConsts.Screen_H);
 
 				GameGround.ICamera.X = DoubleTools.ToInt(GameGround.Camera.X);
 				GameGround.ICamera.Y = DoubleTools.ToInt(GameGround.Camera.Y);
 
 				if (GameConfig.LOG_ENABLED && GameKey.GetInput(DX.KEY_INPUT_E) == 1)
 				{
-					EditMain();
+					Edit();
 				}
 
 				// プレイヤー入力
@@ -73,6 +73,10 @@ namespace Charlotte.Game
 					if (1 <= GameInput.B.GetInput())
 					{
 						// TODO
+					}
+					if (GameInput.C.GetInput() == 1)
+					{
+						break; // kari
 					}
 
 					if (move)
@@ -142,7 +146,7 @@ namespace Charlotte.Game
 						if (AGame.I.Player.MoveSlow)
 						{
 							speed = AGame.I.Player.MoveFrame * 0.2;
-							speed = Math.Min(speed, 2.0);
+							GameUtils.Minim(ref speed, 2.0);
 						}
 						else
 							speed = 6.0;
@@ -159,21 +163,22 @@ namespace Charlotte.Game
 					if (1 <= AGame.I.Player.JumpFrame)
 						AGame.I.Player.YSpeed = -8.0;
 
-					AGame.I.Player.YSpeed = Math.Min(AGame.I.Player.YSpeed, 8.0); // 落下する最高速度
+					GameUtils.Minim(ref AGame.I.Player.YSpeed, 8.0); // 落下する最高速度
+
 					AGame.I.Player.Y += AGame.I.Player.YSpeed;
 				}
 
 				// プレイヤー位置矯正
 				{
 					bool touchSide_L =
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 10.0, AGame.I.Player.Y - Consts.MAP_TILE_WH / 2)).Wall ||
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 10.0, AGame.I.Player.Y)).Wall ||
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 10.0, AGame.I.Player.Y + Consts.MAP_TILE_WH / 2)).Wall;
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 10.0, AGame.I.Player.Y - Consts.MAP_TILE_WH / 2)).Wall ||
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 10.0, AGame.I.Player.Y)).Wall ||
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 10.0, AGame.I.Player.Y + Consts.MAP_TILE_WH / 2)).Wall;
 
 					bool touchSide_R =
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 10.0, AGame.I.Player.Y - Consts.MAP_TILE_WH / 2)).Wall ||
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 10.0, AGame.I.Player.Y)).Wall ||
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 10.0, AGame.I.Player.Y + Consts.MAP_TILE_WH / 2)).Wall;
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 10.0, AGame.I.Player.Y - Consts.MAP_TILE_WH / 2)).Wall ||
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 10.0, AGame.I.Player.Y)).Wall ||
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 10.0, AGame.I.Player.Y + Consts.MAP_TILE_WH / 2)).Wall;
 
 					if (touchSide_L && touchSide_R)
 					{
@@ -181,15 +186,15 @@ namespace Charlotte.Game
 					}
 					else if (touchSide_L)
 					{
-						AGame.I.Player.X = DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH + 10.0;
+						AGame.I.Player.X = (double)DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH + 10.0;
 					}
 					else if (touchSide_R)
 					{
-						AGame.I.Player.X = DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH - 10.0;
+						AGame.I.Player.X = (double)DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH - 10.0;
 					}
 
-					bool touchCeiling_L = Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 9.0, AGame.I.Player.Y - Consts.MAP_TILE_WH)).Wall;
-					bool touchCeiling_R = Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 9.0, AGame.I.Player.Y - Consts.MAP_TILE_WH)).Wall;
+					bool touchCeiling_L = Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 9.0, AGame.I.Player.Y - Consts.MAP_TILE_WH)).Wall;
+					bool touchCeiling_R = Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 9.0, AGame.I.Player.Y - Consts.MAP_TILE_WH)).Wall;
 					bool touchCeiling = touchCeiling_L && touchCeiling_R;
 
 					if (touchCeiling_L && touchCeiling_R)
@@ -203,24 +208,24 @@ namespace Charlotte.Game
 					}
 					else if (touchCeiling_L)
 					{
-						AGame.I.Player.X = DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH + 9.0;
+						AGame.I.Player.X = (double)DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH + 9.0;
 					}
 					else if (touchCeiling_R)
 					{
-						AGame.I.Player.X = DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH - 9.0;
+						AGame.I.Player.X = (double)DoubleTools.ToInt(AGame.I.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH - 9.0;
 					}
 
 					AGame.I.Player.TouchGround =
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 9.0, AGame.I.Player.Y + Consts.MAP_TILE_WH)).Wall ||
-						Map.GetMapCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 9.0, AGame.I.Player.Y + Consts.MAP_TILE_WH)).Wall;
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X - 9.0, AGame.I.Player.Y + Consts.MAP_TILE_WH)).Wall ||
+						Map.GetCell(AGameUtils.PointToMapCellPoint(AGame.I.Player.X + 9.0, AGame.I.Player.Y + Consts.MAP_TILE_WH)).Wall;
 
 					if (AGame.I.Player.TouchGround)
 					{
-						AGame.I.Player.YSpeed = Math.Min(AGame.I.Player.YSpeed, 0.0);
+						GameUtils.Minim(ref AGame.I.Player.YSpeed, 0.0);
 
 						double plY = (int)(AGame.I.Player.Y / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH;
 
-						AGame.I.Player.Y = Math.Min(AGame.I.Player.Y, plY);
+						GameUtils.Minim(ref AGame.I.Player.Y, plY);
 					}
 
 					if (AGame.I.Player.TouchGround)
@@ -248,24 +253,133 @@ namespace Charlotte.Game
 			}
 		}
 
+		private static void Edit()
+		{
+			EditMenu.MCPicture = null;
+			EditMenu.Enemy = null;
+			EditMenu.EventName = "";
+
+			GameEngine.FreezeInput();
+			GameDxUtils.SetMouseDispMode(true);
+
+			for (; ; )
+			{
+				int lastMouseX = GameMouse.X;
+				int lastMouseY = GameMouse.Y;
+
+				GameMouse.UpdatePos();
+
+				GameGround.ICamera.X = DoubleTools.ToInt(GameGround.Camera.X);
+				GameGround.ICamera.Y = DoubleTools.ToInt(GameGround.Camera.Y);
+
+				if (GameKey.GetInput(DX.KEY_INPUT_E) == 1)
+					break;
+
+				if (1 <= GameKey.GetInput(DX.KEY_INPUT_LSHIFT) || 1 <= GameKey.GetInput(DX.KEY_INPUT_RSHIFT)) // シフト押下 -> 移動モード
+				{
+					if (1 <= GameMouse.Get_L())
+					{
+						GameGround.Camera.X -= GameMouse.X - lastMouseX;
+						GameGround.Camera.Y -= GameMouse.Y - lastMouseY;
+					}
+				}
+				else // 編集モード
+				{
+					EditMenu.EachFrame();
+				}
+
+				DrawWall();
+				DrawMap();
+
+				EditMenu.Draw();
+
+				GameEngine.EachFrame();
+			}
+			GameEngine.FreezeInput();
+			GameDxUtils.SetMouseDispMode(false);
+		}
+
 		private static void DrawWall()
 		{
-			throw new NotImplementedException();
+			GameCurtain.DrawCurtain();
 		}
 
 		private static void DrawMap()
 		{
-			throw new NotImplementedException();
+			int w = Map.Get_W();
+			int h = Map.Get_H();
+
+			int camL = GameGround.ICamera.X;
+			int camT = GameGround.ICamera.Y;
+			int camR = camL + GameConsts.Screen_W;
+			int camB = camT + GameConsts.Screen_H;
+
+			for (int x = 0; x < w; x++)
+			{
+				for (int y = 0; y < h; y++)
+				{
+					int mapTileX = x * Consts.MAP_TILE_WH + Consts.MAP_TILE_WH / 2;
+					int mapTileY = y * Consts.MAP_TILE_WH + Consts.MAP_TILE_WH / 2;
+
+					if (GameUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), 100.0) == false) // マージン要調整
+					{
+						MapCell cell = Map.GetCell(x, y);
+
+						if (cell.MCPicture != null) // ? ! 描画無し
+						{
+							GameDraw.DrawCenter(cell.MCPicture.Picture, mapTileX - camL, mapTileY - camT);
+						}
+					}
+				}
+			}
 		}
 
 		private static void DrawPlayer()
 		{
-			throw new NotImplementedException();
-		}
+			int lookLeftFrm = 0;
 
-		private static void EditMain()
-		{
-			// TODO
+			if (lookLeftFrm == 0 && GameUtils.Random() < 0.002) // キョロキョロするレート
+				lookLeftFrm = 150 + (int)(GameUtils.Random() * 90.0);
+
+			GameUtils.CountDown(ref lookLeftFrm);
+
+			/*
+			int picId = D_PLAYER_STAND_1_00 + (120 < lookLeftFrm ? 2 : 0) + ProcFrame / 20 % 2 | DTP;
+
+			if (GDc.Player.MoveFrame)
+			{
+				if (GDc.Player.MoveSlow)
+				{
+					picId = D_PLAYER_WALK_00 + ProcFrame / 10 % 2 | DTP;
+				}
+				else
+				{
+					picId = D_PLAYER_DASH_00 + ProcFrame / 5 % 2 | DTP;
+				}
+			}
+			if (!GDc.Player.TouchGround)
+			{
+				picId = D_PLAYER_JUMP_1 | DTP;
+			}
+
+			SetPicRes(GetLTTransPicRes());
+			DrawBegin(
+				picId,
+				d2i(GDc.Player.X - GDc.ICameraX),
+				d2i(GDc.Player.Y - GDc.ICameraY) - 16
+				);
+			DrawZoom_X(GDc.Player.FacingLeft ? -1 : 1);
+			DrawEnd();
+			ResetPicRes();
+
+			// debug
+			{
+				DrawBegin(P_DUMMY, GDc.Player.X - GDc.ICameraX, GDc.Player.Y - GDc.ICameraY);
+				DrawZoom(0.1);
+				DrawRotate(ProcFrame * 0.01);
+				DrawEnd();
+			}
+			 * */
 		}
 	}
 }
