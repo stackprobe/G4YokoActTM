@@ -110,6 +110,14 @@
     <Compile Include="Common\GameUtils.cs" />
     <Compile Include="Common\GameWin32.cs" />
     <Compile Include="Common\IGameTask.cs" />
+    <Compile Include="Consts.cs" />
+    <Compile Include="Game\AGame.cs" />
+    <Compile Include="Game\AGameMain.cs" />
+    <Compile Include="Game\AGameUtils.cs" />
+    <Compile Include="Game\Enemy.cs" />
+    <Compile Include="Game\Map.cs" />
+    <Compile Include="Game\MapCell.cs" />
+    <Compile Include="Game\TitleMenu.cs" />
     <Compile Include="Ground.cs" />
     <Compile Include="MainWin.cs">
       <SubType>Form</SubType>
