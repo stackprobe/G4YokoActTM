@@ -343,43 +343,39 @@ namespace Charlotte.Game
 
 			GameUtils.CountDown(ref lookLeftFrm);
 
-			/*
-			int picId = D_PLAYER_STAND_1_00 + (120 < lookLeftFrm ? 2 : 0) + ProcFrame / 20 % 2 | DTP;
+			GamePicture picture = Ground.I.Picture.PlayerStands[120 < lookLeftFrm ? 1 : 0][(GameEngine.ProcFrame / 20) % 2, 0];
 
-			if (GDc.Player.MoveFrame)
+			if (1 <= AGame.I.Player.MoveFrame)
 			{
-				if (GDc.Player.MoveSlow)
+				if (AGame.I.Player.MoveSlow)
 				{
-					picId = D_PLAYER_WALK_00 + ProcFrame / 10 % 2 | DTP;
+					picture = Ground.I.Picture.PlayerWalk[(GameEngine.ProcFrame / 10) % 2, 0];
 				}
 				else
 				{
-					picId = D_PLAYER_DASH_00 + ProcFrame / 5 % 2 | DTP;
+					picture = Ground.I.Picture.PlayerDash[(GameEngine.ProcFrame / 5) % 2, 0];
 				}
 			}
-			if (!GDc.Player.TouchGround)
+			if (AGame.I.Player.TouchGround == false)
 			{
-				picId = D_PLAYER_JUMP_1 | DTP;
+				picture = Ground.I.Picture.PlayerJump[0];
 			}
 
-			SetPicRes(GetLTTransPicRes());
-			DrawBegin(
-				picId,
-				d2i(GDc.Player.X - GDc.ICameraX),
-				d2i(GDc.Player.Y - GDc.ICameraY) - 16
-				);
-			DrawZoom_X(GDc.Player.FacingLeft ? -1 : 1);
-			DrawEnd();
-			ResetPicRes();
+			GameDraw.DrawBegin(
+					picture,
+					DoubleTools.ToInt(AGame.I.Player.X - GameGround.ICamera.X),
+					DoubleTools.ToInt(AGame.I.Player.Y - GameGround.ICamera.Y) - 16
+					);
+			GameDraw.DrawZoom_X(AGame.I.Player.FacingLeft ? -1 : 1);
+			GameDraw.DrawEnd();
 
 			// debug
 			{
-				DrawBegin(P_DUMMY, GDc.Player.X - GDc.ICameraX, GDc.Player.Y - GDc.ICameraY);
-				DrawZoom(0.1);
-				DrawRotate(ProcFrame * 0.01);
-				DrawEnd();
+				GameDraw.DrawBegin(GameGround.GeneralResource.Dummy, AGame.I.Player.X - GameGround.ICamera.X, AGame.I.Player.Y - GameGround.ICamera.Y);
+				GameDraw.DrawZoom(0.1);
+				GameDraw.DrawRotate(GameEngine.ProcFrame * 0.01);
+				GameDraw.DrawEnd();
 			}
-			 * */
 		}
 	}
 }
