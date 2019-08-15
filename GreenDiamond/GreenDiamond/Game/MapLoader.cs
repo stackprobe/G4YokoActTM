@@ -9,8 +9,12 @@ namespace Charlotte.Game
 {
 	public static class MapLoader
 	{
+		public static string LastLoadedFile = null;
+
 		public static void Load(string file)
 		{
+			LastLoadedFile = file;
+
 			string[] lines = FileTools.TextToLines(Encoding.UTF8.GetString(GameResource.Load(file)));
 			int c = 0;
 
@@ -63,6 +67,7 @@ namespace Charlotte.Game
 					tokens.Add(cell.MCPicture == null ? "" : cell.MCPicture.Name);
 					tokens.Add(cell.Enemy == null ? "" : cell.Enemy.Name);
 					tokens.Add(cell.EventName);
+					tokens.Add("e");
 
 					lines.Add(string.Join("\t", tokens));
 				}

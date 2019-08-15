@@ -32,6 +32,11 @@ namespace Charlotte.Game
 			return GetCell(pt.X, pt.Y);
 		}
 
+		public static MapCell GetCell(I2Point pt, MapCell defCell)
+		{
+			return GetCell(pt.X, pt.Y, defCell);
+		}
+
 		public static MapCell GetCell(int x, int y)
 		{
 			return GetCell(x, y, DefaultCell);
