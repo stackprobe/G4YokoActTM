@@ -9,7 +9,7 @@ namespace Charlotte.Main01
 {
 	public static class MapLoader
 	{
-		public static string LastLoadedFile = null;
+		public static string LastLoadedFile = null; // null == 未読み込み
 
 		public static void Load(string file)
 		{
@@ -34,17 +34,27 @@ namespace Charlotte.Main01
 						goto endLoad;
 
 					MapCell cell = Map.GetCell(x, y);
-					string[] tokens = lines[c++].Split('\t');
+					var tokens = BluffListTools.Create(lines[c++].Split('\t'), "");
 					int d = 0;
 
 					cell.Wall = int.Parse(tokens[d++]) != 0;
 					cell.MCPicture = MapCellPictureUtils.GetPicture(tokens[d++]);
 					cell.Enemy = EnemyUtils.GetEnemy(tokens[d++]);
 					cell.EventName = tokens[d++];
+
+					// 新しい項目をここへ追加...
 				}
 			}
 		endLoad:
 			;
+		}
+
+		public static void SaveToLastLoadedFile()
+		{
+			if (LastLoadedFile == null)
+				throw new DDError();
+
+			Save(LastLoadedFile);
 		}
 
 		public static void Save(string file)
@@ -67,9 +77,10 @@ namespace Charlotte.Main01
 					tokens.Add(cell.MCPicture == null ? "" : cell.MCPicture.Name);
 					tokens.Add(cell.Enemy == null ? "" : cell.Enemy.Name);
 					tokens.Add(cell.EventName);
-					tokens.Add("e");
 
-					lines.Add(string.Join("\t", tokens));
+					// 新しい項目をここへ追加...
+
+					lines.Add(string.Join("\t", tokens).TrimEnd());
 				}
 			}
 			DDResource.Save(file, Encoding.UTF8.GetBytes(FileTools.LinesToText(lines.ToArray())));

@@ -29,7 +29,7 @@ namespace Charlotte.Main01
 
 		public static MapCell GetCell(I2Point pt)
 		{
-			return GetCell(pt.X, pt.Y);
+			return GetCell(pt, DefaultCell);
 		}
 
 		public static MapCell GetCell(I2Point pt, MapCell defCell)

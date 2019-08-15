@@ -11,42 +11,36 @@ namespace Charlotte
 	{
 		public DDPicture Player = DDPictureLoaders.BgTrans(@"pata2-magic\free_pochitto.png");
 
-		public DDDerivationTable[] PlayerStands = new DDDerivationTable[5];
-		public DDDerivationTable[] PlayerTalks = new DDDerivationTable[5];
+		public DDPicture[][] PlayerStands = new DDPicture[5][];
+		public DDPicture[][] PlayerTalks = new DDPicture[5][];
 		public DDPicture PlayerShagami;
-		public DDDerivationTable PlayerWalk;
-		public DDDerivationTable PlayerDash;
-		public DDDerivationTable PlayerStop;
+		public DDPicture[] PlayerWalk = new DDPicture[2];
+		public DDPicture[] PlayerDash = new DDPicture[2];
+		public DDPicture[] PlayerStop = new DDPicture[2];
 		public DDPicture[] PlayerJump = new DDPicture[3];
 		public DDPicture PlayerAttack;
 		public DDPicture PlayerAttackShagami;
-		public DDDerivationTable PlayerAttackWalk;
-		public DDDerivationTable PlayerAttackDash;
+		public DDPicture[] PlayerAttackWalk = new DDPicture[2];
+		public DDPicture[] PlayerAttackDash = new DDPicture[2];
 		public DDPicture PlayerAttackJump;
 		public DDPicture[] PlayerDamage = new DDPicture[8];
 
 		public ResourcePicture()
 		{
-			for (int y = 0; y < 2; y++)
-				for (int x = 0; x < 5; x++)
-					new[] { PlayerStands, PlayerTalks }[y][x] = new DDDerivationTable(Player, x * 208, 16 + y * 144, 94, 112, 2, 1, 96);
+			for (int x = 0; x < 5; x++)
+			{
+				PlayerStands[x] = new DDPicture[2];
+				PlayerTalks[x] = new DDPicture[2];
 
+				for (int y = 0; y < 2; y++)
+					for (int k = 0; k < 2; k++)
+						new[] { PlayerStands, PlayerTalks }[y][x][k] = DDDerivations.GetPicture(Player, x * 208 + k * 96, 16 + y * 144, 94, 112);
+			}
 			PlayerShagami = DDDerivations.GetPicture(Player, 0, 304, 94, 112);
 
-			{
-				List<DDDerivationTable> buff = new List<DDDerivationTable>();
-
-				for (int x = 0; x < 3; x++)
-					buff.Add(new DDDerivationTable(Player, 112 + x * 208, 304, 94, 112, 2, 1, 96));
-
-				{
-					int c = 0;
-
-					PlayerWalk = buff[c++];
-					PlayerDash = buff[c++];
-					PlayerStop = buff[c++];
-				}
-			}
+			for (int x = 0; x < 3; x++)
+				for (int k = 0; k < 2; k++)
+					new[] { PlayerWalk, PlayerDash, PlayerStop }[x][k] = DDDerivations.GetPicture(Player, 112 + x * 208 + k * 96, 304, 94, 112);
 
 			for (int x = 0; x < 3; x++)
 				PlayerJump[x] = DDDerivations.GetPicture(Player, 736 + x * 112, 304, 94, 112);
@@ -65,19 +59,9 @@ namespace Charlotte
 				}
 			}
 
-			{
-				List<DDDerivationTable> buff = new List<DDDerivationTable>();
-
-				for (int x = 0; x < 2; x++)
-					buff.Add(new DDDerivationTable(Player, 224 + x * 208, 448, 94, 112, 2, 1, 96));
-
-				{
-					int c = 0;
-
-					PlayerAttackWalk = buff[c++];
-					PlayerAttackDash = buff[c++];
-				}
-			}
+			for (int x = 0; x < 2; x++)
+				for (int k = 0; k < 2; k++)
+					new[] { PlayerAttackWalk, PlayerAttackDash }[x][k] = DDDerivations.GetPicture(Player, 224 + x * 208 + k * 96, 448, 94, 112);
 
 			PlayerAttackJump = DDDerivations.GetPicture(Player, 640, 448, 94, 112);
 

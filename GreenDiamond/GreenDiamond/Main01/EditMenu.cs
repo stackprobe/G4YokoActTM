@@ -25,7 +25,7 @@ namespace Charlotte.Main01
 			if (1 <= DDMouse.Get_L())
 			{
 				cell.Wall = true;
-				cell.MCPicture = MapCellPictureUtils.GetPicture("Wall");
+				cell.MCPicture = MapCellPictureUtils.GetPicture("Wall"); // kari
 			}
 			if (1 <= DDMouse.Get_R())
 			{
@@ -33,9 +33,9 @@ namespace Charlotte.Main01
 				cell.MCPicture = null;
 			}
 
-			if (DDKey.GetInput(DX.KEY_INPUT_S) == 1 && MapLoader.LastLoadedFile != null)
+			if (DDKey.GetInput(DX.KEY_INPUT_S) == 1)
 			{
-				MapLoader.Save(MapLoader.LastLoadedFile);
+				MapLoader.SaveToLastLoadedFile();
 			}
 		}
 

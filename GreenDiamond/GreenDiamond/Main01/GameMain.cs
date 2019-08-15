@@ -343,17 +343,17 @@ namespace Charlotte.Main01
 
 			DDUtils.CountDown(ref PlayerLookLeftFrm);
 
-			DDPicture picture = Ground.I.Picture.PlayerStands[120 < PlayerLookLeftFrm ? 1 : 0][(DDEngine.ProcFrame / 20) % 2, 0];
+			DDPicture picture = Ground.I.Picture.PlayerStands[120 < PlayerLookLeftFrm ? 1 : 0][(DDEngine.ProcFrame / 20) % 2];
 
 			if (1 <= Game.I.Player.MoveFrame)
 			{
 				if (Game.I.Player.MoveSlow)
 				{
-					picture = Ground.I.Picture.PlayerWalk[(DDEngine.ProcFrame / 10) % 2, 0];
+					picture = Ground.I.Picture.PlayerWalk[(DDEngine.ProcFrame / 10) % 2];
 				}
 				else
 				{
-					picture = Ground.I.Picture.PlayerDash[(DDEngine.ProcFrame / 5) % 2, 0];
+					picture = Ground.I.Picture.PlayerDash[(DDEngine.ProcFrame / 5) % 2];
 				}
 			}
 			if (Game.I.Player.TouchGround == false)
