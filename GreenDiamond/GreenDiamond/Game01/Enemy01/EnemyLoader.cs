@@ -9,10 +9,12 @@ namespace Charlotte.Game01.Enemy01
 	{
 		public static void INIT()
 		{
+			EnemyUtils.Add(new Enemy()
+			{
+				Name = "Dummy",
+			});
+
 			// TODO
-			//new Enemy();
-			//new Enemy();
-			//new Enemy();
 		}
 	}
 }

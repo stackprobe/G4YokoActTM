@@ -74,7 +74,7 @@ namespace Charlotte.Game01
 
 				if (DDConfig.LOG_ENABLED && DDKey.GetInput(DX.KEY_INPUT_E) == 1)
 				{
-					Edit();
+					EditMode();
 				}
 
 				// プレイヤー入力
@@ -291,7 +291,7 @@ namespace Charlotte.Game01
 			}
 		}
 
-		private void Edit()
+		private void EditMode()
 		{
 			DDEngine.FreezeInput();
 			DDUtils.SetMouseDispMode(true);
@@ -319,13 +319,13 @@ namespace Charlotte.Game01
 				}
 				else // 編集モード
 				{
-					EditMode.EachFrame();
+					Edit.EachFrame();
 				}
 
 				DrawWall();
 				DrawMap();
 
-				EditMode.Draw();
+				Edit.Draw();
 
 				DDEngine.EachFrame();
 			}

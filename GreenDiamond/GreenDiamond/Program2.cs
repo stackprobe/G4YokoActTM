@@ -9,6 +9,7 @@ using Charlotte.Tests;
 using Charlotte.Main01;
 using Charlotte.Game01.Map01.Tile01;
 using Charlotte.Game01.Enemy01;
+using Charlotte.Game01;
 
 namespace Charlotte
 {

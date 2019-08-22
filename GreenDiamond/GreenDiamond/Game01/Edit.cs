@@ -11,7 +11,7 @@ using Charlotte.Game01.Enemy01;
 
 namespace Charlotte.Game01
 {
-	public static class EditMode
+	public static class Edit
 	{
 		public static readonly D4Rect MenuRect = new D4Rect(0, 0, 300, DDConsts.Screen_H);
 
@@ -29,6 +29,9 @@ namespace Charlotte.Game01
 		public static int TileIndex = 0;
 		public static int EnemyIndex = 0;
 		public static string EventName = "";
+
+		public static int Rot;
+		public static int NoRotFrame;
 
 		public static void EachFrame()
 		{
@@ -58,39 +61,43 @@ namespace Charlotte.Game01
 			{
 				int cursorMenuItemIndex = DDMouse.Y / 16;
 
-				if (1 <= DDMouse.L.GetInput())
+				bool l = 1 <= DDMouse.L.GetInput();
+				bool r = 1 <= DDMouse.R.GetInput();
+
+				if (l || r)
 				{
+					bool flag = l;
+
 					switch (cursorMenuItemIndex)
 					{
-						case 0: InputWallFlag = true; break;
-						case 1: InputTileFlag = true; break;
-						case 2: InputEnemyFlag = true; break;
-						case 3: InputEventNameFlag = true; break;
+						case 0: InputWallFlag = flag; break;
+						case 1: InputTileFlag = flag; break;
+						case 2: InputEnemyFlag = flag; break;
+						case 3: InputEventNameFlag = flag; break;
 
-						case 4: DisplayWallFlag = true; break;
-						case 5: DisplayTileFlag = true; break;
-						case 6: DisplayEnemyFlag = true; break;
-						case 7: DisplayEventNameFlag = true; break;
+						case 4: DisplayWallFlag = flag; break;
+						case 5: DisplayTileFlag = flag; break;
+						case 6: DisplayEnemyFlag = flag; break;
+						case 7: DisplayEventNameFlag = flag; break;
 
-						case 8: Wall = true; break;
+						case 8: Wall = flag; break;
 					}
 				}
-				if (1 <= DDMouse.R.GetInput())
+
+				Rot += DDMouse.Rot;
+
+				if (DDMouse.Rot == 0)
+					NoRotFrame++;
+				else
+					NoRotFrame = 0;
+
+				if (90 < NoRotFrame)
+					Rot = 0;
+
+				switch (cursorMenuItemIndex)
 				{
-					switch (cursorMenuItemIndex)
-					{
-						case 0: InputWallFlag = false; break;
-						case 1: InputTileFlag = false; break;
-						case 2: InputEnemyFlag = false; break;
-						case 3: InputEventNameFlag = false; break;
-
-						case 4: DisplayWallFlag = false; break;
-						case 5: DisplayTileFlag = false; break;
-						case 6: DisplayEnemyFlag = false; break;
-						case 7: DisplayEventNameFlag = false; break;
-
-						case 8: Wall = false; break;
-					}
+					case 9: MenuItemRot(ref TileIndex, MapTileUtils.Tiles.Count); break;
+					case 10: MenuItemRot(ref EnemyIndex, EnemyUtils.Enemies.Count); break;
 				}
 			}
 
@@ -98,6 +105,26 @@ namespace Charlotte.Game01
 			{
 				MapLoader.SaveToLastLoadedFile(Game.I.Map);
 			}
+		}
+
+		private const int MIR_INC_ROT = 3;
+
+		private static void MenuItemRot(ref int itemIndex, int itemCount)
+		{
+			if (itemCount <= 0)
+				throw new DDError(); // 2bs
+
+			while (Rot <= -MIR_INC_ROT)
+			{
+				itemIndex--;
+				Rot += MIR_INC_ROT;
+			}
+			while (MIR_INC_ROT <= Rot)
+			{
+				itemIndex++;
+				Rot -= MIR_INC_ROT;
+			}
+			DDUtils.Range(ref itemIndex, 0, itemCount - 1);
 		}
 
 		public static void Draw()
@@ -121,6 +148,15 @@ namespace Charlotte.Game01
 			DDPrint.PrintRet(); DDPrint.Print("TILE: " + TileIndex + " / " + MapTileUtils.Tiles.Count);
 			DDPrint.PrintRet(); DDPrint.Print("ENEMY: " + EnemyIndex + " / " + EnemyUtils.Enemies.Count);
 			DDPrint.PrintRet(); DDPrint.Print("EVENT-NAME=[" + EventName + "]");
+
+			I2Point pt = Map.ToTablePoint(DDMouse.X + DDGround.ICamera.X, DDMouse.Y + DDGround.ICamera.Y);
+			MapCell cell = Game.I.Map.GetCell(pt);
+
+			DDPrint.PrintRet(); DDPrint.Print("CURSOR: " + pt.X + ", " + pt.Y);
+			DDPrint.PrintRet(); DDPrint.Print("CURSOR WALL: " + cell.Wall);
+			DDPrint.PrintRet(); DDPrint.Print("CURSOR TILE: " + (cell.Tile == null ? "" : cell.Tile.Name));
+			DDPrint.PrintRet(); DDPrint.Print("CURSOR ENEMY: " + (cell.Enemy == null ? "" : cell.Enemy.Name));
+			DDPrint.PrintRet(); DDPrint.Print("CURSOR EVENT-NAME=[" + cell.EventName + "]");
 		}
 	}
 }

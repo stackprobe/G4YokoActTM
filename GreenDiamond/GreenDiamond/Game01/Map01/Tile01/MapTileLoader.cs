@@ -19,7 +19,7 @@ namespace Charlotte.Game01.Map01.Tile01
 						StringTools.StartsWithIgnoreCase(file, @"MapTile\") &&
 						StringTools.EndsWithIgnoreCase(file, ".png")
 						)
-						new MapTile(file);
+						MapTileUtils.Add(new MapTile(file));
 				}
 				catch (Exception e)
 				{

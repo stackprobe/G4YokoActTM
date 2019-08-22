@@ -18,8 +18,6 @@ namespace Charlotte.Game01.Map01.Tile01
 		{
 			this.Name = Path.GetFileNameWithoutExtension(file);
 			this.Picture = DDPictureLoaders.Standard(file);
-
-			MapTileUtils.Add(this);
 		}
 	}
 }
