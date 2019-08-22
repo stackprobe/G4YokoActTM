@@ -5,6 +5,8 @@ using System.Text;
 using Charlotte.Game01.Map01;
 using Charlotte.Tools;
 using Charlotte.Game01.Map01.Tile01;
+using Charlotte.Game01.Crash01;
+using Charlotte.Game01.Weapon01;
 
 namespace Charlotte.Game01.Enemy01
 {
@@ -13,6 +15,9 @@ namespace Charlotte.Game01.Enemy01
 		public int Frame = 0;
 		public double X = -10000.0;
 		public double Y = -10000.0;
+		public Crash Crash = CrashUtils.None();
+		public int HP = 1;
+		public bool Damaged = false;
 
 		public void SetTablePoint(I2Point pt)
 		{
@@ -22,5 +27,11 @@ namespace Charlotte.Game01.Enemy01
 
 		public abstract bool EachFrame(); // ret: ? ! 破棄
 		public abstract void Draw();
+
+		public virtual void Crashed(AWeapon weapon)
+		{
+			this.HP -= weapon.AttackPoint;
+			this.Damaged = true;
+		}
 	}
 }

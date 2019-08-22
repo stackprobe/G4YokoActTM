@@ -9,7 +9,7 @@ using Charlotte.Game01.Map01;
 using Charlotte.Game01.Map01.Tile01;
 using Charlotte.Game01.Enemy01;
 
-namespace Charlotte.Game01
+namespace Charlotte.Game01.Edit01
 {
 	public static class Edit
 	{

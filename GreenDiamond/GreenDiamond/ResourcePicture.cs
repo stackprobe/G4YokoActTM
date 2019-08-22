@@ -51,7 +51,7 @@ namespace Charlotte
 				List<DDPicture> buff = new List<DDPicture>();
 
 				for (int x = 0; x < 2; x++)
-					buff.Add(DDDerivations.GetPicture(Player, 736 + x * 112, 304, 94, 112));
+					buff.Add(DDDerivations.GetPicture(Player, x * 112, 448, 94, 112));
 
 				{
 					int c = 0;

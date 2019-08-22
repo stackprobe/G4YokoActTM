@@ -8,6 +8,9 @@ using Charlotte.Common;
 using Charlotte.Game01.Map01;
 using Charlotte.Game01.Map01.Tile01;
 using Charlotte.Game01.Enemy01;
+using Charlotte.Game01.Edit01;
+using Charlotte.Game01.Weapon01;
+using Charlotte.Game01.Weapon01.Weapon01;
 
 namespace Charlotte.Game01
 {
@@ -40,6 +43,8 @@ namespace Charlotte.Game01
 			public int JumpFrame;
 			public bool TouchGround;
 			public int AirborneFrame;
+			public int ShagamiFrame;
+			public int AttackFrame;
 		}
 
 		public PlayerInfo Player = new PlayerInfo();
@@ -88,7 +93,13 @@ namespace Charlotte.Game01
 					bool camSlide = false;
 					int jumpPress;
 					bool jump = false;
+					bool shagami = false;
+					bool attack = false;
 
+					if (1 <= DDInput.DIR_2.GetInput())
+					{
+						shagami = true;
+					}
 					if (1 <= DDInput.DIR_4.GetInput())
 					{
 						this.Player.FacingLeft = true;
@@ -114,15 +125,18 @@ namespace Charlotte.Game01
 					}
 					if (1 <= DDInput.B.GetInput())
 					{
-						// TODO
+						attack = true;
 					}
-					if (DDInput.C.GetInput() == 1)
+					if (DDKey.GetInput(DX.KEY_INPUT_Q) == 1)
 					{
-						break; // kari
+						break;
 					}
 
 					if (move)
+					{
 						this.Player.MoveFrame++;
+						shagami = false;
+					}
 					else
 						this.Player.MoveFrame = 0;
 
@@ -177,6 +191,19 @@ namespace Charlotte.Game01
 						this.CamSlideCount = 0;
 					}
 					this.CamSlideMode = camSlide;
+
+					if (this.Player.TouchGround == false)
+						shagami = false;
+
+					if (shagami)
+						this.Player.ShagamiFrame++;
+					else
+						this.Player.ShagamiFrame = 0;
+
+					if (attack)
+						this.Player.AttackFrame++;
+					else
+						this.Player.AttackFrame = 0;
 				}
 
 				// プレイヤー移動
@@ -276,7 +303,23 @@ namespace Charlotte.Game01
 						this.Player.AirborneFrame++;
 				}
 
+				if (this.Player.AttackFrame % 6 == 1)
+				{
+					double x = this.Player.X;
+					double y = this.Player.Y;
+
+					x += 30.0 * (this.Player.FacingLeft ? -1 : 1);
+
+					if (1 <= this.Player.ShagamiFrame)
+						y += 10.0;
+					else
+						y -= 4.0;
+
+					this.Weapons.Add(new Weapon0001(x, y, this.Player.FacingLeft));
+				}
+
 				this.EnemyEachFrame();
+				this.WeaponEachFrame();
 
 				// 描画ここから
 
@@ -284,6 +327,7 @@ namespace Charlotte.Game01
 				DrawMap();
 				DrawPlayer();
 				DrawEnemies();
+				DrawWeapons();
 
 				DDEngine.EachFrame();
 			}
@@ -386,6 +430,8 @@ namespace Charlotte.Game01
 
 			DDUtils.CountDown(ref PlayerLookLeftFrm);
 
+			// 立ち >
+
 			DDPicture picture = Ground.I.Picture.PlayerStands[120 < PlayerLookLeftFrm ? 1 : 0][(DDEngine.ProcFrame / 20) % 2];
 
 			if (1 <= this.Player.MoveFrame)
@@ -403,6 +449,41 @@ namespace Charlotte.Game01
 			{
 				picture = Ground.I.Picture.PlayerJump[0];
 			}
+			if (1 <= this.Player.ShagamiFrame)
+			{
+				picture = Ground.I.Picture.PlayerShagami;
+			}
+
+			// < 立ち
+
+			// 攻撃中 >
+
+			if (1 <= this.Player.AttackFrame)
+			{
+				picture = Ground.I.Picture.PlayerAttack;
+
+				if (1 <= this.Player.MoveFrame)
+				{
+					if (this.Player.MoveSlow)
+					{
+						picture = Ground.I.Picture.PlayerAttackWalk[(DDEngine.ProcFrame / 10) % 2];
+					}
+					else
+					{
+						picture = Ground.I.Picture.PlayerAttackDash[(DDEngine.ProcFrame / 5) % 2];
+					}
+				}
+				if (this.Player.TouchGround == false)
+				{
+					picture = Ground.I.Picture.PlayerAttackJump;
+				}
+				if (1 <= this.Player.ShagamiFrame)
+				{
+					picture = Ground.I.Picture.PlayerAttackShagami;
+				}
+			}
+
+			// < 攻撃中
 
 			DDDraw.DrawBegin(
 					picture,
@@ -467,6 +548,33 @@ namespace Charlotte.Game01
 			foreach (AEnemy enemy in this.Enemies)
 			{
 				enemy.Draw();
+			}
+		}
+
+		public List<AWeapon> Weapons = new List<AWeapon>();
+
+		public void WeaponEachFrame()
+		{
+			for (int index = 0; index < this.Weapons.Count; index++)
+			{
+				AWeapon weapon = this.Weapons[index];
+
+				if (weapon.EachFrame() == false) // ? 消滅
+				{
+					ExtraTools.FastDesertElement(this.Weapons, index--);
+				}
+				else
+				{
+					weapon.Frame++;
+				}
+			}
+		}
+
+		public void DrawWeapons()
+		{
+			foreach (AWeapon weapon in this.Weapons)
+			{
+				weapon.Draw();
 			}
 		}
 	}
