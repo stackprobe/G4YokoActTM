@@ -8,6 +8,7 @@ using Charlotte.Common;
 using Charlotte.Game01.Map01;
 using Charlotte.Game01.Map01.Tile01;
 using Charlotte.Game01.Enemy01;
+using Charlotte.Sub01;
 
 namespace Charlotte.Game01
 {
@@ -99,6 +100,16 @@ namespace Charlotte.Game01
 					case 9: MenuItemRot(ref TileIndex, MapTileUtils.Tiles.Count); break;
 					case 10: MenuItemRot(ref EnemyIndex, EnemyUtils.Enemies.Count); break;
 				}
+
+				if (DDMouse.L.GetInput() == 1)
+				{
+					switch (cursorMenuItemIndex)
+					{
+						case 11:
+							EventName = InputStringSub.InputString("EVENT-NAME", EventName, 30);
+							break;
+					}
+				}
 			}
 
 			if (DDKey.GetInput(DX.KEY_INPUT_S) == 1)
@@ -134,29 +145,30 @@ namespace Charlotte.Game01
 			DDDraw.DrawRect(DDGround.GeneralResource.WhiteBox, MenuRect.L, MenuRect.T, MenuRect.W, MenuRect.H);
 			DDDraw.Reset();
 
-			DDPrint.SetPrint(); DDPrint.Print("INPUT WALL: " + InputWallFlag);
-			DDPrint.PrintRet(); DDPrint.Print("INPUT TILE: " + InputTileFlag);
-			DDPrint.PrintRet(); DDPrint.Print("INPUT ENEMY: " + InputEnemyFlag);
-			DDPrint.PrintRet(); DDPrint.Print("INPUT EVENT-NAME: " + InputEventNameFlag);
+			DDPrint.SetPrint();
+			DDPrint.PrintLine("INPUT WALL: " + InputWallFlag);
+			DDPrint.PrintLine("INPUT TILE: " + InputTileFlag);
+			DDPrint.PrintLine("INPUT ENEMY: " + InputEnemyFlag);
+			DDPrint.PrintLine("INPUT EVENT-NAME: " + InputEventNameFlag);
 
-			DDPrint.PrintRet(); DDPrint.Print("DISPLAY WALL: " + DisplayWallFlag);
-			DDPrint.PrintRet(); DDPrint.Print("DISPLAY TILE: " + DisplayTileFlag);
-			DDPrint.PrintRet(); DDPrint.Print("DISPLAY ENEMY: " + DisplayEnemyFlag);
-			DDPrint.PrintRet(); DDPrint.Print("DISPLAY EVENT-NAME: " + DisplayEventNameFlag);
+			DDPrint.PrintLine("DISPLAY WALL: " + DisplayWallFlag);
+			DDPrint.PrintLine("DISPLAY TILE: " + DisplayTileFlag);
+			DDPrint.PrintLine("DISPLAY ENEMY: " + DisplayEnemyFlag);
+			DDPrint.PrintLine("DISPLAY EVENT-NAME: " + DisplayEventNameFlag);
 
-			DDPrint.PrintRet(); DDPrint.Print("WALL: " + Wall);
-			DDPrint.PrintRet(); DDPrint.Print("TILE: " + TileIndex + " / " + MapTileUtils.Tiles.Count);
-			DDPrint.PrintRet(); DDPrint.Print("ENEMY: " + EnemyIndex + " / " + EnemyUtils.Enemies.Count);
-			DDPrint.PrintRet(); DDPrint.Print("EVENT-NAME=[" + EventName + "]");
+			DDPrint.PrintLine("WALL: " + Wall);
+			DDPrint.PrintLine("TILE: " + TileIndex + " / " + MapTileUtils.Tiles.Count);
+			DDPrint.PrintLine("ENEMY: " + EnemyIndex + " / " + EnemyUtils.Enemies.Count);
+			DDPrint.PrintLine("EVENT-NAME=[" + EventName + "]");
 
 			I2Point pt = Map.ToTablePoint(DDMouse.X + DDGround.ICamera.X, DDMouse.Y + DDGround.ICamera.Y);
 			MapCell cell = Game.I.Map.GetCell(pt);
 
-			DDPrint.PrintRet(); DDPrint.Print("CURSOR: " + pt.X + ", " + pt.Y);
-			DDPrint.PrintRet(); DDPrint.Print("CURSOR WALL: " + cell.Wall);
-			DDPrint.PrintRet(); DDPrint.Print("CURSOR TILE: " + (cell.Tile == null ? "" : cell.Tile.Name));
-			DDPrint.PrintRet(); DDPrint.Print("CURSOR ENEMY: " + (cell.Enemy == null ? "" : cell.Enemy.Name));
-			DDPrint.PrintRet(); DDPrint.Print("CURSOR EVENT-NAME=[" + cell.EventName + "]");
+			DDPrint.PrintLine("CURSOR: " + pt.X + ", " + pt.Y);
+			DDPrint.PrintLine("CURSOR WALL: " + cell.Wall);
+			DDPrint.PrintLine("CURSOR TILE: " + (cell.Tile == null ? "" : cell.Tile.Name));
+			DDPrint.PrintLine("CURSOR ENEMY: " + (cell.Enemy == null ? "" : cell.Enemy.Name));
+			DDPrint.PrintLine("CURSOR EVENT-NAME=[" + cell.EventName + "]");
 		}
 	}
 }
