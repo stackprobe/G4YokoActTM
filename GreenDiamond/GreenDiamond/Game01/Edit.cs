@@ -29,7 +29,7 @@ namespace Charlotte.Game01
 		public static bool Wall = true;
 		public static int TileIndex = 0;
 		public static int EnemyIndex = 0;
-		public static string EventName = "";
+		public static string Argument = "";
 
 		public static int Rot;
 		public static int NoRotFrame;
@@ -50,7 +50,7 @@ namespace Charlotte.Game01
 				if (1 <= DDMouse.L.GetInput())
 				{
 					cell.Wall = true;
-					cell.Tile = MapTileUtils.GetTile("Wall"); // kari
+					cell.Tile = MapTileManager.GetTile("Wall"); // kari
 				}
 				if (1 <= DDMouse.R.GetInput())
 				{
@@ -97,8 +97,8 @@ namespace Charlotte.Game01
 
 				switch (cursorMenuItemIndex)
 				{
-					case 9: MenuItemRot(ref TileIndex, MapTileUtils.Tiles.Count); break;
-					case 10: MenuItemRot(ref EnemyIndex, EnemyUtils.Enemies.Count); break;
+					case 9: MenuItemRot(ref TileIndex, MapTileManager.GetCount()); break;
+					case 10: MenuItemRot(ref EnemyIndex, EnemyManager.GetCount()); break;
 				}
 
 				if (DDMouse.L.GetInput() == 1)
@@ -106,7 +106,7 @@ namespace Charlotte.Game01
 					switch (cursorMenuItemIndex)
 					{
 						case 11:
-							EventName = InputStringSub.InputString("EVENT-NAME", EventName, 30);
+							Argument = InputStringSub.InputString("ARGUMENT", Argument, 30);
 							break;
 					}
 				}
@@ -157,9 +157,9 @@ namespace Charlotte.Game01
 			DDPrint.PrintLine("DISPLAY EVENT-NAME: " + DisplayEventNameFlag);
 
 			DDPrint.PrintLine("WALL: " + Wall);
-			DDPrint.PrintLine("TILE: " + TileIndex + " / " + MapTileUtils.Tiles.Count);
-			DDPrint.PrintLine("ENEMY: " + EnemyIndex + " / " + EnemyUtils.Enemies.Count);
-			DDPrint.PrintLine("EVENT-NAME=[" + EventName + "]");
+			DDPrint.PrintLine("TILE: " + TileIndex + " / " + MapTileManager.GetCount());
+			DDPrint.PrintLine("ENEMY: " + EnemyIndex + " / " + EnemyManager.GetCount());
+			DDPrint.PrintLine("ARGUMENT=[" + Argument + "]");
 
 			I2Point pt = Map.ToTablePoint(DDMouse.X + DDGround.ICamera.X, DDMouse.Y + DDGround.ICamera.Y);
 			MapCell cell = Game.I.Map.GetCell(pt);
@@ -168,7 +168,7 @@ namespace Charlotte.Game01
 			DDPrint.PrintLine("CURSOR WALL: " + cell.Wall);
 			DDPrint.PrintLine("CURSOR TILE: " + (cell.Tile == null ? "" : cell.Tile.Name));
 			DDPrint.PrintLine("CURSOR ENEMY: " + (cell.Enemy == null ? "" : cell.Enemy.Name));
-			DDPrint.PrintLine("CURSOR EVENT-NAME=[" + cell.EventName + "]");
+			DDPrint.PrintLine("CURSOR ARGUMENT=[" + cell.Argument + "]");
 		}
 	}
 }

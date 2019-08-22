@@ -46,8 +46,8 @@ namespace Charlotte
 
 				// *.INIT
 				{
-					EnemyLoader.INIT();
-					MapTileLoader.INIT();
+					EnemyManager.INIT();
+					MapTileManager.INIT();
 				}
 			};
 

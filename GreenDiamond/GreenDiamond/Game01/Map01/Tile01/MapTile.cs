@@ -13,11 +13,5 @@ namespace Charlotte.Game01.Map01.Tile01
 
 		public string Name;
 		public DDPicture Picture;
-
-		public MapTile(string file)
-		{
-			this.Name = Path.GetFileNameWithoutExtension(file);
-			this.Picture = DDPictureLoaders.Standard(file);
-		}
 	}
 }
