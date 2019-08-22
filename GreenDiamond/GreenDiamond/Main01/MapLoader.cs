@@ -34,7 +34,7 @@ namespace Charlotte.Main01
 						goto endLoad;
 
 					MapCell cell = Map.GetCell(x, y);
-					var tokens = BluffListTools.Create(lines[c++].Split('\t'), "");
+					var tokens = new BluffList<string>(lines[c++].Split('\t')).FreeRange("");
 					int d = 0;
 
 					cell.Wall = int.Parse(tokens[d++]) != 0;
