@@ -68,6 +68,9 @@ namespace Charlotte.Game01.Map01
 			return Table[x, y];
 		}
 
+		// TablePoint ... I2Point Table用の座標
+		// Point      ... D2Point 座標(ピクセル単位)
+
 		public static I2Point ToTablePoint(D2Point pt)
 		{
 			return ToTablePoint(pt.X, pt.Y);

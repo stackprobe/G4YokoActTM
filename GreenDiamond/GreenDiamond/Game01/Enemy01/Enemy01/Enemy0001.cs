@@ -9,13 +9,23 @@ namespace Charlotte.Game01.Enemy01.Enemy01
 {
 	public class Enemy0001 : AEnemy
 	{
+		private D2Point Speed = new D2Point();
+
 		public override bool EachFrame()
 		{
 			double rot = DDUtils.GetAngle(Game.I.Player.X - this.X, Game.I.Player.Y - this.Y);
-			D2Point speed = DDUtils.AngleToPoint(rot, 2.0);
+			rot += DDUtils.Random.Real2() * 0.05;
+			D2Point speedAdd = DDUtils.AngleToPoint(rot, 0.1);
 
-			this.X += speed.X;
-			this.Y += speed.Y;
+			if (DDUtils.GetDistance(Game.I.Player.X - this.X, Game.I.Player.Y - this.Y) < 50.0)
+			{
+				speedAdd *= -300.0;
+			}
+			this.Speed += speedAdd;
+			this.Speed *= 0.93;
+
+			this.X += this.Speed.X;
+			this.Y += this.Speed.Y;
 
 			return true;
 		}
