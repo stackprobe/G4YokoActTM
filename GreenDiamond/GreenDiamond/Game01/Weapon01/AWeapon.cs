@@ -20,9 +20,14 @@ namespace Charlotte.Game01.Weapon01
 		public abstract bool EachFrame(); // ret: ? ! 破棄
 		public abstract void Draw();
 
-		public virtual void Crashed(AEnemy enemy)
+		public void Crashed(AEnemy enemy)
 		{
 			this.CrashedEnemy = enemy;
+		}
+
+		public void PostEachFrame()
+		{
+			this.Frame++;
 		}
 	}
 }

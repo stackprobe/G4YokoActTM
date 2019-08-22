@@ -12,6 +12,7 @@ using Charlotte.Game01.Edit01;
 using Charlotte.Game01.Weapon01;
 using Charlotte.Game01.Weapon01.Weapon01;
 using Charlotte.Game01.Crash01;
+using Charlotte.Utils;
 
 namespace Charlotte.Game01
 {
@@ -48,6 +49,8 @@ namespace Charlotte.Game01
 			public int AttackFrame;
 			public Crash Crash = CrashUtils.None();
 			public int DamageFrame;
+			public int MutekiFrame;
+			public int HP = 1;
 		}
 
 		public PlayerInfo Player = new PlayerInfo();
@@ -210,19 +213,23 @@ namespace Charlotte.Game01
 						this.Player.AttackFrame = 0;
 				}
 
-				if (1 <= this.Player.DamageFrame)
 				{
-					double rate = this.Player.DamageFrame / 20.0;
-
-					if (rate < 1.0)
-					{
-						this.Player.X -= (9.0 - 6.0 * rate) * (this.Player.FacingLeft ? -1 : 1);
-						this.Player.DamageFrame++;
-					}
-					else
-						this.Player.DamageFrame = 0;
+					DDScene scene = GameUtils.SceneIncrement(ref this.Player.MutekiFrame, 60);
 				}
 
+				{
+					DDScene scene = GameUtils.SceneIncrement(ref this.Player.DamageFrame, 20);
+
+					if (scene != null)
+					{
+						this.Player.X -= (9.0 - 6.0 * scene.Rate) * (this.Player.FacingLeft ? -1 : 1);
+
+						if (scene.Remaining == 0)
+						{
+							this.Player.MutekiFrame = 1;
+						}
+					}
+				}
 
 				// プレイヤー移動
 				{
@@ -353,10 +360,10 @@ namespace Charlotte.Game01
 								weapon.Crashed(enemy);
 							}
 						}
-						if (this.Player.DamageFrame == 0 && enemy.Crash.IsCrashed(this.Player.Crash))
+						if (this.Player.DamageFrame == 0 && this.Player.MutekiFrame == 0 && enemy.Crash.IsCrashed(this.Player.Crash))
 						{
 							enemy.CrashedToPlayer();
-							this.Player.DamageFrame = 1;
+							this.PlayerCrashed(enemy);
 						}
 					}
 				}
@@ -533,6 +540,7 @@ namespace Charlotte.Game01
 				xZoom *= -1;
 			}
 
+			DDDraw.SetAlpha(1 <= this.Player.MutekiFrame ? 0.5 : 1.0);
 			DDDraw.DrawBegin(
 					picture,
 					DoubleTools.ToInt(this.Player.X - DDGround.ICamera.X),
@@ -540,6 +548,7 @@ namespace Charlotte.Game01
 					);
 			DDDraw.DrawZoom_X(xZoom);
 			DDDraw.DrawEnd();
+			DDDraw.Reset();
 
 			// debug
 			{
@@ -548,6 +557,12 @@ namespace Charlotte.Game01
 				DDDraw.DrawRotate(DDEngine.ProcFrame * 0.01);
 				DDDraw.DrawEnd();
 			}
+		}
+
+		private void PlayerCrashed(AEnemy enemy)
+		{
+			this.Player.HP -= enemy.AttackPoint;
+			this.Player.DamageFrame = 1;
 		}
 
 		public List<AEnemy> Enemies = new List<AEnemy>();
@@ -586,7 +601,7 @@ namespace Charlotte.Game01
 				}
 				else
 				{
-					enemy.Frame++;
+					enemy.PostEachFrame();
 				}
 			}
 		}
@@ -613,7 +628,7 @@ namespace Charlotte.Game01
 				}
 				else
 				{
-					weapon.Frame++;
+					weapon.PostEachFrame();
 				}
 			}
 		}

@@ -19,6 +19,7 @@ namespace Charlotte.Game01.Enemy01
 		public int HP = 1;
 		public int AttackPoint = 1;
 		public AWeapon CrashedWeapon = null;
+		public bool CrashedToPlayerFlag = false;
 
 		public void SetTablePoint(I2Point pt)
 		{
@@ -29,15 +30,22 @@ namespace Charlotte.Game01.Enemy01
 		public abstract bool EachFrame(); // ret: ? ! 破棄
 		public abstract void Draw();
 
-		public virtual void Crashed(AWeapon weapon)
+		public void Crashed(AWeapon weapon)
 		{
 			this.HP -= weapon.AttackPoint;
 			this.CrashedWeapon = weapon;
 		}
 
-		public virtual void CrashedToPlayer()
+		public void CrashedToPlayer()
 		{
-			// noop
+			this.CrashedToPlayerFlag = true;
+		}
+
+		public void PostEachFrame()
+		{
+			this.Frame++;
+			this.CrashedWeapon = null;
+			this.CrashedToPlayerFlag = false;
 		}
 	}
 }

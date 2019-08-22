@@ -140,6 +140,7 @@
     <Compile Include="ResourcePicture.cs" />
     <Compile Include="ResourceSE.cs" />
     <Compile Include="Tests\Test0001.cs" />
+    <Compile Include="Utils\GameUtils.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>

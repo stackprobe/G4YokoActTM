@@ -28,10 +28,8 @@ namespace Charlotte.Game01.Enemy01.Enemy01
 
 			if (this.CrashedWeapon != null)
 			{
-				this.X += 10.0 * (this.CrashedWeapon.FacingLeft ? -1 : 1);
-				this.CrashedWeapon = null;
+				this.X += 10.0 * (this.CrashedWeapon.FacingLeft ? -1 : 1); // ヒットバック
 			}
-
 			this.Crash = CrashUtils.Rect_CenterSize(new D2Point(this.X, this.Y), new D2Size(100.0, 100.0));
 
 			return true;
