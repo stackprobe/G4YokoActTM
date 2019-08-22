@@ -17,7 +17,8 @@ namespace Charlotte.Game01.Enemy01
 		public double Y = -10000.0;
 		public Crash Crash = CrashUtils.None();
 		public int HP = 1;
-		public bool Damaged = false;
+		public int AttackPoint = 1;
+		public AWeapon CrashedWeapon = null;
 
 		public void SetTablePoint(I2Point pt)
 		{
@@ -31,7 +32,12 @@ namespace Charlotte.Game01.Enemy01
 		public virtual void Crashed(AWeapon weapon)
 		{
 			this.HP -= weapon.AttackPoint;
-			this.Damaged = true;
+			this.CrashedWeapon = weapon;
+		}
+
+		public virtual void CrashedToPlayer()
+		{
+			// noop
 		}
 	}
 }

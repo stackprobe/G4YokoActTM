@@ -33,6 +33,11 @@ namespace Charlotte.Game01.Crash01
 			};
 		}
 
+		public static Crash Rect_CenterSize(D2Point centerPt, D2Size size)
+		{
+			return Rect(new D4Rect(centerPt.X - size.W / 2.0, centerPt.Y - size.H / 2.0, size.W, size.H));
+		}
+
 		public static Crash Rect(D4Rect rect)
 		{
 			return new Crash()

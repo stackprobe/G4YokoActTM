@@ -13,14 +13,16 @@ namespace Charlotte.Game01.Weapon01
 		public double X = -10000.0;
 		public double Y = -10000.0;
 		public Crash Crash = CrashUtils.None();
+		public bool FacingLeft = false;
 		public int AttackPoint = 1;
+		public AEnemy CrashedEnemy = null;
 
 		public abstract bool EachFrame(); // ret: ? ! 破棄
 		public abstract void Draw();
 
-		public virtual void Crashes(AEnemy enemy)
+		public virtual void Crashed(AEnemy enemy)
 		{
-			// noop
+			this.CrashedEnemy = enemy;
 		}
 	}
 }

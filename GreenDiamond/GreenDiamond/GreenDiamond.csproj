@@ -112,6 +112,7 @@
     <Compile Include="Game01\Crash01\Crash.cs" />
     <Compile Include="Game01\Crash01\CrashUtils.cs" />
     <Compile Include="Game01\Enemy01\Enemy01\Enemy0001.cs" />
+    <Compile Include="Game01\Enemy01\Enemy01\Enemy0002.cs" />
     <Compile Include="Game01\Enemy01\EnemyLoader.cs" />
     <Compile Include="Game01\Game.cs" />
     <Compile Include="Game01\Edit01\Edit.cs" />

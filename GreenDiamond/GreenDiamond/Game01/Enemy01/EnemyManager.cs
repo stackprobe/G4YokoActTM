@@ -14,6 +14,7 @@ namespace Charlotte.Game01.Enemy01
 		public static void INIT()
 		{
 			Add("Enemy0001", () => new Enemy0001());
+			Add("Enemy0002", () => new Enemy0002());
 
 			// 新しい敵をここへ追加...
 		}

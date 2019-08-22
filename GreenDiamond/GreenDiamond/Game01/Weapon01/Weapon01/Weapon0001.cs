@@ -4,23 +4,27 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
+using Charlotte.Game01.Crash01;
 
 namespace Charlotte.Game01.Weapon01.Weapon01
 {
 	public class Weapon0001 : AWeapon
 	{
-		public double XSpeed;
-
-		public Weapon0001(double x, double y, bool left)
+		public Weapon0001(double x, double y, bool facingLeft)
 		{
 			this.X = x;
 			this.Y = y;
-			this.XSpeed = 8.0 * (left ? -1 : 1);
+			this.FacingLeft = facingLeft;
 		}
 
 		public override bool EachFrame()
 		{
-			this.X += this.XSpeed;
+			if (this.CrashedEnemy != null)
+				return false;
+
+			this.X += 8.0 * (this.FacingLeft ? -1 : 1);
+
+			this.Crash = CrashUtils.Circle(new D2Point(this.X, this.Y), 5.0);
 
 			return DDUtils.IsOutOfCamera(new D2Point(this.X, this.Y), 100.0) == false;
 		}

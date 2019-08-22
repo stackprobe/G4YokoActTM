@@ -11,6 +11,7 @@ using Charlotte.Game01.Enemy01;
 using Charlotte.Game01.Edit01;
 using Charlotte.Game01.Weapon01;
 using Charlotte.Game01.Weapon01.Weapon01;
+using Charlotte.Game01.Crash01;
 
 namespace Charlotte.Game01
 {
@@ -45,6 +46,8 @@ namespace Charlotte.Game01
 			public int AirborneFrame;
 			public int ShagamiFrame;
 			public int AttackFrame;
+			public Crash Crash = CrashUtils.None();
+			public int DamageFrame;
 		}
 
 		public PlayerInfo Player = new PlayerInfo();
@@ -88,24 +91,25 @@ namespace Charlotte.Game01
 
 				// プレイヤー入力
 				{
+					bool damage = 1 <= this.Player.DamageFrame;
 					bool move = false;
 					bool slow = false;
 					bool camSlide = false;
-					int jumpPress;
+					int jumpPress = DDInput.A.GetInput();
 					bool jump = false;
 					bool shagami = false;
 					bool attack = false;
 
-					if (1 <= DDInput.DIR_2.GetInput())
+					if (!damage && 1 <= DDInput.DIR_2.GetInput())
 					{
 						shagami = true;
 					}
-					if (1 <= DDInput.DIR_4.GetInput())
+					if (!damage && 1 <= DDInput.DIR_4.GetInput())
 					{
 						this.Player.FacingLeft = true;
 						move = true;
 					}
-					if (1 <= DDInput.DIR_6.GetInput())
+					if (!damage && 1 <= DDInput.DIR_6.GetInput())
 					{
 						this.Player.FacingLeft = false;
 						move = true;
@@ -115,15 +119,15 @@ namespace Charlotte.Game01
 						move = false;
 						camSlide = true;
 					}
-					if (1 <= DDInput.R.GetInput())
+					if (!damage && 1 <= DDInput.R.GetInput())
 					{
 						slow = true;
 					}
-					if (1 <= (jumpPress = DDInput.A.GetInput()))
+					if (!damage && 1 <= jumpPress)
 					{
 						jump = true;
 					}
-					if (1 <= DDInput.B.GetInput())
+					if (!damage && 1 <= DDInput.B.GetInput())
 					{
 						attack = true;
 					}
@@ -205,6 +209,20 @@ namespace Charlotte.Game01
 					else
 						this.Player.AttackFrame = 0;
 				}
+
+				if (1 <= this.Player.DamageFrame)
+				{
+					double rate = this.Player.DamageFrame / 20.0;
+
+					if (rate < 1.0)
+					{
+						this.Player.X -= (9.0 - 6.0 * rate) * (this.Player.FacingLeft ? -1 : 1);
+						this.Player.DamageFrame++;
+					}
+					else
+						this.Player.DamageFrame = 0;
+				}
+
 
 				// プレイヤー移動
 				{
@@ -318,8 +336,30 @@ namespace Charlotte.Game01
 					this.Weapons.Add(new Weapon0001(x, y, this.Player.FacingLeft));
 				}
 
+				this.Player.Crash = CrashUtils.Point(new D2Point(this.Player.X, this.Player.Y));
+
 				this.EnemyEachFrame();
 				this.WeaponEachFrame();
+
+				// Crash
+				{
+					foreach (AEnemy enemy in this.Enemies)
+					{
+						foreach (AWeapon weapon in this.Weapons)
+						{
+							if (enemy.Crash.IsCrashed(weapon.Crash))
+							{
+								enemy.Crashed(weapon);
+								weapon.Crashed(enemy);
+							}
+						}
+						if (this.Player.DamageFrame == 0 && enemy.Crash.IsCrashed(this.Player.Crash))
+						{
+							enemy.CrashedToPlayer();
+							this.Player.DamageFrame = 1;
+						}
+					}
+				}
 
 				// 描画ここから
 
@@ -430,6 +470,8 @@ namespace Charlotte.Game01
 
 			DDUtils.CountDown(ref PlayerLookLeftFrm);
 
+			double xZoom = this.Player.FacingLeft ? -1 : 1;
+
 			// 立ち >
 
 			DDPicture picture = Ground.I.Picture.PlayerStands[120 < PlayerLookLeftFrm ? 1 : 0][(DDEngine.ProcFrame / 20) % 2];
@@ -485,12 +527,18 @@ namespace Charlotte.Game01
 
 			// < 攻撃中
 
+			if (1 <= this.Player.DamageFrame)
+			{
+				picture = Ground.I.Picture.PlayerDamage[0];
+				xZoom *= -1;
+			}
+
 			DDDraw.DrawBegin(
 					picture,
 					DoubleTools.ToInt(this.Player.X - DDGround.ICamera.X),
 					DoubleTools.ToInt(this.Player.Y - DDGround.ICamera.Y) - 16
 					);
-			DDDraw.DrawZoom_X(this.Player.FacingLeft ? -1 : 1);
+			DDDraw.DrawZoom_X(xZoom);
 			DDDraw.DrawEnd();
 
 			// debug
@@ -504,7 +552,7 @@ namespace Charlotte.Game01
 
 		public List<AEnemy> Enemies = new List<AEnemy>();
 
-		public void ReloadEnemies()
+		private void ReloadEnemies()
 		{
 			this.Enemies.Clear();
 
@@ -526,7 +574,7 @@ namespace Charlotte.Game01
 			}
 		}
 
-		public void EnemyEachFrame()
+		private void EnemyEachFrame()
 		{
 			for (int index = 0; index < this.Enemies.Count; index++)
 			{
@@ -543,7 +591,7 @@ namespace Charlotte.Game01
 			}
 		}
 
-		public void DrawEnemies()
+		private void DrawEnemies()
 		{
 			foreach (AEnemy enemy in this.Enemies)
 			{
@@ -553,7 +601,7 @@ namespace Charlotte.Game01
 
 		public List<AWeapon> Weapons = new List<AWeapon>();
 
-		public void WeaponEachFrame()
+		private void WeaponEachFrame()
 		{
 			for (int index = 0; index < this.Weapons.Count; index++)
 			{
@@ -570,7 +618,7 @@ namespace Charlotte.Game01
 			}
 		}
 
-		public void DrawWeapons()
+		private void DrawWeapons()
 		{
 			foreach (AWeapon weapon in this.Weapons)
 			{

@@ -27,6 +27,8 @@ namespace Charlotte.Game01.Enemy01.Enemy01
 			this.X += this.Speed.X;
 			this.Y += this.Speed.Y;
 
+			this.CrashedWeapon = null;
+
 			return true;
 		}
 
