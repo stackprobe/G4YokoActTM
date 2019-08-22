@@ -10,14 +10,10 @@ namespace Charlotte.Main01
 {
 	public static class EditMenu
 	{
-		public static MapCellPicture MCPicture;
-		public static Enemy Enemy;
-		public static string EventName;
-
 		public static void EachFrame()
 		{
-			I2Point pt = GameUtils.PointToMapCellPoint(DDMouse.X + DDGround.ICamera.X, DDMouse.Y + DDGround.ICamera.Y);
-			MapCell cell = Map.GetCell(pt, null);
+			I2Point pt = Map.ToTablePoint(DDMouse.X + DDGround.ICamera.X, DDMouse.Y + DDGround.ICamera.Y);
+			MapCell cell = Game.I.Map.GetCell(pt, null);
 
 			if (cell == null)
 				return;
@@ -35,7 +31,7 @@ namespace Charlotte.Main01
 
 			if (DDKey.GetInput(DX.KEY_INPUT_S) == 1)
 			{
-				MapLoader.SaveToLastLoadedFile();
+				MapLoader.SaveToLastLoadedFile(Game.I.Map);
 			}
 		}
 

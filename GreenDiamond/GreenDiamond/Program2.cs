@@ -31,11 +31,6 @@ namespace Charlotte
 				//GameGround.RO_MouseDispMode = true;
 			};
 
-			DDAdditionalEvents.Ground_FNLZ = () =>
-			{
-				// none
-			};
-
 			DDAdditionalEvents.PostGameStart = () =>
 			{
 				// Font >
@@ -45,8 +40,6 @@ namespace Charlotte
 				// < Font
 
 				Ground.I = new Ground();
-
-				Map.INIT();
 			};
 
 			DDAdditionalEvents.Save = lines =>

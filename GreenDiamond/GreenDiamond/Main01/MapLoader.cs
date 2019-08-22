@@ -11,7 +11,7 @@ namespace Charlotte.Main01
 	{
 		public static string LastLoadedFile = null; // null == 未読み込み
 
-		public static void Load(string file)
+		public static Map Load(string file)
 		{
 			LastLoadedFile = file;
 
@@ -24,7 +24,7 @@ namespace Charlotte.Main01
 			if (w < 1 || IntTools.IMAX < w) throw new DDError();
 			if (h < 1 || IntTools.IMAX < h) throw new DDError();
 
-			Map.Init(w, h);
+			Map map = new Map(w, h);
 
 			for (int x = 0; x < w; x++)
 			{
@@ -33,7 +33,7 @@ namespace Charlotte.Main01
 					if (lines.Length <= c)
 						goto endLoad;
 
-					MapCell cell = Map.GetCell(x, y);
+					MapCell cell = map.GetCell(x, y);
 					var tokens = new BluffList<string>(lines[c++].Split('\t')).FreeRange("");
 					int d = 0;
 
@@ -46,22 +46,22 @@ namespace Charlotte.Main01
 				}
 			}
 		endLoad:
-			;
+			return map;
 		}
 
-		public static void SaveToLastLoadedFile()
+		public static void SaveToLastLoadedFile(Map map)
 		{
 			if (LastLoadedFile == null)
 				throw new DDError();
 
-			Save(LastLoadedFile);
+			Save(map, LastLoadedFile);
 		}
 
-		public static void Save(string file)
+		public static void Save(Map map, string file)
 		{
 			List<string> lines = new List<string>();
-			int w = Map.Get_W();
-			int h = Map.Get_H();
+			int w = map.W;
+			int h = map.H;
 
 			lines.Add("" + w);
 			lines.Add("" + h);
@@ -70,7 +70,7 @@ namespace Charlotte.Main01
 			{
 				for (int y = 0; y < h; y++)
 				{
-					MapCell cell = Map.GetCell(x, y);
+					MapCell cell = map.GetCell(x, y);
 					List<string> tokens = new List<string>();
 
 					tokens.Add("" + (cell.Wall ? 1 : 0));

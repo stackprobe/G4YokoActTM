@@ -109,8 +109,6 @@
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Main01\Game.cs" />
-    <Compile Include="Main01\GameMain.cs" />
-    <Compile Include="Main01\GameUtils.cs" />
     <Compile Include="Main01\EditMenu.cs" />
     <Compile Include="Main01\Enemy.cs" />
     <Compile Include="Main01\EnemyUtils.cs" />

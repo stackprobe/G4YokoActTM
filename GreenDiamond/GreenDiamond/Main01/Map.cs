@@ -7,53 +7,12 @@ using Charlotte.Common;
 
 namespace Charlotte.Main01
 {
-	public static class Map
+	public class Map
 	{
-		private static MapCell DefaultCell = new MapCell();
-		private static AutoTable<MapCell> Table;
+		public MapCell DefaultCell = new MapCell();
+		public AutoTable<MapCell> Table;
 
-		public static void INIT()
-		{
-			Init(100, 30);
-		}
-
-		public static int Get_W()
-		{
-			return Table.W;
-		}
-
-		public static int Get_H()
-		{
-			return Table.H;
-		}
-
-		public static MapCell GetCell(I2Point pt)
-		{
-			return GetCell(pt, DefaultCell);
-		}
-
-		public static MapCell GetCell(I2Point pt, MapCell defCell)
-		{
-			return GetCell(pt.X, pt.Y, defCell);
-		}
-
-		public static MapCell GetCell(int x, int y)
-		{
-			return GetCell(x, y, DefaultCell);
-		}
-
-		public static MapCell GetCell(int x, int y, MapCell defCell)
-		{
-			if (
-				x < 0 || Table.W <= x ||
-				y < 0 || Table.H <= y
-				)
-				return defCell;
-
-			return Table[x, y];
-		}
-
-		public static void Init(int w, int h)
+		public Map(int w, int h)
 		{
 			if (
 				w < 1 || IntTools.IMAX < w ||
@@ -61,15 +20,64 @@ namespace Charlotte.Main01
 				)
 				throw new DDError();
 
-			Table = new AutoTable<MapCell>(w, h);
+			this.Table = new AutoTable<MapCell>(w, h);
 
 			for (int x = 0; x < w; x++)
 			{
 				for (int y = 0; y < h; y++)
 				{
-					Table[x, y] = new MapCell();
+					this.Table[x, y] = new MapCell();
 				}
 			}
+		}
+
+		public int W
+		{
+			get { return this.Table.W; }
+		}
+
+		public int H
+		{
+			get { return this.Table.H; }
+		}
+
+		public MapCell GetCell(I2Point pt)
+		{
+			return this.GetCell(pt, this.DefaultCell);
+		}
+
+		public MapCell GetCell(I2Point pt, MapCell defCell)
+		{
+			return this.GetCell(pt.X, pt.Y, defCell);
+		}
+
+		public MapCell GetCell(int x, int y)
+		{
+			return this.GetCell(x, y, this.DefaultCell);
+		}
+
+		public MapCell GetCell(int x, int y, MapCell defCell)
+		{
+			if (
+				x < 0 || this.Table.W <= x ||
+				y < 0 || this.Table.H <= y
+				)
+				return defCell;
+
+			return Table[x, y];
+		}
+
+		public static I2Point ToTablePoint(D2Point pt)
+		{
+			return ToTablePoint(pt.X, pt.Y);
+		}
+
+		public static I2Point ToTablePoint(double x, double y)
+		{
+			int mapTileX = (int)Math.Floor(x / Consts.MAP_TILE_WH);
+			int mapTileY = (int)Math.Floor(y / Consts.MAP_TILE_WH);
+
+			return new I2Point(mapTileX, mapTileY);
 		}
 	}
 }

@@ -11,7 +11,10 @@ namespace Charlotte.Main01
 
 		public static Enemy GetEnemy(string name)
 		{
-			return Enemies.FirstOrDefault(v => v.Name == name);
+			if (string.IsNullOrEmpty(name))
+				return null;
+
+			return Enemies.First(v => v.Name == name);
 		}
 	}
 }

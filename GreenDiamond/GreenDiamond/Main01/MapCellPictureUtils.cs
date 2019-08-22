@@ -12,7 +12,7 @@ namespace Charlotte.Main01
 
 		public static MapCellPicture GetPicture(string name)
 		{
-			if (name == "")
+			if (string.IsNullOrEmpty(name))
 				return null;
 
 			return Pictures.First(v => v.Name == name);

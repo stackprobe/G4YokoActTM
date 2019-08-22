@@ -42,14 +42,13 @@ namespace Charlotte.Main01
 				{
 					case 0:
 						{
-							MapLoader.Load(@"Map\t0001.txt");
-
 							this.LeaveTitleMenu();
 
-							Game.I = new Game();
-							GameMain.Perform();
-							Game.I = null;
-
+							using (Game game = new Game())
+							{
+								game.Map = MapLoader.Load(@"Map\t0001.txt");
+								game.Perform();
+							}
 							this.ReturnTitleMenu();
 						}
 						break;
