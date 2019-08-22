@@ -5,19 +5,19 @@ using System.Text;
 using System.IO;
 using Charlotte.Common;
 
-namespace Charlotte.Game01.Map01
+namespace Charlotte.Game01.Map01.Tile01
 {
-	public class MapCellPicture
+	public class MapTile
 	{
 		public string Name;
 		public DDPicture Picture;
 
-		public MapCellPicture(string file)
+		public MapTile(string file)
 		{
 			this.Name = Path.GetFileNameWithoutExtension(file);
 			this.Picture = DDPictureLoaders.Standard(file);
 
-			MapCellPictureUtils.Pictures.Add(this);
+			MapTileUtils.Add(this);
 		}
 	}
 }

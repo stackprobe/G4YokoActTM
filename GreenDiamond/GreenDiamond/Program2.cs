@@ -7,6 +7,8 @@ using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Tests;
 using Charlotte.Main01;
+using Charlotte.Game01.Map01.Tile01;
+using Charlotte.Game01.Enemy01;
 
 namespace Charlotte
 {
@@ -40,6 +42,12 @@ namespace Charlotte
 				// < Font
 
 				Ground.I = new Ground();
+
+				// *.INIT
+				{
+					EnemyLoader.INIT();
+					MapTileLoader.INIT();
+				}
 			};
 
 			DDAdditionalEvents.Save = lines =>

@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game01.Enemy01;
+using Charlotte.Game01.Map01.Tile01;
 
 namespace Charlotte.Game01.Map01
 {
@@ -39,7 +40,7 @@ namespace Charlotte.Game01.Map01
 					int d = 0;
 
 					cell.Wall = int.Parse(tokens[d++]) != 0;
-					cell.MCPicture = MapCellPictureUtils.GetPicture(tokens[d++]);
+					cell.Tile = MapTileUtils.GetTile(tokens[d++]);
 					cell.Enemy = EnemyUtils.GetEnemy(tokens[d++]);
 					cell.EventName = tokens[d++];
 
@@ -75,7 +76,7 @@ namespace Charlotte.Game01.Map01
 					List<string> tokens = new List<string>();
 
 					tokens.Add("" + (cell.Wall ? 1 : 0));
-					tokens.Add(cell.MCPicture == null ? "" : cell.MCPicture.Name);
+					tokens.Add(cell.Tile == null ? "" : cell.Tile.Name);
 					tokens.Add(cell.Enemy == null ? "" : cell.Enemy.Name);
 					tokens.Add(cell.EventName);
 

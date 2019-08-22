@@ -358,9 +358,9 @@ namespace Charlotte.Game01
 					{
 						MapCell cell = this.Map.GetCell(x, y);
 
-						if (cell.MCPicture != null) // ? ! 描画無し
+						if (cell.Tile != null) // ? ! 描画無し
 						{
-							DDDraw.DrawCenter(cell.MCPicture.Picture, mapTileX - camL, mapTileY - camT);
+							DDDraw.DrawCenter(cell.Tile.Picture, mapTileX - camL, mapTileY - camT);
 						}
 					}
 				}

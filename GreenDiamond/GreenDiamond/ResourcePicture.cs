@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Common;
 using Charlotte.Main01;
 using Charlotte.Game01.Map01;
+using Charlotte.Game01.Map01.Tile01;
 
 namespace Charlotte
 {
@@ -68,9 +69,6 @@ namespace Charlotte
 
 			for (int x = 0; x < 8; x++)
 				PlayerDamage[x] = DDDerivations.GetPicture(Player, 0 + x * 112, 592, 94, 112);
-
-			new MapCellPicture(@"MapTile\Wall.png");
-			new MapCellPicture(@"MapTile\Wall2.png");
 		}
 	}
 }

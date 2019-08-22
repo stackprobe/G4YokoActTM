@@ -6,6 +6,7 @@ using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game01.Map01;
+using Charlotte.Game01.Map01.Tile01;
 
 namespace Charlotte.Game01
 {
@@ -22,12 +23,12 @@ namespace Charlotte.Game01
 			if (1 <= DDMouse.Get_L())
 			{
 				cell.Wall = true;
-				cell.MCPicture = MapCellPictureUtils.GetPicture("Wall"); // kari
+				cell.Tile = MapTileUtils.GetTile("Wall"); // kari
 			}
 			if (1 <= DDMouse.Get_R())
 			{
 				cell.Wall = false;
-				cell.MCPicture = null;
+				cell.Tile = null;
 			}
 
 			if (DDKey.GetInput(DX.KEY_INPUT_S) == 1)
