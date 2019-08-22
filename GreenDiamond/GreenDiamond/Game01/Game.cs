@@ -376,6 +376,9 @@ namespace Charlotte.Game01
 				DrawEnemies();
 				DrawWeapons();
 
+				DDPrint.SetPrint();
+				DDPrint.Print("" + DDEngine.FrameProcessingMillis_Worst);
+
 				DDEngine.EachFrame();
 			}
 			DDEngine.FreezeInput();
