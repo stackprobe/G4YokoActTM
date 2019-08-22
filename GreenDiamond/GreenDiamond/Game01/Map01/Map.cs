@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
+using Charlotte.Game01.Map01.Tile01;
 
 namespace Charlotte.Game01.Map01
 {
@@ -74,8 +75,8 @@ namespace Charlotte.Game01.Map01
 
 		public static I2Point ToTablePoint(double x, double y)
 		{
-			int mapTileX = (int)Math.Floor(x / Consts.MAP_TILE_WH);
-			int mapTileY = (int)Math.Floor(y / Consts.MAP_TILE_WH);
+			int mapTileX = (int)Math.Floor(x / MapTile.WH);
+			int mapTileY = (int)Math.Floor(y / MapTile.WH);
 
 			return new I2Point(mapTileX, mapTileY);
 		}

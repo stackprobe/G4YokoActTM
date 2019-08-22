@@ -111,7 +111,7 @@
     <Compile Include="Consts.cs" />
     <Compile Include="Game01\Enemy01\EnemyLoader.cs" />
     <Compile Include="Game01\Game.cs" />
-    <Compile Include="Game01\EditMenu.cs" />
+    <Compile Include="Game01\EditMode.cs" />
     <Compile Include="Game01\Enemy01\Enemy.cs" />
     <Compile Include="Game01\Enemy01\EnemyUtils.cs" />
     <Compile Include="Game01\Map01\Map.cs" />

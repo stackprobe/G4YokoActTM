@@ -6,6 +6,7 @@ using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game01.Map01;
+using Charlotte.Game01.Map01.Tile01;
 
 namespace Charlotte.Game01
 {
@@ -49,8 +50,8 @@ namespace Charlotte.Game01
 
 		public void Perform()
 		{
-			this.Player.X = this.Map.W * Consts.MAP_TILE_WH / 2.0;
-			this.Player.Y = this.Map.H * Consts.MAP_TILE_WH / 2.0;
+			this.Player.X = this.Map.W * MapTile.WH / 2.0;
+			this.Player.Y = this.Map.H * MapTile.WH / 2.0;
 
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
@@ -65,8 +66,8 @@ namespace Charlotte.Game01
 				DDUtils.Approach(ref DDGround.Camera.X, this.Player.X - DDConsts.Screen_W / 2 + (this.CamSlideX * DDConsts.Screen_W / 3), 0.8);
 				DDUtils.Approach(ref DDGround.Camera.Y, this.Player.Y - DDConsts.Screen_H / 2 + (this.CamSlideY * DDConsts.Screen_H / 3), 0.8);
 
-				DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * Consts.MAP_TILE_WH - DDConsts.Screen_W);
-				DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * Consts.MAP_TILE_WH - DDConsts.Screen_H);
+				DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+				DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
 
 				DDGround.ICamera.X = DoubleTools.ToInt(DDGround.Camera.X);
 				DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);
@@ -208,14 +209,14 @@ namespace Charlotte.Game01
 				// プレイヤー位置矯正
 				{
 					bool touchSide_L =
-						this.Map.GetCell(Map.ToTablePoint(this.Player.X - 10.0, this.Player.Y - Consts.MAP_TILE_WH / 2)).Wall ||
+						this.Map.GetCell(Map.ToTablePoint(this.Player.X - 10.0, this.Player.Y - MapTile.WH / 2)).Wall ||
 						this.Map.GetCell(Map.ToTablePoint(this.Player.X - 10.0, this.Player.Y)).Wall ||
-						this.Map.GetCell(Map.ToTablePoint(this.Player.X - 10.0, this.Player.Y + Consts.MAP_TILE_WH / 2)).Wall;
+						this.Map.GetCell(Map.ToTablePoint(this.Player.X - 10.0, this.Player.Y + MapTile.WH / 2)).Wall;
 
 					bool touchSide_R =
-						this.Map.GetCell(Map.ToTablePoint(this.Player.X + 10.0, this.Player.Y - Consts.MAP_TILE_WH / 2)).Wall ||
+						this.Map.GetCell(Map.ToTablePoint(this.Player.X + 10.0, this.Player.Y - MapTile.WH / 2)).Wall ||
 						this.Map.GetCell(Map.ToTablePoint(this.Player.X + 10.0, this.Player.Y)).Wall ||
-						this.Map.GetCell(Map.ToTablePoint(this.Player.X + 10.0, this.Player.Y + Consts.MAP_TILE_WH / 2)).Wall;
+						this.Map.GetCell(Map.ToTablePoint(this.Player.X + 10.0, this.Player.Y + MapTile.WH / 2)).Wall;
 
 					if (touchSide_L && touchSide_R)
 					{
@@ -223,44 +224,44 @@ namespace Charlotte.Game01
 					}
 					else if (touchSide_L)
 					{
-						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH + 10.0;
+						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / MapTile.WH) * MapTile.WH + 10.0;
 					}
 					else if (touchSide_R)
 					{
-						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH - 10.0;
+						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / MapTile.WH) * MapTile.WH - 10.0;
 					}
 
-					bool touchCeiling_L = this.Map.GetCell(Map.ToTablePoint(this.Player.X - 9.0, this.Player.Y - Consts.MAP_TILE_WH)).Wall;
-					bool touchCeiling_R = this.Map.GetCell(Map.ToTablePoint(this.Player.X + 9.0, this.Player.Y - Consts.MAP_TILE_WH)).Wall;
+					bool touchCeiling_L = this.Map.GetCell(Map.ToTablePoint(this.Player.X - 9.0, this.Player.Y - MapTile.WH)).Wall;
+					bool touchCeiling_R = this.Map.GetCell(Map.ToTablePoint(this.Player.X + 9.0, this.Player.Y - MapTile.WH)).Wall;
 					bool touchCeiling = touchCeiling_L && touchCeiling_R;
 
 					if (touchCeiling_L && touchCeiling_R)
 					{
 						if (this.Player.YSpeed < 0.0)
 						{
-							this.Player.Y = (int)(this.Player.Y / Consts.MAP_TILE_WH + 1) * Consts.MAP_TILE_WH;
+							this.Player.Y = (int)(this.Player.Y / MapTile.WH + 1) * MapTile.WH;
 							this.Player.YSpeed = 0.0;
 							this.Player.JumpFrame = 0;
 						}
 					}
 					else if (touchCeiling_L)
 					{
-						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH + 9.0;
+						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / MapTile.WH) * MapTile.WH + 9.0;
 					}
 					else if (touchCeiling_R)
 					{
-						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH - 9.0;
+						this.Player.X = (double)DoubleTools.ToInt(this.Player.X / MapTile.WH) * MapTile.WH - 9.0;
 					}
 
 					this.Player.TouchGround =
-						this.Map.GetCell(Map.ToTablePoint(this.Player.X - 9.0, this.Player.Y + Consts.MAP_TILE_WH)).Wall ||
-						this.Map.GetCell(Map.ToTablePoint(this.Player.X + 9.0, this.Player.Y + Consts.MAP_TILE_WH)).Wall;
+						this.Map.GetCell(Map.ToTablePoint(this.Player.X - 9.0, this.Player.Y + MapTile.WH)).Wall ||
+						this.Map.GetCell(Map.ToTablePoint(this.Player.X + 9.0, this.Player.Y + MapTile.WH)).Wall;
 
 					if (this.Player.TouchGround)
 					{
 						DDUtils.Minim(ref this.Player.YSpeed, 0.0);
 
-						double plY = (int)(this.Player.Y / Consts.MAP_TILE_WH) * Consts.MAP_TILE_WH;
+						double plY = (int)(this.Player.Y / MapTile.WH) * MapTile.WH;
 
 						DDUtils.Minim(ref this.Player.Y, plY);
 					}
@@ -318,13 +319,13 @@ namespace Charlotte.Game01
 				}
 				else // 編集モード
 				{
-					EditMenu.EachFrame();
+					EditMode.EachFrame();
 				}
 
 				DrawWall();
 				DrawMap();
 
-				EditMenu.Draw();
+				EditMode.Draw();
 
 				DDEngine.EachFrame();
 			}
@@ -351,8 +352,8 @@ namespace Charlotte.Game01
 			{
 				for (int y = 0; y < h; y++)
 				{
-					int mapTileX = x * Consts.MAP_TILE_WH + Consts.MAP_TILE_WH / 2;
-					int mapTileY = y * Consts.MAP_TILE_WH + Consts.MAP_TILE_WH / 2;
+					int mapTileX = x * MapTile.WH + MapTile.WH / 2;
+					int mapTileY = y * MapTile.WH + MapTile.WH / 2;
 
 					if (DDUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), 100.0) == false) // マージン要調整
 					{

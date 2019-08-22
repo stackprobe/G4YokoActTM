@@ -13,7 +13,7 @@ namespace Charlotte.Game01.Enemy01
 		{
 			// TODO
 
-			EnemyUtils.Enemies.Add(this);
+			EnemyUtils.Add(this);
 		}
 	}
 }

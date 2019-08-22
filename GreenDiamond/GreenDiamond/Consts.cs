@@ -7,6 +7,6 @@ namespace Charlotte
 {
 	public static class Consts
 	{
-		public const int MAP_TILE_WH = 32;
+		// none
 	}
 }
