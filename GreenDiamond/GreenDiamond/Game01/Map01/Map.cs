@@ -5,7 +5,7 @@ using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
 
-namespace Charlotte.Main01
+namespace Charlotte.Game01.Map01
 {
 	public class Map
 	{

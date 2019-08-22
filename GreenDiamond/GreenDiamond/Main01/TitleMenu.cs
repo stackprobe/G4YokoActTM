@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Common;
-using Charlotte.Tools;
 using DxLibDLL;
+using Charlotte.Tools;
+using Charlotte.Common;
+using Charlotte.Game01;
+using Charlotte.Game01.Map01;
 
 namespace Charlotte.Main01
 {
