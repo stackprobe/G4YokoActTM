@@ -260,7 +260,7 @@ namespace Charlotte.Main01
 			EditMenu.EventName = "";
 
 			DDEngine.FreezeInput();
-			DDDxUtils.SetMouseDispMode(true);
+			DDUtils.SetMouseDispMode(true);
 
 			for (; ; )
 			{
@@ -296,7 +296,7 @@ namespace Charlotte.Main01
 				DDEngine.EachFrame();
 			}
 			DDEngine.FreezeInput();
-			DDDxUtils.SetMouseDispMode(false);
+			DDUtils.SetMouseDispMode(false);
 		}
 
 		private static void DrawWall()
