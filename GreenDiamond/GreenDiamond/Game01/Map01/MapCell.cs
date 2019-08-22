@@ -12,7 +12,6 @@ namespace Charlotte.Game01.Map01
 	{
 		public bool Wall = false; // ? 壁
 		public MapTile Tile = null; // null == 画像無し
-		public Enemy Enemy = null; // null = 敵無し
-		public string Argument = ""; // "" == オプション無し
+		public EnemyLoader EnemyLoader = null; // null == 敵無し
 	}
 }

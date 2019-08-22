@@ -7,6 +7,7 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game01.Map01;
 using Charlotte.Game01.Map01.Tile01;
+using Charlotte.Game01.Enemy01;
 
 namespace Charlotte.Game01
 {
@@ -50,6 +51,8 @@ namespace Charlotte.Game01
 
 		public void Perform()
 		{
+			this.ReloadEnemies();
+
 			this.Player.X = this.Map.W * MapTile.WH / 2.0;
 			this.Player.Y = this.Map.H * MapTile.WH / 2.0;
 
@@ -74,7 +77,8 @@ namespace Charlotte.Game01
 
 				if (DDConfig.LOG_ENABLED && DDKey.GetInput(DX.KEY_INPUT_E) == 1)
 				{
-					EditMode();
+					this.EditMode();
+					this.ReloadEnemies();
 				}
 
 				// プレイヤー入力
@@ -272,11 +276,14 @@ namespace Charlotte.Game01
 						this.Player.AirborneFrame++;
 				}
 
+				this.EnemyEachFrame();
+
 				// 描画ここから
 
 				DrawWall();
 				DrawMap();
 				DrawPlayer();
+				DrawEnemies();
 
 				DDEngine.EachFrame();
 			}
@@ -323,7 +330,9 @@ namespace Charlotte.Game01
 				}
 
 				DrawWall();
-				DrawMap();
+
+				if (Edit.DisplayTileFlag)
+					DrawMap();
 
 				Edit.Draw();
 
@@ -409,6 +418,55 @@ namespace Charlotte.Game01
 				DDDraw.DrawZoom(0.1);
 				DDDraw.DrawRotate(DDEngine.ProcFrame * 0.01);
 				DDDraw.DrawEnd();
+			}
+		}
+
+		public List<AEnemy> Enemies = new List<AEnemy>();
+
+		public void ReloadEnemies()
+		{
+			this.Enemies.Clear();
+
+			for (int x = 0; x < this.Map.W; x++)
+			{
+				for (int y = 0; y < this.Map.H; y++)
+				{
+					MapCell cell = this.Map.GetCell(x, y);
+
+					if (cell.EnemyLoader != null)
+					{
+						AEnemy enemy = cell.EnemyLoader.CreateEnemy();
+
+						enemy.SetTablePoint(new I2Point(x, y));
+
+						this.Enemies.Add(enemy);
+					}
+				}
+			}
+		}
+
+		public void EnemyEachFrame()
+		{
+			for (int index = 0; index < this.Enemies.Count; index++)
+			{
+				AEnemy enemy = this.Enemies[index];
+
+				if (enemy.EachFrame() == false) // ? 消滅
+				{
+					ExtraTools.FastDesertElement(this.Enemies, index--);
+				}
+				else
+				{
+					enemy.Frame++;
+				}
+			}
+		}
+
+		public void DrawEnemies()
+		{
+			foreach (AEnemy enemy in this.Enemies)
+			{
+				enemy.Draw();
 			}
 		}
 	}

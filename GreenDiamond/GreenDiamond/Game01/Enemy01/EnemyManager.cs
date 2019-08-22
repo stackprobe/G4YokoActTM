@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Game01.Enemy01.Enemy01;
 using Charlotte.Tools;
 using Charlotte.Game01.Map01;
+using Charlotte.Common;
 
 namespace Charlotte.Game01.Enemy01
 {
@@ -17,62 +18,30 @@ namespace Charlotte.Game01.Enemy01
 			// 新しい敵をここへ追加...
 		}
 
-		private static void Add(string name, Func<IEnemySpec> getEnemySpec)
+		private static void Add(string name, Func<AEnemy> createEnemy)
 		{
-			EnemySpecLoader loader = new EnemySpecLoader()
+			EnemyLoader loader = new EnemyLoader()
 			{
 				Name = name,
-				CreateSpec = getEnemySpec,
+				CreateEnemy = createEnemy,
 			};
 
 			Names.Add(name);
-			SpecLoaders.Add(name, loader);
+			EnemyLoaders.Add(name, loader);
 		}
 
 		private static List<string> Names = new List<string>();
-		private static Dictionary<string, EnemySpecLoader> SpecLoaders = DictionaryTools.CreateIgnoreCase<EnemySpecLoader>();
+		private static Dictionary<string, EnemyLoader> EnemyLoaders = DictionaryTools.CreateIgnoreCase<EnemyLoader>();
 
-		private static EnemySpecLoader GetSpecLoader(string name)
+		public static EnemyLoader GetEnemyLoader(string name)
 		{
-			if (string.IsNullOrEmpty(name))
+			if (EnemyLoaders.ContainsKey(name) == false)
 				return null;
 
-			return SpecLoaders[name];
+			return EnemyLoaders[name];
 		}
 
-		private static IEnemySpec CreateSpec(string name)
-		{
-			EnemySpecLoader loader = GetSpecLoader(name);
-
-			if (loader == null)
-				return null;
-
-			return loader.CreateSpec();
-		}
-
-		public static Enemy Create(string name, MapCell cell, int x, int y)
-		{
-			IEnemySpec spec = CreateSpec(name);
-
-			if (spec == null)
-				return null;
-
-			Enemy enemy = new Enemy()
-			{
-				Name = name,
-
-				HomeCell = cell,
-				HomeCellTablePoint = new I2Point(x, y),
-
-				Spec = spec,
-			};
-
-			enemy.Created();
-
-			return enemy;
-		}
-
-		public static IEnumerable<string> GetNames()
+		public static List<string> GetNames()
 		{
 			return Names;
 		}

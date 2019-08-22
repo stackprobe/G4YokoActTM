@@ -41,8 +41,7 @@ namespace Charlotte.Game01.Map01
 
 					cell.Wall = int.Parse(tokens[d++]) != 0;
 					cell.Tile = MapTileManager.GetTile(tokens[d++]);
-					cell.Enemy = EnemyManager.Create(tokens[d++], cell, x, y);
-					cell.Argument = tokens[d++];
+					cell.EnemyLoader = EnemyManager.GetEnemyLoader(tokens[d++]);
 
 					// 新しい項目をここへ追加...
 				}
@@ -77,8 +76,7 @@ namespace Charlotte.Game01.Map01
 
 					tokens.Add("" + (cell.Wall ? 1 : 0));
 					tokens.Add(cell.Tile == null ? "" : cell.Tile.Name);
-					tokens.Add(cell.Enemy == null ? "" : cell.Enemy.Name);
-					tokens.Add(cell.Argument);
+					tokens.Add(cell.EnemyLoader == null ? "" : cell.EnemyLoader.Name);
 
 					// 新しい項目をここへ追加...
 

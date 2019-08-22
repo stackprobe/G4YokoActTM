@@ -110,11 +110,10 @@
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Game01\Enemy01\Enemy01\Enemy0001.cs" />
-    <Compile Include="Game01\Enemy01\EnemySpecLoader.cs" />
-    <Compile Include="Game01\Enemy01\IEnemySpec.cs" />
+    <Compile Include="Game01\Enemy01\EnemyLoader.cs" />
     <Compile Include="Game01\Game.cs" />
     <Compile Include="Game01\Edit.cs" />
-    <Compile Include="Game01\Enemy01\Enemy.cs" />
+    <Compile Include="Game01\Enemy01\AEnemy.cs" />
     <Compile Include="Game01\Enemy01\EnemyManager.cs" />
     <Compile Include="Game01\Map01\Map.cs" />
     <Compile Include="Game01\Map01\MapCell.cs" />
@@ -135,7 +134,6 @@
     <Compile Include="ResourceMusic.cs" />
     <Compile Include="ResourcePicture.cs" />
     <Compile Include="ResourceSE.cs" />
-    <Compile Include="Sub01\InputStringSub.cs" />
     <Compile Include="Tests\Test0001.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>

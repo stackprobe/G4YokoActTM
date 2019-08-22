@@ -46,18 +46,19 @@ namespace Charlotte.Game01.Map01.Tile01
 
 		private static void Add(MapTile tile)
 		{
+			Names.Add(tile.Name);
 			Tiles.Add(tile.Name, tile);
 		}
 
 		public static MapTile GetTile(string name)
 		{
-			if (string.IsNullOrEmpty(name))
+			if (Tiles.ContainsKey(name) == false)
 				return null;
 
 			return Tiles[name];
 		}
 
-		public static IEnumerable<string> GetNames()
+		public static List<string> GetNames()
 		{
 			return Names;
 		}

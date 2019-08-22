@@ -6,9 +6,9 @@ using Charlotte.Game01.Enemy01.Enemy01;
 
 namespace Charlotte.Game01.Enemy01
 {
-	public class EnemySpecLoader
+	public class EnemyLoader
 	{
 		public string Name;
-		public Func<IEnemySpec> CreateSpec;
+		public Func<AEnemy> CreateEnemy;
 	}
 }
