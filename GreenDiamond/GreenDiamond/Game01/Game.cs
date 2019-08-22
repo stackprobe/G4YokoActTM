@@ -310,7 +310,7 @@ namespace Charlotte.Game01
 
 				if (1 <= DDKey.GetInput(DX.KEY_INPUT_LSHIFT) || 1 <= DDKey.GetInput(DX.KEY_INPUT_RSHIFT)) // シフト押下 -> 移動モード
 				{
-					if (1 <= DDMouse.Get_L())
+					if (1 <= DDMouse.L.GetInput())
 					{
 						DDGround.Camera.X -= DDMouse.X - lastMouseX;
 						DDGround.Camera.Y -= DDMouse.Y - lastMouseY;

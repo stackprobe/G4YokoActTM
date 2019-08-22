@@ -20,12 +20,12 @@ namespace Charlotte.Game01
 			if (cell == null)
 				return;
 
-			if (1 <= DDMouse.Get_L())
+			if (1 <= DDMouse.L.GetInput())
 			{
 				cell.Wall = true;
 				cell.Tile = MapTileUtils.GetTile("Wall"); // kari
 			}
-			if (1 <= DDMouse.Get_R())
+			if (1 <= DDMouse.R.GetInput())
 			{
 				cell.Wall = false;
 				cell.Tile = null;
