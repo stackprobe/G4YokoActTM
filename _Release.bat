@@ -2,8 +2,8 @@ C:\Factory\Tools\RDMD.exe /RC out
 
 C:\Factory\SubTools\makeDDResourceFile.exe Resource out\Resource.dat
 
-COPY /B GreenDiamond\GreenDiamond\bin\Release\GreenDiamond.exe out
-COPY /B GreenDiamond\GreenDiamond\bin\Release\Chocolate.dll out
+C:\Factory\SubTools\CallConfuserCLI.exe GreenDiamond\GreenDiamond\bin\Release\GreenDiamond.exe out\GreenDiamond.exe
+rem COPY /B GreenDiamond\GreenDiamond\bin\Release\GreenDiamond.exe out
 COPY /B GreenDiamond\GreenDiamond\bin\Release\DxLib.dll out
 COPY /B GreenDiamond\GreenDiamond\bin\Release\DxLib_x64.dll out
 COPY /B GreenDiamond\GreenDiamond\bin\Release\DxLibDotNet.dll out
