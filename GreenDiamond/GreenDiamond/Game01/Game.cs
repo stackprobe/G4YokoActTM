@@ -371,8 +371,8 @@ namespace Charlotte.Game01
 
 		private void DrawPlayer()
 		{
-			if (PlayerLookLeftFrm == 0 && DDUtils.Random() < 0.002) // キョロキョロするレート
-				PlayerLookLeftFrm = 150 + (int)(DDUtils.Random() * 90.0);
+			if (PlayerLookLeftFrm == 0 && DDUtils.Random.Real2() < 0.002) // キョロキョロするレート
+				PlayerLookLeftFrm = 150 + (int)(DDUtils.Random.Real2() * 90.0);
 
 			DDUtils.CountDown(ref PlayerLookLeftFrm);
 
