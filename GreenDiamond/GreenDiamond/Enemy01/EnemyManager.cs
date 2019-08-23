@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Game01.Enemy01.Enemy01;
 using Charlotte.Tools;
-using Charlotte.Game01.Map01;
 using Charlotte.Common;
+using Charlotte.Enemy01.Enemy01;
 
-namespace Charlotte.Game01.Enemy01
+namespace Charlotte.Enemy01
 {
 	public static class EnemyManager
 	{

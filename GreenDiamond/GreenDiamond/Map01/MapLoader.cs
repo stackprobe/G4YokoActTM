@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Game01.Enemy01;
-using Charlotte.Game01.Map01.Tile01;
+using Charlotte.Map01.Tile01;
+using Charlotte.Enemy01;
 
-namespace Charlotte.Game01.Map01
+namespace Charlotte.Map01
 {
 	public static class MapLoader
 	{

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Game01.Crash01;
+using Charlotte.Utils;
 
-namespace Charlotte.Game01.Weapon01.Weapon01
+namespace Charlotte.Weapon01.Weapon01
 {
 	public class Weapon0001 : AWeapon
 	{

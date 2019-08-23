@@ -5,11 +5,11 @@ using System.Text;
 using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Game01.Map01;
-using Charlotte.Game01.Map01.Tile01;
-using Charlotte.Game01.Enemy01;
+using Charlotte.Map01;
+using Charlotte.Map01.Tile01;
+using Charlotte.Enemy01;
 
-namespace Charlotte.Game01.Edit01
+namespace Charlotte.Game01.Sub01
 {
 	public static class Edit
 	{

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Game01.Map01;
 using Charlotte.Tools;
-using Charlotte.Game01.Map01.Tile01;
-using Charlotte.Game01.Crash01;
-using Charlotte.Game01.Weapon01;
+using Charlotte.Map01.Tile01;
+using Charlotte.Weapon01;
+using Charlotte.Utils;
 
-namespace Charlotte.Game01.Enemy01
+namespace Charlotte.Enemy01
 {
 	public abstract class AEnemy
 	{

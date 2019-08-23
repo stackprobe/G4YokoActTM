@@ -5,7 +5,7 @@ using System.Text;
 using Charlotte.Common;
 using Charlotte.Tools;
 
-namespace Charlotte.Game01.Map01.Tile01
+namespace Charlotte.Map01.Tile01
 {
 	public static class MapTileManager
 	{

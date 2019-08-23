@@ -6,7 +6,7 @@ using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game01;
-using Charlotte.Game01.Map01;
+using Charlotte.Map01;
 
 namespace Charlotte.Main01
 {

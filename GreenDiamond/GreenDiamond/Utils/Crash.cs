@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 
-namespace Charlotte.Game01.Crash01
+namespace Charlotte.Utils
 {
 	public class Crash
 	{

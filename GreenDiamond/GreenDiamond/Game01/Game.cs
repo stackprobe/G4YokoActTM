@@ -5,14 +5,13 @@ using System.Text;
 using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Game01.Map01;
-using Charlotte.Game01.Map01.Tile01;
-using Charlotte.Game01.Enemy01;
-using Charlotte.Game01.Edit01;
-using Charlotte.Game01.Weapon01;
-using Charlotte.Game01.Weapon01.Weapon01;
-using Charlotte.Game01.Crash01;
 using Charlotte.Utils;
+using Charlotte.Map01;
+using Charlotte.Map01.Tile01;
+using Charlotte.Enemy01;
+using Charlotte.Weapon01;
+using Charlotte.Weapon01.Weapon01;
+using Charlotte.Game01.Sub01;
 
 namespace Charlotte.Game01
 {
@@ -543,7 +542,11 @@ namespace Charlotte.Game01
 				xZoom *= -1;
 			}
 
-			DDDraw.SetAlpha(1 <= this.Player.MutekiFrame ? 0.5 : 1.0);
+			if (1 <= this.Player.DamageFrame || 1 <= this.Player.MutekiFrame)
+			{
+				DDDraw.SetTaskList(DDGround.EL);
+				DDDraw.SetAlpha(0.5);
+			}
 			DDDraw.DrawBegin(
 					picture,
 					DoubleTools.ToInt(this.Player.X - DDGround.ICamera.X),

@@ -7,9 +7,8 @@ using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Tests;
 using Charlotte.Main01;
-using Charlotte.Game01.Map01.Tile01;
-using Charlotte.Game01.Enemy01;
-using Charlotte.Game01;
+using Charlotte.Enemy01;
+using Charlotte.Map01.Tile01;
 
 namespace Charlotte
 {
