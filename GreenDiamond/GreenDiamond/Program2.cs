@@ -8,7 +8,7 @@ using Charlotte.Tools;
 using Charlotte.Tests;
 using Charlotte.Main01;
 using Charlotte.Enemy01;
-using Charlotte.Map01.Tile01;
+using Charlotte.Map01;
 
 namespace Charlotte
 {

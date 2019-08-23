@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Charlotte.Common;
-using Charlotte.Map01.Tile01;
 using Charlotte.Enemy01;
 
 namespace Charlotte.Map01

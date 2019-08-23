@@ -109,6 +109,7 @@
     <Compile Include="Common\DDWin32.cs" />
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="Status01\Status.cs" />
     <Compile Include="Utils\Crash.cs" />
     <Compile Include="Utils\CrashUtils.cs" />
     <Compile Include="Enemy01\Enemy01\Enemy0001.cs" />
@@ -121,8 +122,8 @@
     <Compile Include="Map01\Map.cs" />
     <Compile Include="Map01\MapCell.cs" />
     <Compile Include="Map01\MapLoader.cs" />
-    <Compile Include="Map01\Tile01\MapTile.cs" />
-    <Compile Include="Map01\Tile01\MapTileManager.cs" />
+    <Compile Include="Map01\MapTile.cs" />
+    <Compile Include="Map01\MapTileManager.cs" />
     <Compile Include="Weapon01\AWeapon.cs" />
     <Compile Include="Weapon01\Weapon01\Weapon0001.cs" />
     <Compile Include="Main01\TitleMenu.cs" />

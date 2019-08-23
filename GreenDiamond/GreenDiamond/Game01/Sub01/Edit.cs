@@ -6,7 +6,6 @@ using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Map01;
-using Charlotte.Map01.Tile01;
 using Charlotte.Enemy01;
 
 namespace Charlotte.Game01.Sub01

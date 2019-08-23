@@ -7,6 +7,7 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game01;
 using Charlotte.Map01;
+using Charlotte.Status01;
 
 namespace Charlotte.Main01
 {
@@ -49,6 +50,7 @@ namespace Charlotte.Main01
 							using (Game game = new Game())
 							{
 								game.Map = MapLoader.Load(@"Map\t0001.txt");
+								game.Status = new Status();
 								game.Perform();
 							}
 							this.ReturnTitleMenu();

@@ -7,17 +7,18 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Utils;
 using Charlotte.Map01;
-using Charlotte.Map01.Tile01;
 using Charlotte.Enemy01;
 using Charlotte.Weapon01;
 using Charlotte.Weapon01.Weapon01;
 using Charlotte.Game01.Sub01;
+using Charlotte.Status01;
 
 namespace Charlotte.Game01
 {
 	public class Game : IDisposable
 	{
 		public Map Map;
+		public Status Status;
 
 		// <---- prm
 
@@ -63,8 +64,11 @@ namespace Charlotte.Game01
 		{
 			this.ReloadEnemies();
 
+			// TODO
 			this.Player.X = this.Map.W * MapTile.WH / 2.0;
 			this.Player.Y = this.Map.H * MapTile.WH / 2.0;
+
+			this.Player.HP = this.Status.HP;
 
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
