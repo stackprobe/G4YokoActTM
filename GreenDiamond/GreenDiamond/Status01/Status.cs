@@ -8,7 +8,7 @@ namespace Charlotte.Status01
 	public class Status
 	{
 		public int MaxHP = 10;
-		public int HP = 10;
-		public int RespawnPointIndex = 0; // TODO
+		public int StartHP = 10;
+		public int StartPointIndex = 0; // TODO
 	}
 }

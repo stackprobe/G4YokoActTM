@@ -68,7 +68,7 @@ namespace Charlotte.Game01
 			this.Player.X = this.Map.W * MapTile.WH / 2.0;
 			this.Player.Y = this.Map.H * MapTile.WH / 2.0;
 
-			this.Player.HP = this.Status.HP;
+			this.Player.HP = this.Status.StartHP;
 
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
