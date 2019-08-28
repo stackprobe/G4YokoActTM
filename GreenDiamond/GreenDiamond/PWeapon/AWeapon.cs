@@ -15,12 +15,12 @@ namespace Charlotte.PWeapon
 		public Crash Crash = CrashUtils.None();
 		public bool FacingLeft = false;
 		public int AttackPoint = 1;
-		public AEnemy CrashedEnemy = null;
+		public Enemy CrashedEnemy = null;
 
 		public abstract bool EachFrame(); // ret: ? ! 破棄
 		public abstract void Draw();
 
-		public void Crashed(AEnemy enemy)
+		public void Crashed(Enemy enemy)
 		{
 			this.CrashedEnemy = enemy;
 		}

@@ -9,7 +9,7 @@ using Charlotte.PMap;
 
 namespace Charlotte.PEnemy
 {
-	public abstract class AEnemy
+	public abstract class Enemy
 	{
 		public int Frame = 0;
 		public double X = -10000.0;

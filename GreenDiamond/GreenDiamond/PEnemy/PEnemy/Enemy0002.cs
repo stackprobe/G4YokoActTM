@@ -8,7 +8,7 @@ using Charlotte.Utils;
 
 namespace Charlotte.PEnemy.PEnemy
 {
-	public class Enemy0002 : AEnemy
+	public class Enemy0002 : Enemy
 	{
 		public override bool EachFrame()
 		{

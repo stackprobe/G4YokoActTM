@@ -109,7 +109,9 @@
     <Compile Include="Common\DDWin32.cs" />
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="PEnemy\PObject\StartPoint.cs" />
     <Compile Include="PStatus\Status.cs" />
+    <Compile Include="Tests\Test0002.cs" />
     <Compile Include="Utils\Crash.cs" />
     <Compile Include="Utils\CrashUtils.cs" />
     <Compile Include="PEnemy\PEnemy\Enemy0001.cs" />
@@ -117,7 +119,7 @@
     <Compile Include="PEnemy\EnemyLoader.cs" />
     <Compile Include="PGame\Game.cs" />
     <Compile Include="PGame\PSub\Edit.cs" />
-    <Compile Include="PEnemy\AEnemy.cs" />
+    <Compile Include="PEnemy\Enemy.cs" />
     <Compile Include="PEnemy\EnemyManager.cs" />
     <Compile Include="PMap\Map.cs" />
     <Compile Include="PMap\MapCell.cs" />

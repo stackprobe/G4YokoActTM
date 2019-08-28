@@ -12,6 +12,7 @@ using Charlotte.PWeapon.PWeapon;
 using Charlotte.PEnemy;
 using Charlotte.PWeapon;
 using Charlotte.PGame.PSub;
+using Charlotte.PEnemy.PObject;
 
 namespace Charlotte.PGame
 {
@@ -64,9 +65,24 @@ namespace Charlotte.PGame
 		{
 			this.ReloadEnemies();
 
-			// TODO
+			// デフォルトのスタート位置
 			this.Player.X = this.Map.W * MapTile.WH / 2.0;
 			this.Player.Y = this.Map.H * MapTile.WH / 2.0;
+
+			foreach (Enemy enemy in this.Enemies) // スタート位置
+			{
+				if (enemy is StartPoint)
+				{
+					StartPoint sp = (StartPoint)enemy;
+
+					if (sp.Index == this.Status.StartPointIndex)
+					{
+						this.Player.X = sp.X;
+						this.Player.Y = sp.Y;
+						break;
+					}
+				}
+			}
 
 			this.Player.HP = this.Status.StartHP;
 
@@ -353,7 +369,7 @@ namespace Charlotte.PGame
 
 				// Crash
 				{
-					foreach (AEnemy enemy in this.Enemies)
+					foreach (Enemy enemy in this.Enemies)
 					{
 						foreach (AWeapon weapon in this.Weapons)
 						{
@@ -569,13 +585,13 @@ namespace Charlotte.PGame
 			}
 		}
 
-		private void PlayerCrashed(AEnemy enemy)
+		private void PlayerCrashed(Enemy enemy)
 		{
 			this.Player.HP -= enemy.AttackPoint;
 			this.Player.DamageFrame = 1;
 		}
 
-		public List<AEnemy> Enemies = new List<AEnemy>();
+		public List<Enemy> Enemies = new List<Enemy>();
 
 		private void ReloadEnemies()
 		{
@@ -589,7 +605,7 @@ namespace Charlotte.PGame
 
 					if (cell.EnemyLoader != null)
 					{
-						AEnemy enemy = cell.EnemyLoader.CreateEnemy();
+						Enemy enemy = cell.EnemyLoader.CreateEnemy();
 
 						enemy.SetTablePoint(new I2Point(x, y));
 
@@ -603,7 +619,7 @@ namespace Charlotte.PGame
 		{
 			for (int index = 0; index < this.Enemies.Count; index++)
 			{
-				AEnemy enemy = this.Enemies[index];
+				Enemy enemy = this.Enemies[index];
 
 				if (enemy.EachFrame() == false) // ? 消滅
 				{
@@ -618,7 +634,7 @@ namespace Charlotte.PGame
 
 		private void DrawEnemies()
 		{
-			foreach (AEnemy enemy in this.Enemies)
+			foreach (Enemy enemy in this.Enemies)
 			{
 				enemy.Draw();
 			}

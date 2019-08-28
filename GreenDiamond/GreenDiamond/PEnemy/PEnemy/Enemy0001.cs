@@ -8,7 +8,7 @@ using Charlotte.PGame;
 
 namespace Charlotte.PEnemy.PEnemy
 {
-	public class Enemy0001 : AEnemy
+	public class Enemy0001 : Enemy
 	{
 		private D2Point Speed = new D2Point();
 

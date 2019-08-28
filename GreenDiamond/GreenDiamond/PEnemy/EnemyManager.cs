@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.PEnemy.PEnemy;
+using Charlotte.PEnemy.PObject;
 
 namespace Charlotte.PEnemy
 {
@@ -14,11 +15,21 @@ namespace Charlotte.PEnemy
 		{
 			Add("Enemy0001", () => new Enemy0001());
 			Add("Enemy0002", () => new Enemy0002());
+			Add("StartPoint00", () => new StartPoint(0));
+			Add("StartPoint01", () => new StartPoint(1));
+			Add("StartPoint02", () => new StartPoint(2));
+			Add("StartPoint03", () => new StartPoint(3));
+			Add("StartPoint04", () => new StartPoint(4));
+			Add("StartPoint05", () => new StartPoint(5));
+			Add("StartPoint06", () => new StartPoint(6));
+			Add("StartPoint07", () => new StartPoint(7));
+			Add("StartPoint08", () => new StartPoint(8));
+			Add("StartPoint09", () => new StartPoint(9));
 
 			// 新しい敵をここへ追加...
 		}
 
-		private static void Add(string name, Func<AEnemy> createEnemy)
+		private static void Add(string name, Func<Enemy> createEnemy)
 		{
 			EnemyLoader loader = new EnemyLoader()
 			{

@@ -8,6 +8,6 @@ namespace Charlotte.PEnemy
 	public class EnemyLoader
 	{
 		public string Name;
-		public Func<AEnemy> CreateEnemy;
+		public Func<Enemy> CreateEnemy;
 	}
 }

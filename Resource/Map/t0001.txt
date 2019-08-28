@@ -1372,7 +1372,7 @@
 0
 0
 0
-0
+0		StartPoint00
 1	Wall
 0
 0
