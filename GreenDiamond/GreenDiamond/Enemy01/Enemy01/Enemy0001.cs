@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Charlotte.Common;
 using Charlotte.Tools;
-using Charlotte._Game;
+using Charlotte.Game01;
 
-namespace Charlotte._Enemy._Enemy1
+namespace Charlotte.Enemy01.Enemy01
 {
 	public class Enemy0001 : AEnemy
 	{

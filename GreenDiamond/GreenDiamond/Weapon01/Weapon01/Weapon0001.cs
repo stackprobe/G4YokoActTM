@@ -6,7 +6,7 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Utils;
 
-namespace Charlotte._Weapon._Weapon1
+namespace Charlotte.Weapon01.Weapon01
 {
 	public class Weapon0001 : AWeapon
 	{

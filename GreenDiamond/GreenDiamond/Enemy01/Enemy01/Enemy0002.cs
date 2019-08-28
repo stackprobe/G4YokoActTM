@@ -6,7 +6,7 @@ using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Utils;
 
-namespace Charlotte._Enemy._Enemy1
+namespace Charlotte.Enemy01.Enemy01
 {
 	public class Enemy0002 : AEnemy
 	{

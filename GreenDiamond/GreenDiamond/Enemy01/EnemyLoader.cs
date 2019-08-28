@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Charlotte._Enemy
+namespace Charlotte.Enemy01
 {
 	public class EnemyLoader
 	{

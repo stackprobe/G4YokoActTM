@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Charlotte.Utils;
-using Charlotte._Enemy;
+using Charlotte.Enemy01;
 
-namespace Charlotte._Weapon
+namespace Charlotte.Weapon01
 {
 	public abstract class AWeapon
 	{

@@ -5,10 +5,10 @@ using System.Text;
 using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte._Map;
-using Charlotte._Enemy;
+using Charlotte.Map01;
+using Charlotte.Enemy01;
 
-namespace Charlotte._Game._Sub
+namespace Charlotte.Game01.Sub01
 {
 	public static class Edit
 	{

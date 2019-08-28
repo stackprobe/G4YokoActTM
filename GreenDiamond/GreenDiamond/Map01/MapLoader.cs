@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte._Enemy;
+using Charlotte.Enemy01;
 
-namespace Charlotte._Map
+namespace Charlotte.Map01
 {
 	public static class MapLoader
 	{
