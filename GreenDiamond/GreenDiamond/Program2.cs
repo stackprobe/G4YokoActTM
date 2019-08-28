@@ -6,9 +6,9 @@ using DxLibDLL;
 using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Tests;
-using Charlotte.Enemy01;
-using Charlotte.Map01;
-using Charlotte.Main01;
+using Charlotte.PEnemy;
+using Charlotte.PMap;
+using Charlotte.PMain;
 
 namespace Charlotte
 {

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Utils;
-using Charlotte.Weapon01;
-using Charlotte.Map01;
+using Charlotte.PWeapon;
+using Charlotte.PMap;
 
-namespace Charlotte.Enemy01
+namespace Charlotte.PEnemy
 {
 	public abstract class AEnemy
 	{
