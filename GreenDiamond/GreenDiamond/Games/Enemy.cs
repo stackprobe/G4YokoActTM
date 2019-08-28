@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Utils;
-using Charlotte.PWeapon;
-using Charlotte.PMap;
 
-namespace Charlotte.PEnemy
+namespace Charlotte.Games
 {
 	public abstract class Enemy
 	{
@@ -17,7 +15,7 @@ namespace Charlotte.PEnemy
 		public Crash Crash = CrashUtils.None();
 		public int HP = 1;
 		public int AttackPoint = 1;
-		public AWeapon CrashedWeapon = null;
+		public Weapon CrashedWeapon = null;
 		public bool CrashedToPlayerFlag = false;
 
 		public void SetTablePoint(I2Point pt)
@@ -29,7 +27,7 @@ namespace Charlotte.PEnemy
 		public abstract bool EachFrame(); // ret: ? ! 破棄
 		public abstract void Draw();
 
-		public void Crashed(AWeapon weapon)
+		public void Crashed(Weapon weapon)
 		{
 			this.HP -= weapon.AttackPoint;
 			this.CrashedWeapon = weapon;

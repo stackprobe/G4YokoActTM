@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using Charlotte.Common;
 
-namespace Charlotte.PMap
+namespace Charlotte.Games
 {
 	public class MapTile
 	{

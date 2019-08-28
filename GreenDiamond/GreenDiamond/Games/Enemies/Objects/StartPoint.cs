@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Charlotte.PEnemy.PObject
+namespace Charlotte.Games.Enemies.Objects
 {
 	public class StartPoint : Enemy
 	{

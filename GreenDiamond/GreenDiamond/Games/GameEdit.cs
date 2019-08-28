@@ -5,12 +5,10 @@ using System.Text;
 using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.PMap;
-using Charlotte.PEnemy;
 
-namespace Charlotte.PGame.PSub
+namespace Charlotte.Games
 {
-	public static class Edit
+	public static class GameEdit
 	{
 		public static readonly D4Rect MenuRect = new D4Rect(0, 0, 300, DDConsts.Screen_H);
 

@@ -6,9 +6,9 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Utils;
 
-namespace Charlotte.PWeapon.PWeapon
+namespace Charlotte.Games.Weapons
 {
-	public class Weapon0001 : AWeapon
+	public class Weapon0001 : Weapon
 	{
 		public Weapon0001(double x, double y, bool facingLeft)
 		{

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.PGame;
-using Charlotte.PMap;
-using Charlotte.PStatus;
+using Charlotte.Games;
 
 namespace Charlotte.Tests
 {

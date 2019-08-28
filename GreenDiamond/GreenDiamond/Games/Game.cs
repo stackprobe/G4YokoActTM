@@ -6,15 +6,10 @@ using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Utils;
-using Charlotte.PMap;
-using Charlotte.PStatus;
-using Charlotte.PWeapon.PWeapon;
-using Charlotte.PEnemy;
-using Charlotte.PWeapon;
-using Charlotte.PGame.PSub;
-using Charlotte.PEnemy.PObject;
+using Charlotte.Games.Enemies.Objects;
+using Charlotte.Games.Weapons;
 
-namespace Charlotte.PGame
+namespace Charlotte.Games
 {
 	public class Game : IDisposable
 	{
@@ -371,7 +366,7 @@ namespace Charlotte.PGame
 				{
 					foreach (Enemy enemy in this.Enemies)
 					{
-						foreach (AWeapon weapon in this.Weapons)
+						foreach (Weapon weapon in this.Weapons)
 						{
 							if (enemy.Crash.IsCrashed(weapon.Crash))
 							{
@@ -439,15 +434,15 @@ namespace Charlotte.PGame
 				}
 				else // 編集モード
 				{
-					Edit.EachFrame();
+					GameEdit.EachFrame();
 				}
 
 				DrawWall();
 
-				if (Edit.DisplayTileFlag)
+				if (GameEdit.DisplayTileFlag)
 					DrawMap();
 
-				Edit.Draw();
+				GameEdit.Draw();
 
 				DDEngine.EachFrame();
 			}
@@ -640,13 +635,13 @@ namespace Charlotte.PGame
 			}
 		}
 
-		public List<AWeapon> Weapons = new List<AWeapon>();
+		public List<Weapon> Weapons = new List<Weapon>();
 
 		private void WeaponEachFrame()
 		{
 			for (int index = 0; index < this.Weapons.Count; index++)
 			{
-				AWeapon weapon = this.Weapons[index];
+				Weapon weapon = this.Weapons[index];
 
 				if (weapon.EachFrame() == false) // ? 消滅
 				{
@@ -661,7 +656,7 @@ namespace Charlotte.PGame
 
 		private void DrawWeapons()
 		{
-			foreach (AWeapon weapon in this.Weapons)
+			foreach (Weapon weapon in this.Weapons)
 			{
 				weapon.Draw();
 			}

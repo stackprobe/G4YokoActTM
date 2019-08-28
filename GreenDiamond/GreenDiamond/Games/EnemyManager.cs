@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.PEnemy.PEnemy;
-using Charlotte.PEnemy.PObject;
+using Charlotte.Games.Enemies;
+using Charlotte.Games.Enemies.Objects;
 
-namespace Charlotte.PEnemy
+namespace Charlotte.Games
 {
 	public static class EnemyManager
 	{

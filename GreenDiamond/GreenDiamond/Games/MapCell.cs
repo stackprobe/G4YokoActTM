@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Charlotte.Common;
-using Charlotte.PEnemy;
 
-namespace Charlotte.PMap
+namespace Charlotte.Games
 {
 	public class MapCell
 	{

@@ -6,7 +6,7 @@ using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Utils;
 
-namespace Charlotte.PEnemy.PEnemy
+namespace Charlotte.Games.Enemies
 {
 	public class Enemy0002 : Enemy
 	{

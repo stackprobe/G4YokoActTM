@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using Charlotte.Common;
 using Charlotte.Tools;
-using Charlotte.PGame;
 
-namespace Charlotte.PEnemy.PEnemy
+namespace Charlotte.Games.Enemies
 {
 	public class Enemy0001 : Enemy
 	{
