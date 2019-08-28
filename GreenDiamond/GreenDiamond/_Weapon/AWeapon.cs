@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Enemy01;
 using Charlotte.Utils;
+using Charlotte._Enemy;
 
-namespace Charlotte.Weapon01
+namespace Charlotte._Weapon
 {
 	public abstract class AWeapon
 	{

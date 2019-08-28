@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Charlotte.Tools;
-using Charlotte.Weapon01;
 using Charlotte.Utils;
-using Charlotte.Map01;
+using Charlotte._Weapon;
+using Charlotte._Map;
 
-namespace Charlotte.Enemy01
+namespace Charlotte._Enemy
 {
 	public abstract class AEnemy
 	{

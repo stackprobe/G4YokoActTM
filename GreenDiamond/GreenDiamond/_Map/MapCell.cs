@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Charlotte.Common;
-using Charlotte.Enemy01;
+using Charlotte._Enemy;
 
-namespace Charlotte.Map01
+namespace Charlotte._Map
 {
 	public class MapCell
 	{

@@ -5,11 +5,11 @@ using System.Text;
 using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Game01;
-using Charlotte.Map01;
-using Charlotte.Status01;
+using Charlotte._Game;
+using Charlotte._Map;
+using Charlotte._Status;
 
-namespace Charlotte.Main01
+namespace Charlotte._Main
 {
 	public class TitleMenu
 	{

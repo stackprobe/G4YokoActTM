@@ -6,14 +6,14 @@ using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Utils;
-using Charlotte.Map01;
-using Charlotte.Enemy01;
-using Charlotte.Weapon01;
-using Charlotte.Weapon01.Weapon01;
-using Charlotte.Game01.Sub01;
-using Charlotte.Status01;
+using Charlotte._Map;
+using Charlotte._Status;
+using Charlotte._Enemy;
+using Charlotte._Weapon;
+using Charlotte._Weapon._Weapon1;
+using Charlotte._Game._Sub;
 
-namespace Charlotte.Game01
+namespace Charlotte._Game
 {
 	public class Game : IDisposable
 	{
