@@ -46,9 +46,9 @@ namespace Charlotte.Games
 			this.Player.X = this.Map.W * MapTile.WH / 2.0;
 			this.Player.Y = this.Map.H * MapTile.WH / 2.0;
 
-			foreach (IEnemy enemy in this.Enemies.Iterate()) // スタート位置
+			foreach (EnemyBox enemy in this.Enemies.Iterate()) // スタート位置
 			{
-				StartPoint sp = enemy as StartPoint;
+				StartPoint sp = enemy.Value as StartPoint;
 
 				if (sp != null)
 				{
@@ -344,7 +344,10 @@ namespace Charlotte.Games
 
 					IWeapon weapon = new Weapon0001();
 					weapon.Loaded(new D2Point(x, y), this.Player.FacingLeft);
-					this.Weapons.Add(weapon);
+					this.Weapons.Add(new WeaponBox()
+					{
+						Value = weapon,
+					});
 				}
 
 				this.EnemyEachFrame();
@@ -354,24 +357,35 @@ namespace Charlotte.Games
 				{
 					Crash playerCrash = CrashUtils.Point(new D2Point(this.Player.X, this.Player.Y));
 
-					foreach (IEnemy enemy in this.Enemies.Iterate())
-					{
-						Crash enemyCrash = enemy.GetCrash();
+					foreach (WeaponBox weapon in this.Weapons.Iterate())
+						weapon.Crash = weapon.Value.GetCrash();
 
-						foreach (IWeapon weapon in this.Weapons.Iterate())
+					foreach (EnemyBox enemy in this.Enemies.Iterate())
+					{
+						Crash enemyCrash = enemy.Value.GetCrash();
+
+						foreach (WeaponBox weapon in this.Weapons.Iterate())
 						{
-							if (enemyCrash.IsCrashed(weapon.GetCrash())) // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+							if (enemyCrash.IsCrashed(weapon.Crash))
 							{
-								enemy.Crashed(weapon); // TODO TODO TODO
-								weapon.Crashed(enemy); // TODO TODO TODO
+								if (enemy.Value.Crashed(weapon.Value) == false) // ? 消滅
+									enemy.Dead = true;
+
+								if (weapon.Value.Crashed(enemy.Value) == false) // ? 消滅
+									weapon.Dead = true;
 							}
 						}
+						this.Weapons.RemoveAll(weapon => weapon.Dead);
+
 						if (this.Player.DamageFrame == 0 && this.Player.MutekiFrame == 0 && enemyCrash.IsCrashed(playerCrash))
 						{
-							enemy.CrashedToPlayer(); // TODO TODO TODO
-							this.Player.Crashed(enemy); // TODO TODO TODO ???
+							if (enemy.Value.CrashedToPlayer() == false) // ? 消滅
+								enemy.Dead = true;
+
+							this.Player.Crashed(enemy.Value);
 						}
 					}
+					this.Enemies.RemoveAll(enemy => enemy.Dead);
 				}
 
 				// 描画ここから
@@ -477,7 +491,13 @@ namespace Charlotte.Games
 			}
 		}
 
-		public DDList<IEnemy> Enemies = new DDList<IEnemy>();
+		private class EnemyBox
+		{
+			public IEnemy Value;
+			public bool Dead;
+		}
+
+		private DDList<EnemyBox> Enemies = new DDList<EnemyBox>();
 
 		private void ReloadEnemies()
 		{
@@ -498,7 +518,10 @@ namespace Charlotte.Games
 							y * MapTile.WH + MapTile.WH / 2
 							));
 
-						this.Enemies.Add(enemy);
+						this.Enemies.Add(new EnemyBox()
+						{
+							Value = enemy,
+						});
 					}
 				}
 			}
@@ -506,45 +529,50 @@ namespace Charlotte.Games
 
 		private void EnemyEachFrame()
 		{
-			for (int index = 0; index < this.Enemies.Count; index++)
+			foreach (EnemyBox enemy in this.Enemies.Iterate())
 			{
-				IEnemy enemy = this.Enemies[index];
-
-				if (enemy.EachFrame() == false) // ? 消滅
+				if (enemy.Value.EachFrame() == false) // ? 消滅
 				{
-					this.Enemies.FastRemoveAt(index--);
+					enemy.Dead = true;
 				}
 			}
+			this.Enemies.RemoveAll(enemy => enemy.Dead);
 		}
 
 		private void DrawEnemies()
 		{
-			foreach (IEnemy enemy in this.Enemies.Iterate())
+			foreach (EnemyBox enemy in this.Enemies.Iterate())
 			{
-				enemy.Draw();
+				enemy.Value.Draw();
 			}
 		}
 
-		public DDList<IWeapon> Weapons = new DDList<IWeapon>();
+		private class WeaponBox
+		{
+			public IWeapon Value;
+			public Crash Crash;
+			public bool Dead;
+		}
+
+		private DDList<WeaponBox> Weapons = new DDList<WeaponBox>();
 
 		private void WeaponEachFrame()
 		{
-			for (int index = 0; index < this.Weapons.Count; index++)
+			foreach (WeaponBox weapon in this.Weapons.Iterate())
 			{
-				IWeapon weapon = this.Weapons[index];
-
-				if (weapon.EachFrame() == false) // ? 消滅
+				if (weapon.Value.EachFrame() == false) // ? 消滅
 				{
-					this.Weapons.FastRemoveAt(index--);
+					weapon.Dead = true;
 				}
 			}
+			this.Weapons.RemoveAll(weapon => weapon.Dead);
 		}
 
 		private void DrawWeapons()
 		{
-			foreach (IWeapon weapon in this.Weapons.Iterate())
+			foreach (WeaponBox weapon in this.Weapons.Iterate())
 			{
-				weapon.Draw();
+				weapon.Value.Draw();
 			}
 		}
 	}

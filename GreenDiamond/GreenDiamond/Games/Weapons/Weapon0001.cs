@@ -39,6 +39,8 @@ namespace Charlotte.Games.Weapons
 
 		public bool Crashed(IEnemy enemy)
 		{
+			EffectUtils.爆発(this.X, this.Y); // kari kari kari kari kari
+
 			return false;
 		}
 

@@ -110,6 +110,7 @@
     <Compile Include="Common\DDWin32.cs" />
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="Games\EffectUtils.cs" />
     <Compile Include="Games\Enemies\Objects\StartPoint.cs" />
     <Compile Include="Games\EnemyLoader.cs" />
     <Compile Include="Games\IEnemy.cs" />
