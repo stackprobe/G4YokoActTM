@@ -5,7 +5,7 @@ using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
 
-namespace Charlotte.Utils
+namespace Charlotte.Games
 {
 	public static class CrashUtils
 	{

@@ -4,32 +4,50 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Utils;
 
 namespace Charlotte.Games.Weapons
 {
-	public class Weapon0001 : Weapon
+	public class Weapon0001 : IWeapon
 	{
-		public Weapon0001(double x, double y, bool facingLeft)
+		private double X;
+		private double Y;
+		private bool FacingLeft;
+
+		public void Loaded(D2Point pt, bool facingLeft)
 		{
-			this.X = x;
-			this.Y = y;
+			this.X = pt.X;
+			this.Y = pt.Y;
 			this.FacingLeft = facingLeft;
 		}
 
-		public override bool EachFrame()
+		public bool IsFacingLeft()
 		{
-			if (this.CrashedEnemy != null)
-				return false;
+			return this.FacingLeft;
+		}
 
+		public bool EachFrame()
+		{
 			this.X += 8.0 * (this.FacingLeft ? -1 : 1);
-
-			this.Crash = CrashUtils.Circle(new D2Point(this.X, this.Y), 5.0);
 
 			return DDUtils.IsOutOfCamera(new D2Point(this.X, this.Y), 100.0) == false;
 		}
 
-		public override void Draw()
+		public Crash GetCrash()
+		{
+			return CrashUtils.Circle(new D2Point(this.X, this.Y), 5.0);
+		}
+
+		public bool Crashed(IEnemy enemy)
+		{
+			return false;
+		}
+
+		public int GetAttackPoint()
+		{
+			return 1;
+		}
+
+		public void Draw()
 		{
 			DDDraw.DrawBegin(DDGround.GeneralResource.Dummy, this.X - DDGround.ICamera.X, this.Y - DDGround.ICamera.Y);
 			DDDraw.DrawZoom(0.1);

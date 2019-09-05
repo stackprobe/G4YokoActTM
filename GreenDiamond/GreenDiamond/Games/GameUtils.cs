@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Common;
 
-namespace Charlotte.Utils
+namespace Charlotte.Games
 {
 	public static class GameUtils
 	{

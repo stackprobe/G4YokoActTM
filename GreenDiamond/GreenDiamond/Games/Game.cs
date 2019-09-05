@@ -5,7 +5,6 @@ using System.Text;
 using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Utils;
 using Charlotte.Games.Enemies.Objects;
 using Charlotte.Games.Weapons;
 
@@ -37,6 +36,8 @@ namespace Charlotte.Games
 		public int CamSlideX; // -1 ～ 1
 		public int CamSlideY; // -1 ～ 1
 
+		public int Frame;
+
 		public void Perform()
 		{
 			this.ReloadEnemies();
@@ -45,12 +46,12 @@ namespace Charlotte.Games
 			this.Player.X = this.Map.W * MapTile.WH / 2.0;
 			this.Player.Y = this.Map.H * MapTile.WH / 2.0;
 
-			foreach (Enemy enemy in this.Enemies) // スタート位置
+			foreach (IEnemy enemy in this.Enemies.Iterate()) // スタート位置
 			{
-				if (enemy is StartPoint)
-				{
-					StartPoint sp = (StartPoint)enemy;
+				StartPoint sp = enemy as StartPoint;
 
+				if (sp != null)
+				{
 					if (sp.Index == this.Status.StartPointIndex)
 					{
 						this.Player.X = sp.X;
@@ -70,7 +71,7 @@ namespace Charlotte.Games
 
 			// TODO music
 
-			for (; ; )
+			for (; ; this.Frame++)
 			{
 				DDUtils.Approach(ref DDGround.Camera.X, this.Player.X - DDConsts.Screen_W / 2 + (this.CamSlideX * DDConsts.Screen_W / 3), 0.8);
 				DDUtils.Approach(ref DDGround.Camera.Y, this.Player.Y - DDConsts.Screen_H / 2 + (this.CamSlideY * DDConsts.Screen_H / 3), 0.8);
@@ -85,6 +86,7 @@ namespace Charlotte.Games
 				{
 					this.EditMode();
 					this.ReloadEnemies();
+					this.Frame = 0;
 				}
 
 				// プレイヤー入力
@@ -340,41 +342,45 @@ namespace Charlotte.Games
 					else
 						y -= 4.0;
 
-					this.Weapons.Add(new Weapon0001(x, y, this.Player.FacingLeft));
+					IWeapon weapon = new Weapon0001();
+					weapon.Loaded(new D2Point(x, y), this.Player.FacingLeft);
+					this.Weapons.Add(weapon);
 				}
-
-				this.Player.Crash = CrashUtils.Point(new D2Point(this.Player.X, this.Player.Y));
 
 				this.EnemyEachFrame();
 				this.WeaponEachFrame();
 
 				// Crash
 				{
-					foreach (Enemy enemy in this.Enemies)
+					Crash playerCrash = CrashUtils.Point(new D2Point(this.Player.X, this.Player.Y));
+
+					foreach (IEnemy enemy in this.Enemies.Iterate())
 					{
-						foreach (Weapon weapon in this.Weapons)
+						Crash enemyCrash = enemy.GetCrash();
+
+						foreach (IWeapon weapon in this.Weapons.Iterate())
 						{
-							if (enemy.Crash.IsCrashed(weapon.Crash))
+							if (enemyCrash.IsCrashed(weapon.GetCrash())) // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 							{
-								enemy.Crashed(weapon);
-								weapon.Crashed(enemy);
+								enemy.Crashed(weapon); // TODO TODO TODO
+								weapon.Crashed(enemy); // TODO TODO TODO
 							}
 						}
-						if (this.Player.DamageFrame == 0 && this.Player.MutekiFrame == 0 && enemy.Crash.IsCrashed(this.Player.Crash))
+						if (this.Player.DamageFrame == 0 && this.Player.MutekiFrame == 0 && enemyCrash.IsCrashed(playerCrash))
 						{
-							enemy.CrashedToPlayer();
-							this.Player.Crashed(enemy);
+							enemy.CrashedToPlayer(); // TODO TODO TODO
+							this.Player.Crashed(enemy); // TODO TODO TODO ???
 						}
 					}
 				}
 
 				// 描画ここから
 
-				DrawWall();
-				DrawMap();
+				this.DrawWall();
+				this.DrawMap();
 				this.Player.Draw();
-				DrawEnemies();
-				DrawWeapons();
+				this.DrawEnemies();
+				this.DrawWeapons();
 
 				DDPrint.SetPrint();
 				DDPrint.Print("" + DDEngine.FrameProcessingMillis_Worst);
@@ -471,7 +477,7 @@ namespace Charlotte.Games
 			}
 		}
 
-		public List<Enemy> Enemies = new List<Enemy>();
+		public DDList<IEnemy> Enemies = new DDList<IEnemy>();
 
 		private void ReloadEnemies()
 		{
@@ -485,9 +491,12 @@ namespace Charlotte.Games
 
 					if (cell.EnemyLoader != null)
 					{
-						Enemy enemy = cell.EnemyLoader.CreateEnemy();
+						IEnemy enemy = cell.EnemyLoader.CreateEnemy();
 
-						enemy.SetTablePoint(new I2Point(x, y));
+						enemy.Loaded(new D2Point(
+							x * MapTile.WH + MapTile.WH / 2,
+							y * MapTile.WH + MapTile.WH / 2
+							));
 
 						this.Enemies.Add(enemy);
 					}
@@ -499,49 +508,41 @@ namespace Charlotte.Games
 		{
 			for (int index = 0; index < this.Enemies.Count; index++)
 			{
-				Enemy enemy = this.Enemies[index];
+				IEnemy enemy = this.Enemies[index];
 
 				if (enemy.EachFrame() == false) // ? 消滅
 				{
-					ExtraTools.FastDesertElement(this.Enemies, index--);
-				}
-				else
-				{
-					enemy.PostEachFrame();
+					this.Enemies.FastRemoveAt(index--);
 				}
 			}
 		}
 
 		private void DrawEnemies()
 		{
-			foreach (Enemy enemy in this.Enemies)
+			foreach (IEnemy enemy in this.Enemies.Iterate())
 			{
 				enemy.Draw();
 			}
 		}
 
-		public List<Weapon> Weapons = new List<Weapon>();
+		public DDList<IWeapon> Weapons = new DDList<IWeapon>();
 
 		private void WeaponEachFrame()
 		{
 			for (int index = 0; index < this.Weapons.Count; index++)
 			{
-				Weapon weapon = this.Weapons[index];
+				IWeapon weapon = this.Weapons[index];
 
 				if (weapon.EachFrame() == false) // ? 消滅
 				{
-					ExtraTools.FastDesertElement(this.Weapons, index--);
-				}
-				else
-				{
-					weapon.PostEachFrame();
+					this.Weapons.FastRemoveAt(index--);
 				}
 			}
 		}
 
 		private void DrawWeapons()
 		{
-			foreach (Weapon weapon in this.Weapons)
+			foreach (IWeapon weapon in this.Weapons.Iterate())
 			{
 				weapon.Draw();
 			}

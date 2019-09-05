@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Utils;
 using Charlotte.Common;
 using Charlotte.Tools;
 
@@ -21,7 +20,6 @@ namespace Charlotte.Games
 		public int AirborneFrame;
 		public int ShagamiFrame;
 		public int AttackFrame;
-		public Crash Crash = CrashUtils.None();
 		public int DamageFrame;
 		public int MutekiFrame;
 		public int HP = 1;
@@ -121,14 +119,14 @@ namespace Charlotte.Games
 			}
 		}
 
-		public void Crashed(Enemy enemy)
+		public void Crashed(IEnemy enemy)
 		{
 			// 同時に複数の敵と衝突すると、その分何度も呼ばれることに注意！
 
 			if (this.DamageFrame != 0) // ? Already crashed
 				return;
 
-			this.HP -= enemy.AttackPoint;
+			this.HP -= enemy.GetAttackPoint();
 			this.DamageFrame = 1;
 		}
 	}

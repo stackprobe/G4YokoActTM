@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 
-namespace Charlotte.Utils
+namespace Charlotte.Games
 {
 	public class Crash
 	{
+		// インスタンスの生成は CrashUtils で、
+
 		public enum Kind_e
 		{
 			NONE = 1,

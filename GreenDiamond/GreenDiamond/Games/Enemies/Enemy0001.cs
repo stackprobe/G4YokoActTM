@@ -7,11 +7,20 @@ using Charlotte.Tools;
 
 namespace Charlotte.Games.Enemies
 {
-	public class Enemy0001 : Enemy
+	public class Enemy0001 : IEnemy
 	{
+		private double X;
+		private double Y;
+
+		public void Loaded(D2Point pt)
+		{
+			this.X = pt.X;
+			this.Y = pt.Y;
+		}
+
 		private D2Point Speed = new D2Point();
 
-		public override bool EachFrame()
+		public bool EachFrame()
 		{
 			double rot = DDUtils.GetAngle(Game.I.Player.X - this.X, Game.I.Player.Y - this.Y);
 			rot += DDUtils.Random.Real2() * 0.05;
@@ -27,12 +36,30 @@ namespace Charlotte.Games.Enemies
 			this.X += this.Speed.X;
 			this.Y += this.Speed.Y;
 
-			this.CrashedWeapon = null;
-
 			return true;
 		}
 
-		public override void Draw()
+		public Crash GetCrash()
+		{
+			return CrashUtils.None();
+		}
+
+		public bool Crashed(IWeapon weapon)
+		{
+			return true;
+		}
+
+		public bool CrashedToPlayer()
+		{
+			return true;
+		}
+
+		public int GetAttackPoint()
+		{
+			return 0;
+		}
+
+		public void Draw()
 		{
 			DDDraw.DrawBegin(DDGround.GeneralResource.Dummy, this.X - DDGround.ICamera.X, this.Y - DDGround.ICamera.Y);
 			DDDraw.DrawRotate(DDEngine.ProcFrame / 10.0);

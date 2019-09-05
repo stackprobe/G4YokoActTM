@@ -111,24 +111,24 @@
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Games\Enemies\Objects\StartPoint.cs" />
+    <Compile Include="Games\EnemyLoader.cs" />
+    <Compile Include="Games\IEnemy.cs" />
+    <Compile Include="Games\IWeapon.cs" />
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Status.cs" />
     <Compile Include="Tests\Test0002.cs" />
-    <Compile Include="Utils\Crash.cs" />
-    <Compile Include="Utils\CrashUtils.cs" />
+    <Compile Include="Games\Crash.cs" />
+    <Compile Include="Games\CrashUtils.cs" />
     <Compile Include="Games\Enemies\Enemy0001.cs" />
     <Compile Include="Games\Enemies\Enemy0002.cs" />
-    <Compile Include="Games\EnemyLoader.cs" />
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\GameEdit.cs" />
-    <Compile Include="Games\Enemy.cs" />
     <Compile Include="Games\EnemyManager.cs" />
     <Compile Include="Games\Map.cs" />
     <Compile Include="Games\MapCell.cs" />
     <Compile Include="Games\MapLoader.cs" />
     <Compile Include="Games\MapTile.cs" />
     <Compile Include="Games\MapTileManager.cs" />
-    <Compile Include="Games\Weapon.cs" />
     <Compile Include="Games\Weapons\Weapon0001.cs" />
     <Compile Include="Mains\TitleMenu.cs" />
     <Compile Include="Ground.cs" />
@@ -145,7 +145,7 @@
     <Compile Include="ResourcePicture.cs" />
     <Compile Include="ResourceSE.cs" />
     <Compile Include="Tests\Test0001.cs" />
-    <Compile Include="Utils\GameUtils.cs" />
+    <Compile Include="Games\GameUtils.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>

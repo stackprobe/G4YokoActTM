@@ -29,7 +29,7 @@ namespace Charlotte.Games
 			// 新しい敵をここへ追加...
 		}
 
-		private static void Add(string name, Func<Enemy> createEnemy)
+		private static void Add(string name, Func<IEnemy> createEnemy)
 		{
 			EnemyLoader loader = new EnemyLoader()
 			{
