@@ -21,6 +21,8 @@ namespace Charlotte.Games
 
 		public void Crashed(Enemy enemy)
 		{
+			// 同時に複数の敵と衝突すると、その分何度も呼ばれることに注意！
+
 			this.CrashedEnemy = enemy;
 		}
 

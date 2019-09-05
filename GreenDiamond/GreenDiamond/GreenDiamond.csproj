@@ -110,6 +110,7 @@
     <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Games\Enemies\Objects\StartPoint.cs" />
+    <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Status.cs" />
     <Compile Include="Tests\Test0002.cs" />
     <Compile Include="Utils\Crash.cs" />

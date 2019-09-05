@@ -30,26 +30,7 @@ namespace Charlotte.Games
 			I = null;
 		}
 
-		public class PlayerInfo
-		{
-			public double X;
-			public double Y;
-			public double YSpeed;
-			public bool FacingLeft;
-			public int MoveFrame;
-			public bool MoveSlow; // ? 低速移動
-			public int JumpFrame;
-			public bool TouchGround;
-			public int AirborneFrame;
-			public int ShagamiFrame;
-			public int AttackFrame;
-			public Crash Crash = CrashUtils.None();
-			public int DamageFrame;
-			public int MutekiFrame;
-			public int HP = 1;
-		}
-
-		public PlayerInfo Player = new PlayerInfo();
+		public Player Player = new Player();
 
 		public bool CamSlideMode; // ? モード中
 		public int CamSlideCount;
@@ -382,7 +363,7 @@ namespace Charlotte.Games
 						if (this.Player.DamageFrame == 0 && this.Player.MutekiFrame == 0 && enemy.Crash.IsCrashed(this.Player.Crash))
 						{
 							enemy.CrashedToPlayer();
-							this.PlayerCrashed(enemy);
+							this.Player.Crashed(enemy);
 						}
 					}
 				}
@@ -391,7 +372,7 @@ namespace Charlotte.Games
 
 				DrawWall();
 				DrawMap();
-				DrawPlayer();
+				this.Player.Draw();
 				DrawEnemies();
 				DrawWeapons();
 
@@ -488,107 +469,6 @@ namespace Charlotte.Games
 					}
 				}
 			}
-		}
-
-		private int PlayerLookLeftFrm = 0;
-
-		private void DrawPlayer()
-		{
-			if (PlayerLookLeftFrm == 0 && DDUtils.Random.Real2() < 0.002) // キョロキョロするレート
-				PlayerLookLeftFrm = 150 + (int)(DDUtils.Random.Real2() * 90.0);
-
-			DDUtils.CountDown(ref PlayerLookLeftFrm);
-
-			double xZoom = this.Player.FacingLeft ? -1 : 1;
-
-			// 立ち >
-
-			DDPicture picture = Ground.I.Picture.PlayerStands[120 < PlayerLookLeftFrm ? 1 : 0][(DDEngine.ProcFrame / 20) % 2];
-
-			if (1 <= this.Player.MoveFrame)
-			{
-				if (this.Player.MoveSlow)
-				{
-					picture = Ground.I.Picture.PlayerWalk[(DDEngine.ProcFrame / 10) % 2];
-				}
-				else
-				{
-					picture = Ground.I.Picture.PlayerDash[(DDEngine.ProcFrame / 5) % 2];
-				}
-			}
-			if (this.Player.TouchGround == false)
-			{
-				picture = Ground.I.Picture.PlayerJump[0];
-			}
-			if (1 <= this.Player.ShagamiFrame)
-			{
-				picture = Ground.I.Picture.PlayerShagami;
-			}
-
-			// < 立ち
-
-			// 攻撃中 >
-
-			if (1 <= this.Player.AttackFrame)
-			{
-				picture = Ground.I.Picture.PlayerAttack;
-
-				if (1 <= this.Player.MoveFrame)
-				{
-					if (this.Player.MoveSlow)
-					{
-						picture = Ground.I.Picture.PlayerAttackWalk[(DDEngine.ProcFrame / 10) % 2];
-					}
-					else
-					{
-						picture = Ground.I.Picture.PlayerAttackDash[(DDEngine.ProcFrame / 5) % 2];
-					}
-				}
-				if (this.Player.TouchGround == false)
-				{
-					picture = Ground.I.Picture.PlayerAttackJump;
-				}
-				if (1 <= this.Player.ShagamiFrame)
-				{
-					picture = Ground.I.Picture.PlayerAttackShagami;
-				}
-			}
-
-			// < 攻撃中
-
-			if (1 <= this.Player.DamageFrame)
-			{
-				picture = Ground.I.Picture.PlayerDamage[0];
-				xZoom *= -1;
-			}
-
-			if (1 <= this.Player.DamageFrame || 1 <= this.Player.MutekiFrame)
-			{
-				DDDraw.SetTaskList(DDGround.EL);
-				DDDraw.SetAlpha(0.5);
-			}
-			DDDraw.DrawBegin(
-					picture,
-					DoubleTools.ToInt(this.Player.X - DDGround.ICamera.X),
-					DoubleTools.ToInt(this.Player.Y - DDGround.ICamera.Y) - 16
-					);
-			DDDraw.DrawZoom_X(xZoom);
-			DDDraw.DrawEnd();
-			DDDraw.Reset();
-
-			// debug
-			{
-				DDDraw.DrawBegin(DDGround.GeneralResource.Dummy, this.Player.X - DDGround.ICamera.X, this.Player.Y - DDGround.ICamera.Y);
-				DDDraw.DrawZoom(0.1);
-				DDDraw.DrawRotate(DDEngine.ProcFrame * 0.01);
-				DDDraw.DrawEnd();
-			}
-		}
-
-		private void PlayerCrashed(Enemy enemy)
-		{
-			this.Player.HP -= enemy.AttackPoint;
-			this.Player.DamageFrame = 1;
 		}
 
 		public List<Enemy> Enemies = new List<Enemy>();

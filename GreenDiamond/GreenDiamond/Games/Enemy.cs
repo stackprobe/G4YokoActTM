@@ -29,6 +29,11 @@ namespace Charlotte.Games
 
 		public void Crashed(Weapon weapon)
 		{
+			// 同時に複数の武器と衝突すると、その分何度も呼ばれることに注意！
+
+			if (this.CrashedWeapon != null) // ? Already crashed
+				return;
+
 			this.HP -= weapon.AttackPoint;
 			this.CrashedWeapon = weapon;
 		}
