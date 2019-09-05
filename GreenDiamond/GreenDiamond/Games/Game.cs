@@ -229,6 +229,11 @@ namespace Charlotte.Games
 
 				{
 					DDScene scene = GameUtils.SceneIncrement(ref this.Player.MutekiFrame, 60);
+
+					if (scene != null)
+					{
+						// noop
+					}
 				}
 
 				{
