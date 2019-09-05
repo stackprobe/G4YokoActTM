@@ -78,6 +78,7 @@
     <Compile Include="Common\DDInput.cs" />
     <Compile Include="Common\DDJammer.cs" />
     <Compile Include="Common\DDKey.cs" />
+    <Compile Include="Common\DDList.cs" />
     <Compile Include="Common\DDMain.cs" />
     <Compile Include="Common\DDMain2.cs" />
     <Compile Include="Common\DDMouse.cs" />
