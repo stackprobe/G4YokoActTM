@@ -74,7 +74,6 @@
     <Compile Include="Common\DDFontUtils.cs" />
     <Compile Include="Common\DDGeneralResource.cs" />
     <Compile Include="Common\DDGround.cs" />
-    <Compile Include="Common\DDIEnumerableTask.cs" />
     <Compile Include="Common\DDInput.cs" />
     <Compile Include="Common\DDJammer.cs" />
     <Compile Include="Common\DDKey.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Common\DDUserDatStrings.cs" />
     <Compile Include="Common\DDUtils.cs" />
     <Compile Include="Common\DDWin32.cs" />
-    <Compile Include="Common\IDDTask.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Games\EffectUtils.cs" />
     <Compile Include="Games\Enemies\Objects\StartPoint.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Charlotte.Tools;
 using Charlotte.Common;
 
 namespace Charlotte.Games
@@ -10,7 +11,7 @@ namespace Charlotte.Games
 	{
 		public static void 小爆発(double x, double y)
 		{
-			DDGround.EL.Add(new DDIEnumerableTask(小爆発Seq(x, y), () => { }));
+			DDGround.EL.Add(EnumerableTools.Supplier(小爆発Seq(x, y)));
 		}
 
 		private static IEnumerable<bool> 小爆発Seq(double x, double y)
@@ -30,7 +31,7 @@ namespace Charlotte.Games
 
 		public static void 中爆発(double x, double y)
 		{
-			DDGround.EL.Add(new DDIEnumerableTask(中爆発Seq(x, y), () => { }));
+			DDGround.EL.Add(EnumerableTools.Supplier(中爆発Seq(x, y)));
 		}
 
 		private static IEnumerable<bool> 中爆発Seq(double x, double y)
