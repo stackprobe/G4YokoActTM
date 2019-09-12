@@ -8,7 +8,7 @@ namespace Charlotte.Games
 	public class Status
 	{
 		public int MaxHP = 10;
-		public int StartHP = 10;
+		public int CurrHP = 10;
 		public int StartPointIndex = 0; // TODO
 	}
 }

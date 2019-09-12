@@ -65,7 +65,7 @@ namespace Charlotte.Games
 				}
 			}
 
-			this.Player.HP = this.Status.StartHP;
+			this.Player.HP = this.Status.CurrHP;
 
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
@@ -460,14 +460,62 @@ namespace Charlotte.Games
 				DDEngine.EachFrame();
 			}
 			DDEngine.FreezeInput();
-			DDMusicUtils.Fade();
-			DDCurtain.SetCurtain(30, -1.0);
 
-			foreach (DDScene scene in DDSceneUtils.Create(40))
+			if (this.ExitDir == 5)
 			{
-				DrawWall();
-				DDEngine.EachFrame();
+				DDMusicUtils.Fade();
+				DDCurtain.SetCurtain(30, -1.0);
+
+				foreach (DDScene scene in DDSceneUtils.Create(40))
+				{
+					this.DrawWall();
+					this.DrawMap();
+
+					DDEngine.EachFrame();
+				}
 			}
+			else
+			{
+				double destSlideX = 0.0;
+				double destSlideY = 0.0;
+
+				switch (this.ExitDir)
+				{
+					case 4:
+						destSlideX = DDConsts.Screen_W;
+						break;
+
+					case 6:
+						destSlideX = -DDConsts.Screen_W;
+						break;
+
+					case 8:
+						destSlideY = DDConsts.Screen_H;
+						break;
+
+					case 2:
+						destSlideY = -DDConsts.Screen_H;
+						break;
+
+					default:
+						throw null; // never
+				}
+				foreach (DDScene scene in DDSceneUtils.Create(20))
+				{
+					this.DrawMap_SlideX = destSlideX * scene.Rate;
+					this.DrawMap_SlideY = destSlideY * scene.Rate;
+
+					this.DrawWall();
+					this.DrawMap();
+
+					DDEngine.EachFrame();
+				}
+				DDCurtain.SetCurtain(0, -1.0);
+			}
+
+			// ここでステータスに反映
+
+			this.Status.CurrHP = this.Player.HP;
 		}
 
 		private void EditMode()
@@ -519,6 +567,9 @@ namespace Charlotte.Games
 			DDCurtain.DrawCurtain();
 		}
 
+		private double DrawMap_SlideX = 0.0;
+		private double DrawMap_SlideY = 0.0;
+
 		private void DrawMap()
 		{
 			int w = this.Map.W;
@@ -536,13 +587,17 @@ namespace Charlotte.Games
 					int mapTileX = x * MapTile.WH + MapTile.WH / 2;
 					int mapTileY = y * MapTile.WH + MapTile.WH / 2;
 
-					if (DDUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), 100.0) == false) // マージン要調整
+					if (DDUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), MapTile.WH * 2) == false)
 					{
 						MapCell cell = this.Map.GetCell(x, y);
 
 						if (cell.Tile != null) // ? ! 描画無し
 						{
-							DDDraw.DrawCenter(cell.Tile.Picture, mapTileX - camL, mapTileY - camT);
+							DDDraw.DrawCenter(
+								cell.Tile.Picture,
+								mapTileX - camL + this.DrawMap_SlideX,
+								mapTileY - camT + this.DrawMap_SlideY
+								);
 						}
 					}
 				}
