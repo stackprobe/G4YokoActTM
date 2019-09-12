@@ -70,7 +70,7 @@ namespace Charlotte.Games
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
 
-			DDCurtain.SetCurtain();
+			DDCurtain.SetCurtain(10);
 			DDEngine.FreezeInput();
 
 			// TODO music
@@ -287,28 +287,25 @@ namespace Charlotte.Games
 					this.Player.Y += this.Player.YSpeed;
 				}
 
-				// プレイヤーが画面外に出たかチェック
+				if (this.Player.X < 0.0) // ? マップの左側に出た。
 				{
-					if (this.Player.X < 0.0)
-					{
-						this.ExitDir = 4;
-						break;
-					}
-					if (this.Map.W * MapTile.WH < this.Player.X)
-					{
-						this.ExitDir = 6;
-						break;
-					}
-					if (this.Player.Y < 0.0)
-					{
-						this.ExitDir = 8;
-						break;
-					}
-					if (this.Map.H * MapTile.WH < this.Player.Y)
-					{
-						this.ExitDir = 2;
-						break;
-					}
+					this.ExitDir = 4;
+					break;
+				}
+				if (this.Map.W * MapTile.WH < this.Player.X) // ? マップの右側に出た。
+				{
+					this.ExitDir = 6;
+					break;
+				}
+				if (this.Player.Y < 0.0) // ? マップの上側に出た。
+				{
+					this.ExitDir = 8;
+					break;
+				}
+				if (this.Map.H * MapTile.WH < this.Player.Y) // ? マップの下側に出た。
+				{
+					this.ExitDir = 2;
+					break;
 				}
 
 				// プレイヤー位置矯正
@@ -375,6 +372,18 @@ namespace Charlotte.Games
 						this.Player.AirborneFrame = 0;
 					else
 						this.Player.AirborneFrame++;
+				}
+
+				if (this.Frame == 0) // 画面遷移時の微妙なカメラ位置ズレ解消
+				{
+					DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
+					DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
+
+					DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+					DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
+
+					DDGround.ICamera.X = DoubleTools.ToInt(DDGround.Camera.X);
+					DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);
 				}
 
 				if (this.Player.AttackFrame % 6 == 1)

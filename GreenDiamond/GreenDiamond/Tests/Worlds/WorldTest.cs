@@ -12,7 +12,7 @@ namespace Charlotte.Tests.Worlds
 		{
 			using (World world = new World())
 			{
-				world.MapLocalFile = "t0001.txt";
+				world.MapFile = "t0001.txt";
 				world.Perform();
 			}
 		}

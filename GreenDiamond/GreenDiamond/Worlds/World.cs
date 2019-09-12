@@ -11,7 +11,7 @@ namespace Charlotte.Worlds
 {
 	public class World : IDisposable
 	{
-		public string MapLocalFile; // 開始マップファイルを設定する。
+		public string MapFile = "t0001.txt"; // 開始マップファイル
 
 		// <---- prm
 
@@ -35,7 +35,7 @@ namespace Charlotte.Worlds
 			{
 				using (Game game = new Game())
 				{
-					game.Map = MapLoader.Load(Path.Combine("Map", this.MapLocalFile));
+					game.Map = MapLoader.Load(Path.Combine("Map", this.MapFile));
 					game.Status = status;
 					game.Perform();
 
@@ -75,10 +75,10 @@ namespace Charlotte.Worlds
 
 		private void Move(int xa, int ya)
 		{
-			I2Point pt = WorldMap.GetPoint(this.MapLocalFile);
+			I2Point pt = WorldMap.GetPoint(this.MapFile);
 
 			if (pt == null)
-				throw new DDError("そんなマップありません。" + this.MapLocalFile);
+				throw new DDError("そんなマップありません。" + this.MapFile);
 
 			pt.X += xa;
 			pt.Y += ya;
@@ -88,7 +88,7 @@ namespace Charlotte.Worlds
 			if (file == null)
 				throw new DDError("その方向にマップはありません。");
 
-			this.MapLocalFile = file;
+			this.MapFile = file;
 		}
 	}
 }
