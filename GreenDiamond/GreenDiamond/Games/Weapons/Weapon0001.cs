@@ -29,6 +29,11 @@ namespace Charlotte.Games.Weapons
 		{
 			this.X += 8.0 * (this.FacingLeft ? -1 : 1);
 
+			if (Game.I.Map.GetCellByPixelPoint(this.X, this.Y).Wall)
+			{
+				EffectUtils.小爆発(this.X, this.Y);
+				return false;
+			}
 			return DDUtils.IsOutOfCamera(new D2Point(this.X, this.Y), 100.0) == false;
 		}
 
@@ -39,8 +44,7 @@ namespace Charlotte.Games.Weapons
 
 		public bool Crashed(IEnemy enemy)
 		{
-			EffectUtils.小爆発(this.X, this.Y); // kari kari kari kari kari
-
+			EffectUtils.小爆発(this.X, this.Y);
 			return false;
 		}
 

@@ -41,6 +41,16 @@ namespace Charlotte.Games
 			get { return this.Table.H; }
 		}
 
+		public MapCell GetCellByPixelPoint(double x, double y)
+		{
+			return this.GetCellByPixelPoint(new D2Point(x, y));
+		}
+
+		public MapCell GetCellByPixelPoint(D2Point pt)
+		{
+			return this.GetCell(ToTablePoint(pt));
+		}
+
 		public MapCell GetCell(I2Point pt)
 		{
 			return this.GetCell(pt, this.DefaultCell);
@@ -68,7 +78,7 @@ namespace Charlotte.Games
 		}
 
 		// TablePoint ... I2Point Table用の座標
-		// Point      ... D2Point 座標(ピクセル単位)
+		// PixelPoint ... D2Point 座標(ピクセル単位)
 
 		public static I2Point ToTablePoint(D2Point pt)
 		{
