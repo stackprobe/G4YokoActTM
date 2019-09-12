@@ -9,8 +9,8 @@ namespace Charlotte.Games
 {
 	public class Map
 	{
-		public MapCell DefaultCell = new MapCell();
-		public AutoTable<MapCell> Table;
+		private MapCell DefaultCell = new MapCell();
+		private AutoTable<MapCell> Table;
 
 		public Map(int w, int h)
 		{
@@ -91,6 +91,26 @@ namespace Charlotte.Games
 			int mapTileY = (int)Math.Floor(y / MapTile.WH);
 
 			return new I2Point(mapTileX, mapTileY);
+		}
+
+		private Dictionary<string, string> Properties = DictionaryTools.Create<string>();
+
+		public void AddProperty(string name, string value)
+		{
+			this.Properties.Add(name, value);
+		}
+
+		public string GetProperty(string name, string defval = null)
+		{
+			if (this.Properties.ContainsKey(name) == false)
+				return defval;
+
+			return this.Properties[name];
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> GetProperties()
+		{
+			return this.Properties;
 		}
 	}
 }

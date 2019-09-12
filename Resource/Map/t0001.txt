@@ -1372,7 +1372,7 @@
 0
 0
 0
-0		StartPoint00
+0		StartPoint05
 1	Wall
 0
 0
@@ -3000,3 +3000,4 @@
 1	Wall3
 1	Wall3
 1	Wall3
+WALL	06775.jpg

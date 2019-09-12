@@ -1920,3 +1920,4 @@
 1	Wall3
 1	Wall3
 1	Wall3
+WALL	06418.jpg

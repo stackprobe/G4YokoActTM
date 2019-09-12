@@ -9,7 +9,7 @@ namespace Charlotte.Games
 	{
 		public int MaxHP = 10;
 		public int CurrHP = 10;
-		public int StartPointIndex = 0; // TODO
+		public int StartPointIndex = 5;
 		public bool FacingLeft = false;
 	}
 }

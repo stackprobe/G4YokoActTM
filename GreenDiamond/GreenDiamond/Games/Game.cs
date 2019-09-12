@@ -40,6 +40,8 @@ namespace Charlotte.Games
 		public int CamSlideX; // -1 ～ 1
 		public int CamSlideY; // -1 ～ 1
 
+		public DDPicture WallPicture;
+
 		public int Frame;
 
 		public void Perform()
@@ -67,6 +69,8 @@ namespace Charlotte.Games
 
 			this.Player.HP = this.Status.CurrHP;
 			this.Player.FacingLeft = this.Status.FacingLeft;
+
+			this.WallPicture = WallPictureManager.GetPicutre(this.Map.GetProperty("WALL", "09311.jpg"));
 
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
@@ -519,6 +523,9 @@ namespace Charlotte.Games
 
 					DDEngine.EachFrame();
 				}
+				this.DrawMap_SlideX = 0.0;
+				this.DrawMap_SlideY = 0.0;
+
 				DDCurtain.SetCurtain(0, -1.0);
 			}
 
@@ -577,7 +584,7 @@ namespace Charlotte.Games
 
 		private void DrawWall()
 		{
-			DDCurtain.DrawCurtain();
+			DDDraw.DrawSimple(this.WallPicture, 0, 0); // test test test test test
 		}
 
 		private double DrawMap_SlideX = 0.0;
@@ -601,16 +608,15 @@ namespace Charlotte.Games
 			rb.X += 2; // margin
 			rb.Y += 2; // margin
 
+			lt.X = IntTools.Range(lt.X, 0, w - 1);
+			lt.Y = IntTools.Range(lt.Y, 0, h - 1);
+			rb.X = IntTools.Range(rb.X, 0, w - 1);
+			rb.Y = IntTools.Range(rb.Y, 0, h - 1);
+
 			for (int x = lt.X; x <= rb.X; x++)
 			{
 				for (int y = lt.Y; y <= rb.Y; y++)
 				{
-					if (
-						x < 0 || w <= x ||
-						y < 0 || h <= y
-						)
-						continue;
-
 					int mapTileX = x * MapTile.WH + MapTile.WH / 2;
 					int mapTileY = y * MapTile.WH + MapTile.WH / 2;
 

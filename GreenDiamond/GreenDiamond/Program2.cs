@@ -79,9 +79,9 @@ namespace Charlotte
 		private void Main4()
 		{
 			//new Test0001().Test01();
-			new TitleMenu().Perform();
+			//new TitleMenu().Perform();
 			//new GameTest().Test01();
-			//new WorldTest().Test01();
+			new WorldTest().Test01();
 		}
 	}
 }
