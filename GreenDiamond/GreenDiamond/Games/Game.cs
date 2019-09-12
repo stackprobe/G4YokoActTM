@@ -35,13 +35,14 @@ namespace Charlotte.Games
 
 		public Player Player = new Player();
 
-		public bool CamSlideMode; // ? モード中
-		public int CamSlideCount;
-		public int CamSlideX; // -1 ～ 1
-		public int CamSlideY; // -1 ～ 1
+		private bool CamSlideMode; // ? モード中
+		private int CamSlideCount;
+		private int CamSlideX; // -1 ～ 1
+		private int CamSlideY; // -1 ～ 1
 
-		public DDPicture WallPicture;
-		public D2Size WallPicture_DrawSize;
+		private DDPicture WallPicture;
+		private double WallPicture_Zoom;
+		private const double WallPicture_SlideRate = 0.1;
 
 		public int Frame;
 
@@ -72,6 +73,20 @@ namespace Charlotte.Games
 			this.Player.FacingLeft = this.Status.FacingLeft;
 
 			this.WallPicture = WallPictureManager.GetPicutre(this.Map.GetProperty("WALL", "09311.jpg"));
+
+			{
+				double w = DDConsts.Screen_W + (this.Map.W * MapTile.WH - DDConsts.Screen_W) * WallPicture_SlideRate;
+				double h = DDConsts.Screen_H + (this.Map.H * MapTile.WH - DDConsts.Screen_H) * WallPicture_SlideRate;
+
+				double zw = w / this.WallPicture.Get_W();
+				double zh = h / this.WallPicture.Get_H();
+
+				double z = Math.Max(zw, zh);
+
+				z *= 1.01; // margin
+
+				this.WallPicture_Zoom = z;
+			}
 
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
@@ -514,18 +529,26 @@ namespace Charlotte.Games
 					default:
 						throw null; // never
 				}
+				foreach (DDScene scene in DDSceneUtils.Create(10))
+				{
+					this.DrawWall();
+					DDCurtain.DrawCurtain(-scene.Rate);
+					this.DrawMap();
+
+					DDEngine.EachFrame();
+				}
 				foreach (DDScene scene in DDSceneUtils.Create(20))
 				{
 					this.DrawMap_SlideX = destSlideX * scene.Rate;
 					this.DrawMap_SlideY = destSlideY * scene.Rate;
 
-					this.DrawWall();
+					DDCurtain.DrawCurtain(-1.0);
 					this.DrawMap();
 
 					DDEngine.EachFrame();
 				}
-				this.DrawMap_SlideX = 0.0;
-				this.DrawMap_SlideY = 0.0;
+				this.DrawMap_SlideX = 0.0; // 復元
+				this.DrawMap_SlideY = 0.0; // 復元
 
 				DDCurtain.SetCurtain(0, -1.0);
 			}
@@ -585,7 +608,15 @@ namespace Charlotte.Games
 
 		private void DrawWall()
 		{
-			DDDraw.DrawSimple(this.WallPicture, 0, 0); // test test test test test
+			DDDraw.DrawBegin(this.WallPicture, DDConsts.Screen_W / 2, DDConsts.Screen_H / 2);
+			DDDraw.DrawZoom(this.WallPicture_Zoom);
+			DDDraw.DrawSlide(
+				((this.Map.W * MapTile.WH - DDConsts.Screen_W) / 2 - DDGround.Camera.X) * WallPicture_SlideRate,
+				((this.Map.H * MapTile.WH - DDConsts.Screen_H) / 2 - DDGround.Camera.Y) * WallPicture_SlideRate
+				);
+			DDDraw.DrawEnd();
+
+			DDCurtain.DrawCurtain(-0.7);
 		}
 
 		private double DrawMap_SlideX = 0.0;
