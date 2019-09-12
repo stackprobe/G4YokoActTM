@@ -75,9 +75,9 @@ namespace Charlotte.Worlds
 
 		private void Move(int xa, int ya)
 		{
-			I2Point pt = WorldMap.GetPoint(this.MapFile);
+			I2Point pt = WorldMap.GetPoint(this.MapFile, new I2Point());
 
-			if (pt == null)
+			if (pt.X == -1)
 				throw new DDError("そんなマップありません。" + this.MapFile);
 
 			pt.X += xa;

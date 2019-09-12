@@ -27,7 +27,7 @@ namespace Charlotte.Worlds
 			H = Rows.Length;
 		}
 
-		public static I2Point GetPoint(string file, I2Point defval = null)
+		public static I2Point GetPoint(string file, I2Point defval)
 		{
 			for (int y = 0; y < Rows.Length; y++)
 			{
