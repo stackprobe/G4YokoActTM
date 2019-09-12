@@ -115,8 +115,9 @@
     <Compile Include="Games\IWeapon.cs" />
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Status.cs" />
-    <Compile Include="Games\WorldManager.cs" />
-    <Compile Include="Tests\Test0002.cs" />
+    <Compile Include="Worlds\World.cs" />
+    <Compile Include="Worlds\WorldMap.cs" />
+    <Compile Include="Tests\Games\GameTest.cs" />
     <Compile Include="Games\Crash.cs" />
     <Compile Include="Games\CrashUtils.cs" />
     <Compile Include="Games\Enemies\Enemy0001.cs" />

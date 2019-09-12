@@ -6,9 +6,9 @@ using System.IO;
 using Charlotte.Tools;
 using Charlotte.Common;
 
-namespace Charlotte.Games
+namespace Charlotte.Worlds
 {
-	public static class WorldManager
+	public static class WorldMap
 	{
 		private static string[][] Rows;
 

@@ -7,6 +7,8 @@ using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Tests;
 using Charlotte.Games;
+using Charlotte.Worlds;
+using Charlotte.Tests.Games;
 
 namespace Charlotte
 {
@@ -45,7 +47,7 @@ namespace Charlotte
 				{
 					EnemyManager.INIT();
 					MapTileManager.INIT();
-					WorldManager.INIT();
+					WorldMap.INIT();
 				}
 			};
 
@@ -75,8 +77,8 @@ namespace Charlotte
 		private void Main4()
 		{
 			//new Test0001().Test01();
-			new Test0002().Test01();
 			//new TitleMenu().Perform();
+			new GameTest().Test01();
 		}
 	}
 }

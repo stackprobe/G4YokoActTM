@@ -4,17 +4,22 @@ using System.Linq;
 using System.Text;
 using Charlotte.Games;
 
-namespace Charlotte.Tests
+namespace Charlotte.Worlds
 {
-	public class Test0002
+	public class World
 	{
-		public void Test01()
+		public string MapFile;
+
+		// <---- prm
+
+		public void Perform()
 		{
 			using (Game game = new Game())
 			{
-				game.Map = MapLoader.Load(@"Map\t0001.txt");
+				game.Map = MapLoader.Load(MapFile);
 				game.Status = new Status();
-				game.Perform();
+
+				// TODO
 			}
 		}
 	}
