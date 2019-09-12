@@ -45,6 +45,7 @@ namespace Charlotte
 				{
 					EnemyManager.INIT();
 					MapTileManager.INIT();
+					WorldManager.INIT();
 				}
 			};
 
