@@ -40,11 +40,20 @@ namespace Charlotte.Games.Enemies
 			return CrashUtils.Rect_CenterSize(new D2Point(this.X, this.Y), new D2Size(100.0, 100.0));
 		}
 
+		public int HP = 10;
+
 		public bool Crashed(IWeapon weapon)
 		{
 			this.X += 10.0 * (weapon.IsFacingLeft() ? -1 : 1); // ヒットバック
 
-			return true; // TODO
+			this.HP -= weapon.GetAttackPoint();
+
+			if (this.HP <= 0) // ? dead
+			{
+				EffectUtils.中爆発(this.X, this.Y);
+				return false;
+			}
+			return true;
 		}
 
 		public bool CrashedToPlayer()
