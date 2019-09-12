@@ -5,15 +5,24 @@ using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
 
-namespace Charlotte.Games
+namespace Charlotte.Game3Common
 {
+	//
+	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+	//
 	public static class CrashUtils
 	{
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static Crash None()
 		{
 			return new Crash();
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static Crash Point(D2Point pt)
 		{
 			return new Crash()
@@ -23,6 +32,9 @@ namespace Charlotte.Games
 			};
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static Crash Circle(D2Point pt, double r)
 		{
 			return new Crash()
@@ -33,11 +45,17 @@ namespace Charlotte.Games
 			};
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static Crash Rect_CenterSize(D2Point centerPt, D2Size size)
 		{
 			return Rect(new D4Rect(centerPt.X - size.W / 2.0, centerPt.Y - size.H / 2.0, size.W, size.H));
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static Crash Rect(D4Rect rect)
 		{
 			return new Crash()
@@ -47,6 +65,9 @@ namespace Charlotte.Games
 			};
 		}
 
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static bool IsCrashed(Crash a, Crash b)
 		{
 			if ((int)b.Kind < (int)a.Kind)

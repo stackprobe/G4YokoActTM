@@ -108,6 +108,8 @@
     <Compile Include="Common\DDUtils.cs" />
     <Compile Include="Common\DDWin32.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="Game3Common\Crash.cs" />
+    <Compile Include="Game3Common\CrashUtils.cs" />
     <Compile Include="Games\EffectUtils.cs" />
     <Compile Include="Games\Enemies\Objects\StartPoint.cs" />
     <Compile Include="Games\EnemyLoader.cs" />
@@ -120,8 +122,6 @@
     <Compile Include="Worlds\World.cs" />
     <Compile Include="Worlds\WorldMap.cs" />
     <Compile Include="Tests\Games\GameTest.cs" />
-    <Compile Include="Games\Crash.cs" />
-    <Compile Include="Games\CrashUtils.cs" />
     <Compile Include="Games\Enemies\Enemy0001.cs" />
     <Compile Include="Games\Enemies\Enemy0002.cs" />
     <Compile Include="Games\Game.cs" />

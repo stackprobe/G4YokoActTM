@@ -5,6 +5,7 @@ using System.Text;
 using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
+using Charlotte.Game3Common;
 using Charlotte.Games.Enemies.Objects;
 using Charlotte.Games.Weapons;
 
