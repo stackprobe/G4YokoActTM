@@ -63,7 +63,7 @@ namespace Charlotte.Games.Enemies
 
 		public int GetAttackPoint()
 		{
-			return 1;
+			return 3;
 		}
 
 		public void Draw()

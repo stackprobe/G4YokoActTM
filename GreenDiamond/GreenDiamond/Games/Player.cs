@@ -20,6 +20,7 @@ namespace Charlotte.Games
 		public int AirborneFrame;
 		public int ShagamiFrame;
 		public int AttackFrame;
+		public int DeadFrame;
 		public int DamageFrame;
 		public int MutekiFrame;
 		public int HP = 1;
@@ -90,6 +91,20 @@ namespace Charlotte.Games
 
 			// < 攻撃中
 
+			if (1 <= this.DeadFrame)
+			{
+				int koma = IntTools.Range(this.DeadFrame / 20, 0, 1);
+
+				if (this.TouchGround)
+					koma *= 2;
+
+				koma *= 2;
+				koma++;
+
+				picture = Ground.I.Picture.PlayerDamage[koma];
+
+				DDDraw.SetTaskList(DDGround.EL);
+			}
 			if (1 <= this.DamageFrame)
 			{
 				picture = Ground.I.Picture.PlayerDamage[0];
@@ -127,7 +142,11 @@ namespace Charlotte.Games
 				return;
 
 			this.HP -= enemy.GetAttackPoint();
-			this.DamageFrame = 1;
+
+			if (this.HP <= 0)
+				this.DeadFrame = 1;
+			else
+				this.DamageFrame = 1;
 		}
 	}
 }

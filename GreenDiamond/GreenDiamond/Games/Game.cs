@@ -91,7 +91,7 @@ namespace Charlotte.Games
 
 				// プレイヤー入力
 				{
-					bool damage = 1 <= this.Player.DamageFrame;
+					bool deadOrDamage = 1 <= this.Player.DeadFrame || 1 <= this.Player.DamageFrame;
 					bool move = false;
 					bool slow = false;
 					bool camSlide = false;
@@ -100,16 +100,16 @@ namespace Charlotte.Games
 					bool shagami = false;
 					bool attack = false;
 
-					if (!damage && 1 <= DDInput.DIR_2.GetInput())
+					if (!deadOrDamage && 1 <= DDInput.DIR_2.GetInput())
 					{
 						shagami = true;
 					}
-					if (!damage && 1 <= DDInput.DIR_4.GetInput())
+					if (!deadOrDamage && 1 <= DDInput.DIR_4.GetInput())
 					{
 						this.Player.FacingLeft = true;
 						move = true;
 					}
-					if (!damage && 1 <= DDInput.DIR_6.GetInput())
+					if (!deadOrDamage && 1 <= DDInput.DIR_6.GetInput())
 					{
 						this.Player.FacingLeft = false;
 						move = true;
@@ -119,15 +119,15 @@ namespace Charlotte.Games
 						move = false;
 						camSlide = true;
 					}
-					if (!damage && 1 <= DDInput.R.GetInput())
+					if (!deadOrDamage && 1 <= DDInput.R.GetInput())
 					{
 						slow = true;
 					}
-					if (!damage && 1 <= jumpPress)
+					if (!deadOrDamage && 1 <= jumpPress)
 					{
 						jump = true;
 					}
-					if (!damage && 1 <= DDInput.B.GetInput())
+					if (!deadOrDamage && 1 <= DDInput.B.GetInput())
 					{
 						attack = true;
 					}
@@ -229,6 +229,25 @@ namespace Charlotte.Games
 						if (scene.Remaining == 0)
 						{
 							this.Player.MutekiFrame = 1;
+						}
+					}
+				}
+
+				{
+					DDScene scene = GameUtils.SceneIncrement(ref this.Player.DeadFrame, 180);
+
+					if (scene != null)
+					{
+						if (scene.Numer < 30)
+						{
+							double rate = scene.Numer / 30.0;
+
+							this.Player.X -= 10.0 * (1.0 - rate) * (this.Player.FacingLeft ? -1 : 1);
+						}
+
+						if (scene.Remaining == 0)
+						{
+							break;
 						}
 					}
 				}
@@ -377,7 +396,9 @@ namespace Charlotte.Games
 						}
 						this.Weapons.RemoveAll(weapon => weapon.Dead);
 
-						if (this.Player.DamageFrame == 0 && this.Player.MutekiFrame == 0 && enemyCrash.IsCrashed(playerCrash))
+						if (this.Player.DeadFrame == 0 &&
+							this.Player.DamageFrame == 0 &&
+							this.Player.MutekiFrame == 0 && enemyCrash.IsCrashed(playerCrash))
 						{
 							if (enemy.Value.CrashedToPlayer() == false) // ? 消滅
 								enemy.Dead = true;
@@ -397,7 +418,7 @@ namespace Charlotte.Games
 				this.DrawWeapons();
 
 				DDPrint.SetPrint();
-				DDPrint.Print("" + DDEngine.FrameProcessingMillis_Worst);
+				DDPrint.Print(DDEngine.FrameProcessingMillis_Worst + " " + this.Player.HP);
 
 				DDEngine.EachFrame();
 			}
