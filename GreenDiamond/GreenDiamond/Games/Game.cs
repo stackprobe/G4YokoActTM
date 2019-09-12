@@ -66,6 +66,7 @@ namespace Charlotte.Games
 			}
 
 			this.Player.HP = this.Status.CurrHP;
+			this.Player.FacingLeft = this.Status.FacingLeft;
 
 			DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 			DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
@@ -77,8 +78,16 @@ namespace Charlotte.Games
 
 			for (; ; this.Frame++)
 			{
-				DDUtils.Approach(ref DDGround.Camera.X, this.Player.X - DDConsts.Screen_W / 2 + (this.CamSlideX * DDConsts.Screen_W / 3), 0.8);
-				DDUtils.Approach(ref DDGround.Camera.Y, this.Player.Y - DDConsts.Screen_H / 2 + (this.CamSlideY * DDConsts.Screen_H / 3), 0.8);
+				{
+					double targCamX = this.Player.X - DDConsts.Screen_W / 2 + (this.CamSlideX * DDConsts.Screen_W / 3);
+					double targCamY = this.Player.Y - DDConsts.Screen_H / 2 + (this.CamSlideY * DDConsts.Screen_H / 3);
+
+					DDUtils.Range(ref targCamX, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+					DDUtils.Range(ref targCamY, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
+
+					DDUtils.Approach(ref DDGround.Camera.X, targCamX, 0.8);
+					DDUtils.Approach(ref DDGround.Camera.Y, targCamY, 0.8);
+				}
 
 				DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
 				DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
@@ -516,6 +525,7 @@ namespace Charlotte.Games
 			// ここでステータスに反映
 
 			this.Status.CurrHP = this.Player.HP;
+			this.Status.FacingLeft = this.Player.FacingLeft;
 		}
 
 		private void EditMode()
