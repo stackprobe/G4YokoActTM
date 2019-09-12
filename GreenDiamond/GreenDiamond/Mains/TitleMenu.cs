@@ -6,11 +6,14 @@ using DxLibDLL;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Games;
+using Charlotte.Worlds;
 
 namespace Charlotte.Mains
 {
 	public class TitleMenu
 	{
+		private static readonly I3Color WALL_COLOR = new I3Color(16, 64, 32);
+
 		private DDSimpleMenu SimpleMenu;
 
 		public void Perform()
@@ -32,7 +35,7 @@ namespace Charlotte.Mains
 
 			this.SimpleMenu = new DDSimpleMenu();
 
-			this.SimpleMenu.WallColor = new I3Color(16, 64, 32);
+			this.SimpleMenu.WallColor = WALL_COLOR;
 			//this.SimpleMenu.WallPicture = Ground.I.Picture.TitleWall;
 
 			for (; ; )
@@ -45,12 +48,20 @@ namespace Charlotte.Mains
 						{
 							this.LeaveTitleMenu();
 
+							using (World world = new World())
+							{
+								world.MapFile = "t0001.txt";
+								world.Perform();
+							}
+#if false // old
 							using (Game game = new Game())
 							{
 								game.Map = MapLoader.Load(@"Map\t0001.txt");
 								game.Status = new Status();
 								game.Perform();
 							}
+#endif
+
 							this.ReturnTitleMenu();
 						}
 						break;
@@ -157,6 +168,14 @@ namespace Charlotte.Mains
 			DDMusicUtils.Fade();
 			DDCurtain.SetCurtain(30, -1.0);
 
+			foreach (DDScene scene in DDSceneUtils.Create(40))
+			{
+				DDDraw.SetBright(WALL_COLOR);
+				DDDraw.DrawRect(DDGround.GeneralResource.WhiteBox, 0, 0, DDConsts.Screen_W, DDConsts.Screen_H);
+				DDDraw.Reset();
+
+				DDEngine.EachFrame();
+			}
 			GC.Collect();
 		}
 

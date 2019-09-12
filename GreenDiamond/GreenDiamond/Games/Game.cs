@@ -605,10 +605,16 @@ namespace Charlotte.Games
 			{
 				for (int y = lt.Y; y <= rb.Y; y++)
 				{
+					if (
+						x < 0 || w <= x ||
+						y < 0 || h <= y
+						)
+						continue;
+
 					int mapTileX = x * MapTile.WH + MapTile.WH / 2;
 					int mapTileY = y * MapTile.WH + MapTile.WH / 2;
 
-					//if (DDUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), MapTile.WH * 2) == false)
+					//if (DDUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), MapTile.WH * 2) == false) // old
 					{
 						MapCell cell = this.Map.GetCell(x, y);
 
