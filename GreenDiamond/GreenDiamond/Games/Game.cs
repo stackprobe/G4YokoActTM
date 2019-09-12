@@ -41,6 +41,7 @@ namespace Charlotte.Games
 		public int CamSlideY; // -1 ～ 1
 
 		public DDPicture WallPicture;
+		public D2Size WallPicture_DrawSize;
 
 		public int Frame;
 

@@ -34,7 +34,7 @@ namespace Charlotte.Games
 						goto endLoad;
 
 					MapCell cell = map.GetCell(x, y);
-					var tokens = new BluffList<string>(lines[c++].Split('\t')).FreeRange(""); // 項目が増えても良いように、
+					var tokens = new BluffList<string>(lines[c++].Split('\t')).FreeRange(""); // 項目が増えても良いように -> FreeRange("")
 					int d = 0;
 
 					cell.Wall = int.Parse(tokens[d++]) != 0;
@@ -46,7 +46,7 @@ namespace Charlotte.Games
 			}
 			while (c < lines.Length)
 			{
-				var tokens = lines[c++].Split("\t".ToArray(), 2);
+				var tokens = lines[c++].Split("=".ToArray(), 2);
 
 				string name = tokens[0].Trim();
 				string value = tokens[1].Trim();
@@ -95,7 +95,7 @@ namespace Charlotte.Games
 			}
 			foreach (KeyValuePair<string, string> pair in map.GetProperties())
 			{
-				lines.Add(pair.Key + "\t" + pair.Value);
+				lines.Add(pair.Key + "=" + pair.Value);
 			}
 			DDResource.Save(file, Encoding.UTF8.GetBytes(FileTools.LinesToText(lines.ToArray())));
 		}

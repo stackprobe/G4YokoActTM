@@ -250000,4 +250000,4 @@
 1	Wall
 1	Wall
 1	Wall
-WALL	09052.jpg
+WALL=09052.jpg

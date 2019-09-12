@@ -510,4 +510,4 @@
 1	Wall4
 1	Wall4
 1	Wall4
-WALL	08712.jpg
+WALL=08712.jpg

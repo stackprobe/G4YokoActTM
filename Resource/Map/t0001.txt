@@ -3000,4 +3000,4 @@
 1	Wall3
 1	Wall3
 1	Wall3
-WALL	06775.jpg
+WALL=06775.jpg
