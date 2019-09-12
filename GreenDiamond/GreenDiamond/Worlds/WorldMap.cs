@@ -50,7 +50,12 @@ namespace Charlotte.Worlds
 			if (row.Length <= x)
 				return defval;
 
-			return row[x];
+			string cell = row[x];
+
+			if (cell == "")
+				return defval;
+
+			return cell;
 		}
 	}
 }

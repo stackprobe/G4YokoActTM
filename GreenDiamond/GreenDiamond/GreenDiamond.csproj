@@ -115,6 +115,7 @@
     <Compile Include="Games\IWeapon.cs" />
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Status.cs" />
+    <Compile Include="Tests\Worlds\WorldTest.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="Worlds\WorldMap.cs" />
     <Compile Include="Tests\Games\GameTest.cs" />

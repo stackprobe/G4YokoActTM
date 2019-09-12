@@ -17,6 +17,10 @@ namespace Charlotte.Games
 
 		// <---- prm
 
+		public int ExitDir = 5; // 2468 == 画面から出た方向, 5 == それ以外の理由
+
+		// <---- ret
+
 		public static Game I = null;
 
 		public Game()
@@ -281,6 +285,30 @@ namespace Charlotte.Games
 					DDUtils.Minim(ref this.Player.YSpeed, 8.0); // 落下する最高速度
 
 					this.Player.Y += this.Player.YSpeed;
+				}
+
+				// プレイヤーが画面外に出たかチェック
+				{
+					if (this.Player.X < 0.0)
+					{
+						this.ExitDir = 4;
+						break;
+					}
+					if (this.Map.W * MapTile.WH < this.Player.X)
+					{
+						this.ExitDir = 6;
+						break;
+					}
+					if (this.Player.Y < 0.0)
+					{
+						this.ExitDir = 8;
+						break;
+					}
+					if (this.Map.H * MapTile.WH < this.Player.Y)
+					{
+						this.ExitDir = 2;
+						break;
+					}
 				}
 
 				// プレイヤー位置矯正
