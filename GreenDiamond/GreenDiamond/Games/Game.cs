@@ -593,14 +593,22 @@ namespace Charlotte.Games
 			int camR = camL + DDConsts.Screen_W;
 			int camB = camT + DDConsts.Screen_H;
 
-			for (int x = 0; x < w; x++)
+			I2Point lt = Map.ToTablePoint(camL, camT);
+			I2Point rb = Map.ToTablePoint(camR, camB);
+
+			lt.X -= 2; // margin
+			lt.Y -= 2; // margin
+			rb.X += 2; // margin
+			rb.Y += 2; // margin
+
+			for (int x = lt.X; x <= rb.X; x++)
 			{
-				for (int y = 0; y < h; y++)
+				for (int y = lt.Y; y <= rb.Y; y++)
 				{
 					int mapTileX = x * MapTile.WH + MapTile.WH / 2;
 					int mapTileY = y * MapTile.WH + MapTile.WH / 2;
 
-					if (DDUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), MapTile.WH * 2) == false)
+					//if (DDUtils.IsOut(new D2Point(mapTileX, mapTileY), new D4Rect(camL, camT, camR, camB), MapTile.WH * 2) == false)
 					{
 						MapCell cell = this.Map.GetCell(x, y);
 
