@@ -69,7 +69,7 @@ namespace Charlotte.Games
 				if (b.Kind == Crash.Kind_e.RECT)
 					return DDUtils.IsCrashed_Rect_Point(b.Rect, a.Pt);
 
-				return true; // b is WHOLE
+				throw new DDError();
 			}
 			if (a.Kind == Crash.Kind_e.CIRCLE)
 			{
@@ -79,16 +79,16 @@ namespace Charlotte.Games
 				if (b.Kind == Crash.Kind_e.RECT)
 					return DDUtils.IsCrashed_Circle_Rect(a.Pt, a.R, b.Rect);
 
-				return true; // b is WHOLE
+				throw new DDError();
 			}
 			if (a.Kind == Crash.Kind_e.RECT)
 			{
 				if (b.Kind == Crash.Kind_e.RECT)
 					return DDUtils.IsCrashed_Rect_Rect(a.Rect, b.Rect);
 
-				return true; // b is WHOLE
+				throw new DDError();
 			}
-			return true; // a, b are WHOLE
+			throw new DDError();
 		}
 	}
 }

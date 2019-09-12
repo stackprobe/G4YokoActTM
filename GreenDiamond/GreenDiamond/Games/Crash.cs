@@ -16,10 +16,9 @@ namespace Charlotte.Games
 			POINT,
 			CIRCLE,
 			RECT,
-			WHOLE,
 		}
 
-		public Kind_e Kind = Kind_e.NONE;
+		public Kind_e Kind = Kind_e.POINT;
 		public D2Point Pt = new D2Point(-1, 0);
 		public double R = 0.0;
 		public D4Rect Rect = null;
