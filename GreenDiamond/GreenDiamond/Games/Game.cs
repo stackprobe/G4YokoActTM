@@ -530,9 +530,6 @@ namespace Charlotte.Games
 
 				DDMouse.UpdatePos();
 
-				DDGround.ICamera.X = DoubleTools.ToInt(DDGround.Camera.X);
-				DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);
-
 				if (DDKey.GetInput(DX.KEY_INPUT_E) == 1)
 					break;
 
@@ -542,6 +539,12 @@ namespace Charlotte.Games
 					{
 						DDGround.Camera.X -= DDMouse.X - lastMouseX;
 						DDGround.Camera.Y -= DDMouse.Y - lastMouseY;
+
+						DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+						DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
+
+						DDGround.ICamera.X = DoubleTools.ToInt(DDGround.Camera.X);
+						DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);
 					}
 				}
 				else // 編集モード

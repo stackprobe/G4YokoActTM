@@ -10,22 +10,24 @@ namespace Charlotte.Games
 {
 	public static class GameEdit
 	{
-		public static readonly D4Rect MenuRect = new D4Rect(0, 0, 300, DDConsts.Screen_H);
+		private static readonly D4Rect MenuRect = new D4Rect(0, 0, 300, DDConsts.Screen_H);
 
-		public static bool InputWallFlag = true;
-		public static bool InputTileFlag = true;
-		public static bool InputEnemyFlag = true;
+		private static bool InputWallFlag = true;
+		private static bool InputTileFlag = true;
+		private static bool InputEnemyFlag = true;
 
-		public static bool DisplayWallFlag = false;
+		private static bool DisplayWallFlag = false;
 		public static bool DisplayTileFlag = true;
-		public static bool DisplayEnemyFlag = true;
+		private static bool DisplayEnemyFlag = true;
 
-		public static bool Wall = true;
-		public static int TileIndex = 0;
-		public static int EnemyIndex = 0;
+		private static bool Wall = true;
+		private static int TileIndex = 0;
+		private static int EnemyIndex = 0;
 
-		public static int Rot;
-		public static int NoRotFrame;
+		private static int Rot;
+		private static int NoRotFrame;
+
+		private static bool HideMenu;
 
 		public static void EachFrame()
 		{
@@ -38,7 +40,9 @@ namespace Charlotte.Games
 			if (DDUtils.IsOutOfScreen(new D2Point(DDMouse.X, DDMouse.Y)))
 				return;
 
-			if (DDUtils.IsOut(new D2Point(DDMouse.X, DDMouse.Y), MenuRect))
+			HideMenu = 1 <= DDKey.GetInput(DX.KEY_INPUT_LCONTROL) || 1 <= DDKey.GetInput(DX.KEY_INPUT_RCONTROL);
+
+			if (HideMenu || DDUtils.IsOut(new D2Point(DDMouse.X, DDMouse.Y), MenuRect))
 			{
 				if (1 <= DDMouse.L.GetInput())
 				{
@@ -144,6 +148,12 @@ namespace Charlotte.Games
 		{
 			DrawMap();
 
+			if (HideMenu == false)
+				DrawMenu();
+		}
+
+		private static void DrawMenu()
+		{
 			DDDraw.SetAlpha(0.5);
 			DDDraw.SetBright(0.0, 0.3, 0.6);
 			DDDraw.DrawRect(DDGround.GeneralResource.WhiteBox, MenuRect.L, MenuRect.T, MenuRect.W, MenuRect.H);
