@@ -113,8 +113,10 @@
     <Compile Include="Games\EffectUtils.cs" />
     <Compile Include="Games\Enemies\Objects\StartPoint.cs" />
     <Compile Include="Games\EnemyLoader.cs" />
+    <Compile Include="Games\IEnemies.cs" />
     <Compile Include="Games\IEnemy.cs" />
     <Compile Include="Games\IWeapon.cs" />
+    <Compile Include="Games\IWeapons.cs" />
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Status.cs" />
     <Compile Include="Games\WallPictureManager.cs" />

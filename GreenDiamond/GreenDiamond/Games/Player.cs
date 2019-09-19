@@ -161,9 +161,7 @@ namespace Charlotte.Games
 				else
 					y -= 4.0;
 
-				IWeapon weapon = new Weapon0001();
-				weapon.Loaded(new D2Point(x, y), this.FacingLeft);
-				Game.I.AddWeapon(weapon);
+				Game.I.AddWeapon(IWeapons.Load(new Weapon0001(), x, y, this.FacingLeft));
 			}
 		}
 	}

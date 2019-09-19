@@ -7,6 +7,8 @@ using Charlotte.Game3Common;
 
 namespace Charlotte.Games
 {
+	//	インスタンスの生成には IWeapons.Load を使用する？
+	//
 	public interface IWeapon
 	{
 		void Loaded(D2Point pt, bool facingLeft);

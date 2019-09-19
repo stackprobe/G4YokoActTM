@@ -7,6 +7,8 @@ using Charlotte.Game3Common;
 
 namespace Charlotte.Games
 {
+	//	インスタンスの生成には IEnemies.Load を使用する？
+	//
 	public interface IEnemy
 	{
 		void Loaded(D2Point pt);

@@ -684,14 +684,11 @@ namespace Charlotte.Games
 
 					if (cell.EnemyLoader != null)
 					{
-						IEnemy enemy = cell.EnemyLoader.CreateEnemy();
-
-						enemy.Loaded(new D2Point(
+						this.AddEnemy(IEnemies.Load(
+							cell.EnemyLoader.CreateEnemy(),
 							x * MapTile.WH + MapTile.WH / 2,
 							y * MapTile.WH + MapTile.WH / 2
 							));
-
-						this.AddEnemy(enemy);
 					}
 				}
 			}
