@@ -125,7 +125,7 @@ namespace Charlotte.Games
 
 				// プレイヤー入力
 				{
-					bool deadOrDamage = 1 <= this.Player.DeadFrame || 1 <= this.Player.DamageFrame;
+					bool deadOrDamage = this.Player.DeadScene.IsFlaming() || this.Player.DamageScene.IsFlaming();
 					bool move = false;
 					bool slow = false;
 					bool camSlide = false;
@@ -245,7 +245,7 @@ namespace Charlotte.Games
 				}
 
 				{
-					DDScene scene = GameUtils.SceneIncrement(ref this.Player.MutekiFrame, 60);
+					DDScene scene = this.Player.MutekiScene.GetScene();
 
 					if (scene != null)
 					{
@@ -254,7 +254,7 @@ namespace Charlotte.Games
 				}
 
 				{
-					DDScene scene = GameUtils.SceneIncrement(ref this.Player.DamageFrame, 20);
+					DDScene scene = this.Player.DamageScene.GetScene();
 
 					if (scene != null)
 					{
@@ -262,13 +262,13 @@ namespace Charlotte.Games
 
 						if (scene.Remaining == 0)
 						{
-							this.Player.MutekiFrame = 1;
+							this.Player.MutekiScene.Fire();
 						}
 					}
 				}
 
 				{
-					DDScene scene = GameUtils.SceneIncrement(ref this.Player.DeadFrame, 180);
+					DDScene scene = this.Player.DeadScene.GetScene();
 
 					if (scene != null)
 					{
@@ -448,9 +448,9 @@ namespace Charlotte.Games
 						}
 						this.Weapons.RemoveAll(weapon => weapon.Dead);
 
-						if (this.Player.DeadFrame == 0 &&
-							this.Player.DamageFrame == 0 &&
-							this.Player.MutekiFrame == 0 && enemyCrash.IsCrashed(playerCrash))
+						if (this.Player.DeadScene.IsFlaming() == false &&
+							this.Player.DamageScene.IsFlaming() == false &&
+							this.Player.MutekiScene.IsFlaming() == false && enemyCrash.IsCrashed(playerCrash))
 						{
 							if (enemy.Value.CrashedToPlayer() == false) // ? 消滅
 								enemy.Dead = true;

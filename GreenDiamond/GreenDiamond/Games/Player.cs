@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Common;
 using Charlotte.Tools;
 using Charlotte.Games.Weapons;
+using Charlotte.Game3Common;
 
 namespace Charlotte.Games
 {
@@ -21,9 +22,9 @@ namespace Charlotte.Games
 		public int AirborneFrame;
 		public int ShagamiFrame;
 		public int AttackFrame;
-		public int DeadFrame;
-		public int DamageFrame;
-		public int MutekiFrame;
+		public SceneKeeper DeadScene = new SceneKeeper(180);
+		public SceneKeeper DamageScene = new SceneKeeper(20);
+		public SceneKeeper MutekiScene = new SceneKeeper(60);
 		public int HP = 1;
 
 		private int PlayerLookLeftFrm = 0;
@@ -92,9 +93,9 @@ namespace Charlotte.Games
 
 			// < 攻撃中
 
-			if (1 <= this.DeadFrame)
+			if (this.DeadScene.IsFlaming())
 			{
-				int koma = IntTools.Range(this.DeadFrame / 20, 0, 1);
+				int koma = IntTools.Range(this.DeadScene.Count / 20, 0, 1);
 
 				if (this.TouchGround)
 					koma *= 2;
@@ -106,13 +107,13 @@ namespace Charlotte.Games
 
 				DDDraw.SetTaskList(DDGround.EL);
 			}
-			if (1 <= this.DamageFrame)
+			if (this.DamageScene.IsFlaming())
 			{
 				picture = Ground.I.Picture.PlayerDamage[0];
 				xZoom *= -1;
 			}
 
-			if (1 <= this.DamageFrame || 1 <= this.MutekiFrame)
+			if (this.DamageScene.IsFlaming() || this.MutekiScene.IsFlaming())
 			{
 				DDDraw.SetTaskList(DDGround.EL);
 				DDDraw.SetAlpha(0.5);
@@ -140,9 +141,9 @@ namespace Charlotte.Games
 			this.HP -= enemy.GetAttackPoint();
 
 			if (this.HP <= 0)
-				this.DeadFrame = 1;
+				this.DeadScene.Fire();
 			else
-				this.DamageFrame = 1;
+				this.DamageScene.Fire();
 		}
 
 		public void Fire()

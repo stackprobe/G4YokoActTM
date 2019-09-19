@@ -110,6 +110,7 @@
     <Compile Include="Consts.cs" />
     <Compile Include="Game3Common\Crash.cs" />
     <Compile Include="Game3Common\CrashUtils.cs" />
+    <Compile Include="Game3Common\SceneKeeper.cs" />
     <Compile Include="Games\EffectUtils.cs" />
     <Compile Include="Games\Enemies\Objects\StartPoint.cs" />
     <Compile Include="Games\EnemyLoader.cs" />
