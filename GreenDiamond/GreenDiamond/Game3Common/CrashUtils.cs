@@ -15,9 +15,23 @@ namespace Charlotte.Game3Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
+		public enum Kind_e
+		{
+			NONE = 1,
+			POINT,
+			CIRCLE,
+			RECT,
+		}
+
+		//
+		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
+		//
 		public static Crash None()
 		{
-			return new Crash();
+			return new Crash()
+			{
+				Kind = Kind_e.NONE,
+			};
 		}
 
 		//
@@ -27,7 +41,7 @@ namespace Charlotte.Game3Common
 		{
 			return new Crash()
 			{
-				Kind = Crash.Kind_e.POINT,
+				Kind = Kind_e.POINT,
 				Pt = pt,
 			};
 		}
@@ -39,7 +53,7 @@ namespace Charlotte.Game3Common
 		{
 			return new Crash()
 			{
-				Kind = Crash.Kind_e.CIRCLE,
+				Kind = Kind_e.CIRCLE,
 				Pt = pt,
 				R = r,
 			};
@@ -60,7 +74,7 @@ namespace Charlotte.Game3Common
 		{
 			return new Crash()
 			{
-				Kind = Crash.Kind_e.RECT,
+				Kind = Kind_e.RECT,
 				Rect = rect,
 			};
 		}
@@ -76,35 +90,35 @@ namespace Charlotte.Game3Common
 				a = b;
 				b = tmp;
 			}
-			if (a.Kind == Crash.Kind_e.NONE)
+			if (a.Kind == Kind_e.NONE)
 				return false;
 
-			if (a.Kind == Crash.Kind_e.POINT)
+			if (a.Kind == Kind_e.POINT)
 			{
-				if (b.Kind == Crash.Kind_e.POINT)
+				if (b.Kind == Kind_e.POINT)
 					return false;
 
-				if (b.Kind == Crash.Kind_e.CIRCLE)
+				if (b.Kind == Kind_e.CIRCLE)
 					return DDUtils.IsCrashed_Circle_Point(b.Pt, b.R, a.Pt);
 
-				if (b.Kind == Crash.Kind_e.RECT)
+				if (b.Kind == Kind_e.RECT)
 					return DDUtils.IsCrashed_Rect_Point(b.Rect, a.Pt);
 
 				throw new DDError();
 			}
-			if (a.Kind == Crash.Kind_e.CIRCLE)
+			if (a.Kind == Kind_e.CIRCLE)
 			{
-				if (b.Kind == Crash.Kind_e.CIRCLE)
+				if (b.Kind == Kind_e.CIRCLE)
 					return DDUtils.IsCrashed_Circle_Circle(a.Pt, a.R, b.Pt, b.R);
 
-				if (b.Kind == Crash.Kind_e.RECT)
+				if (b.Kind == Kind_e.RECT)
 					return DDUtils.IsCrashed_Circle_Rect(a.Pt, a.R, b.Rect);
 
 				throw new DDError();
 			}
-			if (a.Kind == Crash.Kind_e.RECT)
+			if (a.Kind == Kind_e.RECT)
 			{
-				if (b.Kind == Crash.Kind_e.RECT)
+				if (b.Kind == Kind_e.RECT)
 					return DDUtils.IsCrashed_Rect_Rect(a.Rect, b.Rect);
 
 				throw new DDError();

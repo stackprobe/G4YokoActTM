@@ -6,40 +6,24 @@ using Charlotte.Tools;
 
 namespace Charlotte.Game3Common
 {
-	//
-	//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-	//
-	public class Crash
+	public struct Crash
 	{
-		// インスタンスの生成は CrashUtils で、
-
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public enum Kind_e
-		{
-			NONE = 1,
-			POINT,
-			CIRCLE,
-			RECT,
-		}
-
+		public CrashUtils.Kind_e Kind;
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public Kind_e Kind = Kind_e.POINT;
+		public D2Point Pt;
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public D2Point Pt = new D2Point(-1, 0);
+		public double R;
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		public double R = 0.0;
-		//
-		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
-		//
-		public D4Rect Rect = null;
+		public D4Rect Rect;
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
