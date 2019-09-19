@@ -97,18 +97,10 @@ namespace Charlotte.Game3Common
 		//
 		public DDScene GetScene()
 		{
-			if (this.IsFlaming())
-			{
-				int count = DDEngine.ProcFrame - this.StartedProcFrame;
+			if (this.IsFlaming() == false)
+				return new DDScene(-1, 0);
 
-				return new DDScene()
-				{
-					Numer = count,
-					Denom = this.FrameMax,
-					Rate = (double)count / this.FrameMax,
-				};
-			}
-			return null;
+			return new DDScene(DDEngine.ProcFrame - this.StartedProcFrame, this.FrameMax);
 		}
 	}
 }

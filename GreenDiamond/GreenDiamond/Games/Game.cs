@@ -245,32 +245,9 @@ namespace Charlotte.Games
 				}
 
 				{
-					DDScene scene = this.Player.MutekiScene.GetScene();
-
-					if (scene != null)
-					{
-						// noop
-					}
-				}
-
-				{
-					DDScene scene = this.Player.DamageScene.GetScene();
-
-					if (scene != null)
-					{
-						this.Player.X -= (9.0 - 6.0 * scene.Rate) * (this.Player.FacingLeft ? -1 : 1);
-
-						if (scene.Remaining == 0)
-						{
-							this.Player.MutekiScene.FireDelay();
-						}
-					}
-				}
-
-				{
 					DDScene scene = this.Player.DeadScene.GetScene();
 
-					if (scene != null)
+					if (scene.Numer != -1)
 					{
 						if (scene.Numer < 30)
 						{
@@ -283,6 +260,29 @@ namespace Charlotte.Games
 						{
 							break;
 						}
+					}
+				}
+
+				{
+					DDScene scene = this.Player.DamageScene.GetScene();
+
+					if (scene.Numer != -1)
+					{
+						this.Player.X -= (9.0 - 6.0 * scene.Rate) * (this.Player.FacingLeft ? -1 : 1);
+
+						if (scene.Remaining == 0)
+						{
+							this.Player.MutekiScene.FireDelay();
+						}
+					}
+				}
+
+				{
+					DDScene scene = this.Player.MutekiScene.GetScene();
+
+					if (scene.Numer != -1)
+					{
+						// noop
 					}
 				}
 
@@ -418,7 +418,7 @@ namespace Charlotte.Games
 
 				if (1 <= this.Player.AttackFrame)
 				{
-					this.Player.Fire();
+					this.Player.Attack();
 				}
 
 				this.EnemyEachFrame();

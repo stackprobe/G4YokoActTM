@@ -146,7 +146,7 @@ namespace Charlotte.Games
 				this.DamageScene.Fire();
 		}
 
-		public void Fire()
+		public void Attack()
 		{
 			// 将来的に武器毎にコードが実装され、メソッドがでかくなると思われる。
 
