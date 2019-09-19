@@ -262,7 +262,7 @@ namespace Charlotte.Games
 
 						if (scene.Remaining == 0)
 						{
-							this.Player.MutekiScene.Fire();
+							this.Player.MutekiScene.FireDelay();
 						}
 					}
 				}
