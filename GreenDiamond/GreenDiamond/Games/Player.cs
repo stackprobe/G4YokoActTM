@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Common;
 using Charlotte.Tools;
+using Charlotte.Games.Weapons;
 
 namespace Charlotte.Games
 {
@@ -136,17 +137,34 @@ namespace Charlotte.Games
 
 		public void Crashed(IEnemy enemy)
 		{
-			// 同時に複数の敵と衝突すると、その分何度も呼ばれることに注意！
-
-			if (this.DamageFrame != 0) // ? Already crashed
-				return;
-
 			this.HP -= enemy.GetAttackPoint();
 
 			if (this.HP <= 0)
 				this.DeadFrame = 1;
 			else
 				this.DamageFrame = 1;
+		}
+
+		public void Fire()
+		{
+			// 将来的に武器毎にコードが実装され、メソッドがでかくなると思われる。
+
+			if (this.AttackFrame % 6 == 1)
+			{
+				double x = this.X;
+				double y = this.Y;
+
+				x += 30.0 * (this.FacingLeft ? -1 : 1);
+
+				if (1 <= this.ShagamiFrame)
+					y += 10.0;
+				else
+					y -= 4.0;
+
+				IWeapon weapon = new Weapon0001();
+				weapon.Loaded(new D2Point(x, y), this.FacingLeft);
+				Game.I.AddWeapon(weapon);
+			}
 		}
 	}
 }

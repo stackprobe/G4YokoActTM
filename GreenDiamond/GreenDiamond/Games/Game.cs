@@ -416,24 +416,9 @@ namespace Charlotte.Games
 					DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);
 				}
 
-				if (this.Player.AttackFrame % 6 == 1)
+				if (1 <= this.Player.AttackFrame)
 				{
-					double x = this.Player.X;
-					double y = this.Player.Y;
-
-					x += 30.0 * (this.Player.FacingLeft ? -1 : 1);
-
-					if (1 <= this.Player.ShagamiFrame)
-						y += 10.0;
-					else
-						y -= 4.0;
-
-					IWeapon weapon = new Weapon0001();
-					weapon.Loaded(new D2Point(x, y), this.Player.FacingLeft);
-					this.Weapons.Add(new WeaponBox()
-					{
-						Value = weapon,
-					});
+					this.Player.Fire();
 				}
 
 				this.EnemyEachFrame();
@@ -678,6 +663,15 @@ namespace Charlotte.Games
 
 		private DDList<EnemyBox> Enemies = new DDList<EnemyBox>();
 
+		// 敵弾とかで使うだろうから、とりま public で設置
+		public void AddEnemy(IEnemy enemy)
+		{
+			this.Enemies.Add(new EnemyBox()
+			{
+				Value = enemy,
+			});
+		}
+
 		private void ReloadEnemies()
 		{
 			this.Enemies.Clear();
@@ -697,10 +691,7 @@ namespace Charlotte.Games
 							y * MapTile.WH + MapTile.WH / 2
 							));
 
-						this.Enemies.Add(new EnemyBox()
-						{
-							Value = enemy,
-						});
+						this.AddEnemy(enemy);
 					}
 				}
 			}
@@ -734,6 +725,14 @@ namespace Charlotte.Games
 		}
 
 		private DDList<WeaponBox> Weapons = new DDList<WeaponBox>();
+
+		public void AddWeapon(IWeapon weapon)
+		{
+			this.Weapons.Add(new WeaponBox()
+			{
+				Value = weapon,
+			});
+		}
 
 		private void WeaponEachFrame()
 		{
