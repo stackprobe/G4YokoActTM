@@ -19,7 +19,7 @@ namespace Charlotte.Game3Common
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
 		//
-		private int StartedProcFrame = int.MaxValue;
+		private int StartedProcFrame = -1;
 
 		//
 		//	copied the source file by https://github.com/stackprobe/Factory/blob/master/SubTools/CopyLib.c
@@ -56,7 +56,7 @@ namespace Charlotte.Game3Common
 		//
 		public void Clear()
 		{
-			this.StartedProcFrame = int.MaxValue;
+			this.StartedProcFrame = -1;
 		}
 
 		//
@@ -72,7 +72,10 @@ namespace Charlotte.Game3Common
 		//
 		public bool IsFlaming()
 		{
-			return this.StartedProcFrame <= DDEngine.ProcFrame && DDEngine.ProcFrame <= this.StartedProcFrame + this.FrameMax;
+			return
+				this.StartedProcFrame != -1 &&
+				this.StartedProcFrame <= DDEngine.ProcFrame &&
+				DDEngine.ProcFrame <= this.StartedProcFrame + this.FrameMax;
 		}
 
 		//
@@ -82,7 +85,10 @@ namespace Charlotte.Game3Common
 		{
 			get
 			{
-				return this.IsFlaming() ? DDEngine.ProcFrame - this.StartedProcFrame : -1;
+				if (this.IsFlaming() == false)
+					throw new DDError();
+
+				return DDEngine.ProcFrame - this.StartedProcFrame;
 			}
 		}
 
@@ -99,7 +105,7 @@ namespace Charlotte.Game3Common
 				{
 					Numer = count,
 					Denom = this.FrameMax,
-					Rate = count / (double)this.FrameMax,
+					Rate = (double)count / this.FrameMax,
 				};
 			}
 			return null;
