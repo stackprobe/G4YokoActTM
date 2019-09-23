@@ -515,6 +515,27 @@ namespace Charlotte.Games
 					default:
 						throw null; // never
 				}
+#if true
+				using (DDSubScreen wallScreen = new DDSubScreen(DDConsts.Screen_W, DDConsts.Screen_H))
+				{
+					using (wallScreen.Section())
+					{
+						this.DrawWall();
+					}
+
+					foreach (DDScene scene in DDSceneUtils.Create(30))
+					{
+						this.DrawMap_SlideX = destSlideX * scene.Rate;
+						this.DrawMap_SlideY = destSlideY * scene.Rate;
+
+						DDCurtain.DrawCurtain();
+						DDDraw.DrawSimple(wallScreen.ToPicture(), this.DrawMap_SlideX, this.DrawMap_SlideY);
+						this.DrawMap();
+
+						DDEngine.EachFrame();
+					}
+				}
+#else // old
 				foreach (DDScene scene in DDSceneUtils.Create(10))
 				{
 					this.DrawWall();
@@ -533,6 +554,7 @@ namespace Charlotte.Games
 
 					DDEngine.EachFrame();
 				}
+#endif
 				this.DrawMap_SlideX = 0.0; // 復元
 				this.DrawMap_SlideY = 0.0; // 復元
 
