@@ -46,6 +46,8 @@ namespace Charlotte.Games
 			}
 			while (c < lines.Length)
 			{
+				// memo: Save()時にプロパティ部分も上書きされるので注意してね。
+
 				var tokens = lines[c++].Split("=".ToArray(), 2);
 
 				string name = tokens[0].Trim();

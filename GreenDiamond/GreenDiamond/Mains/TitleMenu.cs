@@ -159,7 +159,7 @@ namespace Charlotte.Mains
 
 		private void DrawWall()
 		{
-			DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DX.GetColor(16, 64, 32), 1);
+			DX.DrawBox(0, 0, DDConsts.Screen_W, DDConsts.Screen_H, DX.GetColor(WALL_COLOR.R, WALL_COLOR.G, WALL_COLOR.B), 1);
 			//DDDraw.DrawRect(Ground.I.Picture.TitleWall, 0, 0, DDConsts.Screen_W, DDConsts.Screen_H);
 		}
 
