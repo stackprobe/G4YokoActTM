@@ -1,10 +1,17 @@
 ===============================================================================
 
 　GreenDiamond / version $version$
-　　　　　　　　　　　　　　　　　　　　　　　　　　(C) 20xx cerulean.charlotte
+　　　　　　　　　　　　　　　　　　　　　　　　　　(C) 2019 cerulean.charlotte
 
 ===============================================================================
 
 
 TODO
+
+
+■素材 (敬称略)
+
+	パタパタまじっく！
+	http://www.maroon.dti.ne.jp/pata2-magic/index.html
+	http://www.maroon.dti.ne.jp/pata2-magic/free-sozai.html
 
