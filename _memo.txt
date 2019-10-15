@@ -1,0 +1,5 @@
+----
+座標
+
+TablePoint ... I2Point Table用の座標
+PixelPoint ... D2Point 座標(ピクセル単位)

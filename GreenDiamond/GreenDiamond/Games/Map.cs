@@ -9,8 +9,11 @@ namespace Charlotte.Games
 {
 	public class Map
 	{
-		private MapCell DefaultCell = new MapCell();
 		private AutoTable<MapCell> Table;
+		private MapCell DefaultCell = new MapCell()
+		{
+			// 初期化子？
+		};
 
 		public Map(int w, int h)
 		{
@@ -80,15 +83,15 @@ namespace Charlotte.Games
 		// TablePoint ... I2Point Table用の座標
 		// PixelPoint ... D2Point 座標(ピクセル単位)
 
-		public static I2Point ToTablePoint(D2Point pt)
+		public static I2Point ToTablePoint(D2Point pixelPt)
 		{
-			return ToTablePoint(pt.X, pt.Y);
+			return ToTablePoint(pixelPt.X, pixelPt.Y);
 		}
 
-		public static I2Point ToTablePoint(double x, double y)
+		public static I2Point ToTablePoint(double pixelX, double pixelY)
 		{
-			int mapTileX = (int)Math.Floor(x / MapTile.WH);
-			int mapTileY = (int)Math.Floor(y / MapTile.WH);
+			int mapTileX = (int)Math.Floor(pixelX / MapTile.WH);
+			int mapTileY = (int)Math.Floor(pixelY / MapTile.WH);
 
 			return new I2Point(mapTileX, mapTileY);
 		}
