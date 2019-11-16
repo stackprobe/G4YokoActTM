@@ -14,7 +14,7 @@ namespace Charlotte.Games
 
 		private static bool InputWallFlag = true;
 		private static bool InputTileFlag = true;
-		private static bool InputEnemyFlag = true;
+		private static bool InputEnemyFlag = false;
 
 		private static bool DisplayWallFlag = false;
 		public static bool DisplayTileFlag = true;
@@ -79,6 +79,16 @@ namespace Charlotte.Games
 						case 5: DisplayEnemyFlag = flag; break;
 
 						case 6: Wall = flag; break;
+
+						case 7:
+						case 8:
+							IntoInputTileMode();
+							break;
+
+						case 9:
+						case 10:
+							IntoInputEnemyMode();
+							break;
 					}
 				}
 
@@ -96,12 +106,18 @@ namespace Charlotte.Games
 				{
 					case 7:
 					case 8:
-						MenuItemRot(ref TileIndex, MapTileManager.GetCount());
+						if (MenuItemRot(ref TileIndex, MapTileManager.GetCount()))
+						{
+							IntoInputTileMode();
+						}
 						break;
 
 					case 9:
 					case 10:
-						MenuItemRot(ref EnemyIndex, EnemyManager.GetCount());
+						if (MenuItemRot(ref EnemyIndex, EnemyManager.GetCount()))
+						{
+							IntoInputEnemyMode();
+						}
 						break;
 				}
 			}
@@ -124,24 +140,43 @@ namespace Charlotte.Games
 			}
 		}
 
+		private static void IntoInputTileMode()
+		{
+			InputWallFlag = true;
+			InputTileFlag = true;
+			InputEnemyFlag = false;
+		}
+
+		private static void IntoInputEnemyMode()
+		{
+			InputWallFlag = false;
+			InputTileFlag = false;
+			InputEnemyFlag = true;
+		}
+
 		private const int MIR_INC_ROT = 1;
 
-		private static void MenuItemRot(ref int itemIndex, int itemCount)
+		private static bool MenuItemRot(ref int itemIndex, int itemCount)
 		{
+			bool changed = false;
+
 			if (itemCount <= 0)
 				throw new DDError(); // 2bs
 
 			while (Rot <= -MIR_INC_ROT)
 			{
+				changed = true;
 				itemIndex--;
 				Rot += MIR_INC_ROT;
 			}
 			while (MIR_INC_ROT <= Rot)
 			{
+				changed = true;
 				itemIndex++;
 				Rot -= MIR_INC_ROT;
 			}
 			DDUtils.Range(ref itemIndex, 0, itemCount - 1);
+			return changed;
 		}
 
 		public static void Draw()
