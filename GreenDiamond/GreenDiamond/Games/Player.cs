@@ -95,7 +95,7 @@ namespace Charlotte.Games
 
 			if (this.DeadScene.IsFlaming())
 			{
-				int koma = IntTools.Range(this.DeadScene.Count / 20, 0, 1);
+				int koma = IntTools.ToRange(this.DeadScene.Count / 20, 0, 1);
 
 				if (this.TouchGround)
 					koma *= 2;

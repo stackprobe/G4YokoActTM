@@ -648,10 +648,10 @@ namespace Charlotte.Games
 			rb.X += 2; // margin
 			rb.Y += 2; // margin
 
-			lt.X = IntTools.Range(lt.X, 0, w - 1);
-			lt.Y = IntTools.Range(lt.Y, 0, h - 1);
-			rb.X = IntTools.Range(rb.X, 0, w - 1);
-			rb.Y = IntTools.Range(rb.Y, 0, h - 1);
+			lt.X = IntTools.ToRange(lt.X, 0, w - 1);
+			lt.Y = IntTools.ToRange(lt.Y, 0, h - 1);
+			rb.X = IntTools.ToRange(rb.X, 0, w - 1);
+			rb.Y = IntTools.ToRange(rb.Y, 0, h - 1);
 
 			for (int x = lt.X; x <= rb.X; x++)
 			{
