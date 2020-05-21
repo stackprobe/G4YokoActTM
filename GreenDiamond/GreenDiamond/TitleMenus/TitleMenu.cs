@@ -8,7 +8,7 @@ using Charlotte.Common;
 using Charlotte.Games;
 using Charlotte.Worlds;
 
-namespace Charlotte.Mains
+namespace Charlotte.TitleMenus
 {
 	public class TitleMenu
 	{
@@ -50,7 +50,7 @@ namespace Charlotte.Mains
 
 							using (World world = new World())
 							{
-								world.MapFile = "t0001.txt";
+								//world.MapFile = "t0001.txt";
 								world.Perform();
 							}
 #if false // old

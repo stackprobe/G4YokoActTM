@@ -140,7 +140,7 @@
     <Compile Include="Games\MapTile.cs" />
     <Compile Include="Games\MapTileManager.cs" />
     <Compile Include="Games\Weapons\Weapon0001.cs" />
-    <Compile Include="Mains\TitleMenu.cs" />
+    <Compile Include="TitleMenus\TitleMenu.cs" />
     <Compile Include="Ground.cs" />
     <Compile Include="MainWin.cs">
       <SubType>Form</SubType>
