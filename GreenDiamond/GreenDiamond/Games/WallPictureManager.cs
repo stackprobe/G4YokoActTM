@@ -14,7 +14,7 @@ namespace Charlotte.Games
 
 		public static DDPicture GetPicutre(string file)
 		{
-			file = Path.Combine("Wall", file);
+			file = Path.Combine(@"Etoile\GreenDiamond\Wall", file);
 
 			DDPicture ret;
 

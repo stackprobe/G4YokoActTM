@@ -15,7 +15,7 @@ namespace Charlotte.Games
 			{
 				try
 				{
-					const string filePrefix = "MapTile\\";
+					const string filePrefix = "Etoile\\GreenDiamond\\MapTile\\";
 					const string fileSuffix = ".png";
 
 					if (

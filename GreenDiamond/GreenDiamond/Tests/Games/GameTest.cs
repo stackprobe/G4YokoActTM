@@ -12,7 +12,7 @@ namespace Charlotte.Tests.Games
 		{
 			using (Game game = new Game())
 			{
-				game.Map = MapLoader.Load(@"Map\t0001.txt");
+				game.Map = MapLoader.Load(@"Etoile\GreenDiamond\Map\t0001.txt");
 				game.Status = new Status();
 				game.Perform();
 			}

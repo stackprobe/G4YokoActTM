@@ -35,7 +35,7 @@ namespace Charlotte.Worlds
 			{
 				using (Game game = new Game())
 				{
-					game.Map = MapLoader.Load(Path.Combine("Map", this.MapFile));
+					game.Map = MapLoader.Load(Path.Combine(@"Etoile\GreenDiamond\Map", this.MapFile));
 					game.Status = status;
 					game.Perform();
 
