@@ -30,9 +30,9 @@ namespace Charlotte.Games.Enemies.Objects
 			return false; // 即消滅
 		}
 
-		public Crash GetCrash()
+		public DDCrash GetCrash()
 		{
-			return CrashUtils.None();
+			return DDCrashUtils.None();
 		}
 
 		public bool Crashed(IWeapon weapon)

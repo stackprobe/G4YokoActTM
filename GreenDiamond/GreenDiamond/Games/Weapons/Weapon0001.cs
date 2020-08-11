@@ -38,9 +38,9 @@ namespace Charlotte.Games.Weapons
 			return DDUtils.IsOutOfCamera(new D2Point(this.X, this.Y), 100.0) == false;
 		}
 
-		public Crash GetCrash()
+		public DDCrash GetCrash()
 		{
-			return CrashUtils.Circle(new D2Point(this.X, this.Y), 5.0);
+			return DDCrashUtils.Circle(new D2Point(this.X, this.Y), 5.0);
 		}
 
 		public bool Crashed(IEnemy enemy)

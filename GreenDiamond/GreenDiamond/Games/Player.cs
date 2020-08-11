@@ -22,9 +22,9 @@ namespace Charlotte.Games
 		public int AirborneFrame;
 		public int ShagamiFrame;
 		public int AttackFrame;
-		public SceneKeeper DeadScene = new SceneKeeper(180);
-		public SceneKeeper DamageScene = new SceneKeeper(20);
-		public SceneKeeper MutekiScene = new SceneKeeper(60);
+		public DDSceneKeeper DeadScene = new DDSceneKeeper(180);
+		public DDSceneKeeper DamageScene = new DDSceneKeeper(20);
+		public DDSceneKeeper MutekiScene = new DDSceneKeeper(60);
 		public int HP = 1;
 
 		private int PlayerLookLeftFrm = 0;

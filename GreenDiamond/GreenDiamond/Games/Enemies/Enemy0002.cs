@@ -36,9 +36,9 @@ namespace Charlotte.Games.Enemies
 			return true;
 		}
 
-		public Crash GetCrash()
+		public DDCrash GetCrash()
 		{
-			return CrashUtils.Rect_CenterSize(new D2Point(this.X, this.Y), new D2Size(100.0, 100.0));
+			return DDCrashUtils.Rect_CenterSize(new D2Point(this.X, this.Y), new D2Size(100.0, 100.0));
 		}
 
 		public int HP = 10;
