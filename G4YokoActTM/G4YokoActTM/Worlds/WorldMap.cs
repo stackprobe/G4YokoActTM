@@ -17,7 +17,7 @@ namespace Charlotte.Worlds
 
 		public static void INIT()
 		{
-			using (MemoryStream mem = new MemoryStream(DDResource.Load(@"Etoile\GreenDiamond\World.csv")))
+			using (MemoryStream mem = new MemoryStream(DDResource.Load(@"Etoile\G4YokoActTM\World.csv")))
 			using (StreamReader memReader = new StreamReader(mem, StringTools.ENCODING_SJIS))
 			using (CsvFileReader reader = new CsvFileReader(memReader))
 			{

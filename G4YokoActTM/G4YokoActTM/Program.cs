@@ -18,6 +18,6 @@ namespace Charlotte
 		}
 
 		public const string APP_IDENT = "{13522eb5-5c98-4142-bb6e-7d1dfa13ae55}";
-		public const string APP_TITLE = "GreenDiamond";
+		public const string APP_TITLE = "G4YokoActTM";
 	}
 }

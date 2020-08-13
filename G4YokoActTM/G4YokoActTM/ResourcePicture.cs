@@ -8,7 +8,7 @@ namespace Charlotte
 {
 	public class ResourcePicture
 	{
-		public DDPicture Player = DDPictureLoaders.BgTrans(@"Etoile\GreenDiamond\pata2-magic\free_pochitto.png");
+		public DDPicture Player = DDPictureLoaders.BgTrans(@"Etoile\G4YokoActTM\pata2-magic\free_pochitto.png");
 
 		public DDPicture[][] PlayerStands = new DDPicture[5][];
 		public DDPicture[][] PlayerTalks = new DDPicture[5][];
