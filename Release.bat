@@ -16,6 +16,7 @@ COPY /B G4YokoActTM\G4YokoActTM\bin\Release\DxLibDotNet.dll out
 
 C:\Factory\Tools\xcp.exe doc out
 C:\Factory\Tools\xcp.exe C:\Dev\Fairy\Donut3\doc out
+COPY /B AUTHORS out
 
 C:\Factory\SubTools\zip.exe /PE- /RVE- /G out G4YokoActTM
 C:\Factory\Tools\summd5.exe /M out
