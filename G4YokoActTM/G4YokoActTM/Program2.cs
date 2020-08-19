@@ -30,49 +30,6 @@ namespace Charlotte
 
 		private void Main3()
 		{
-			DDAdditionalEvents.Ground_INIT = () =>
-			{
-				//GameGround.RO_MouseDispMode = true;
-			};
-
-			DDAdditionalEvents.PostGameStart = () =>
-			{
-				// Font >
-
-				//GameFontRegister.Add(@"Font\Genkai-Mincho-font\genkai-mincho.ttf");
-
-				// < Font
-
-				Ground.I = new Ground();
-
-				// *.INIT
-				{
-					EnemyManager.INIT();
-					MapTileManager.INIT();
-					WorldMap.INIT();
-				}
-			};
-
-			DDAdditionalEvents.Save = lines =>
-			{
-				lines.Add(DateTime.Now.ToString()); // Dummy
-				lines.Add(DateTime.Now.ToString()); // Dummy
-				lines.Add(DateTime.Now.ToString()); // Dummy
-
-				// 新しい項目をここへ追加...
-			};
-
-			DDAdditionalEvents.Load = lines =>
-			{
-				int c = 0;
-
-				DDUtils.Noop(lines[c++]); // Dummy
-				DDUtils.Noop(lines[c++]); // Dummy
-				DDUtils.Noop(lines[c++]); // Dummy
-
-				// 新しい項目をここへ追加...
-			};
-
 			DDMain2.Perform(Main4);
 		}
 
