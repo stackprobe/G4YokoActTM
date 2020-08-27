@@ -103,15 +103,15 @@ namespace Charlotte.Games
 					double targCamX = this.Player.X - DDConsts.Screen_W / 2 + (this.CamSlideX * DDConsts.Screen_W / 3);
 					double targCamY = this.Player.Y - DDConsts.Screen_H / 2 + (this.CamSlideY * DDConsts.Screen_H / 3);
 
-					DDUtils.Range(ref targCamX, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
-					DDUtils.Range(ref targCamY, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
+					DDUtils.ToRange(ref targCamX, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+					DDUtils.ToRange(ref targCamY, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
 
 					DDUtils.Approach(ref DDGround.Camera.X, targCamX, 0.8);
 					DDUtils.Approach(ref DDGround.Camera.Y, targCamY, 0.8);
 				}
 
-				DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
-				DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
+				DDUtils.ToRange(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+				DDUtils.ToRange(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
 
 				DDGround.ICamera.X = DoubleTools.ToInt(DDGround.Camera.X);
 				DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);
@@ -216,8 +216,8 @@ namespace Charlotte.Games
 							this.CamSlideCount++;
 							this.CamSlideY++;
 						}
-						DDUtils.Range(ref this.CamSlideX, -1, 1);
-						DDUtils.Range(ref this.CamSlideY, -1, 1);
+						DDUtils.ToRange(ref this.CamSlideX, -1, 1);
+						DDUtils.ToRange(ref this.CamSlideY, -1, 1);
 					}
 					else
 					{
@@ -409,8 +409,8 @@ namespace Charlotte.Games
 					DDGround.Camera.X = this.Player.X - DDConsts.Screen_W / 2.0;
 					DDGround.Camera.Y = this.Player.Y - DDConsts.Screen_H / 2.0;
 
-					DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
-					DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
+					DDUtils.ToRange(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+					DDUtils.ToRange(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
 
 					DDGround.ICamera.X = DoubleTools.ToInt(DDGround.Camera.X);
 					DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);
@@ -589,8 +589,8 @@ namespace Charlotte.Games
 						DDGround.Camera.X -= DDMouse.X - lastMouseX;
 						DDGround.Camera.Y -= DDMouse.Y - lastMouseY;
 
-						DDUtils.Range(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
-						DDUtils.Range(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
+						DDUtils.ToRange(ref DDGround.Camera.X, 0.0, this.Map.W * MapTile.WH - DDConsts.Screen_W);
+						DDUtils.ToRange(ref DDGround.Camera.Y, 0.0, this.Map.H * MapTile.WH - DDConsts.Screen_H);
 
 						DDGround.ICamera.X = DoubleTools.ToInt(DDGround.Camera.X);
 						DDGround.ICamera.Y = DoubleTools.ToInt(DDGround.Camera.Y);

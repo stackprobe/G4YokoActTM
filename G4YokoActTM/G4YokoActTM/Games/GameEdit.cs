@@ -175,7 +175,7 @@ namespace Charlotte.Games
 				itemIndex++;
 				Rot -= MIR_INC_ROT;
 			}
-			DDUtils.Range(ref itemIndex, 0, itemCount - 1);
+			DDUtils.ToRange(ref itemIndex, 0, itemCount - 1);
 			return changed;
 		}
 
