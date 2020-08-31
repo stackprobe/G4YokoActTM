@@ -105,7 +105,7 @@ namespace Charlotte.Games
 
 				picture = Ground.I.Picture.PlayerDamage[koma];
 
-				DDSubScreenUtils.ChangeDrawScreen(Ground.I.FrontScreen);
+				DDDraw.SetTaskList(DDGround.EL);
 			}
 			if (this.DamageScene.IsFlaming())
 			{
@@ -115,7 +115,7 @@ namespace Charlotte.Games
 
 			if (this.DamageScene.IsFlaming() || this.MutekiScene.IsFlaming())
 			{
-				DDSubScreenUtils.ChangeDrawScreen(Ground.I.FrontScreen);
+				DDDraw.SetTaskList(DDGround.EL);
 				DDDraw.SetAlpha(0.5);
 			}
 			DDDraw.DrawBegin(
@@ -126,7 +126,6 @@ namespace Charlotte.Games
 			DDDraw.DrawZoom_X(xZoom);
 			DDDraw.DrawEnd();
 			DDDraw.Reset();
-			DDSubScreenUtils.RestoreDrawScreen();
 
 			// debug
 			{

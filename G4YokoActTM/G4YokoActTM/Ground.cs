@@ -13,7 +13,5 @@ namespace Charlotte
 		public ResourceMusic Music = new ResourceMusic();
 		public ResourcePicture Picture = new ResourcePicture();
 		public ResourceSE SE = new ResourceSE();
-
-		public DDSubScreen FrontScreen = new DDSubScreen(DDConsts.Screen_W, DDConsts.Screen_H, true);
 	}
 }
