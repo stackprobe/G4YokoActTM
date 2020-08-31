@@ -74,6 +74,8 @@ namespace Charlotte.Common
 
 			//Ground.EL.ExecuteAllTask();
 
+			DDDraw.DrawSimple(Ground.I.FrontScreen.ToPicture(), 0, 0);
+
 			// < app
 
 			DDGround.EL.ExecuteAllTask();
@@ -161,6 +163,10 @@ namespace Charlotte.Common
 			}
 
 			// app > @ leave EachFrame
+
+			DDSubScreenUtils.ChangeDrawScreen(Ground.I.FrontScreen);
+			DX.ClearDrawScreen();
+			DDSubScreenUtils.RestoreDrawScreen();
 
 			// < app
 		}
