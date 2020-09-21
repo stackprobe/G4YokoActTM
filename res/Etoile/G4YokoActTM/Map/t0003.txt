@@ -1,0 +1,513 @@
+30
+17
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0		StartPoint02
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+1	Wall4
+WALL=08712.jpg

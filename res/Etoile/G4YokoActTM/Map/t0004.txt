@@ -1,0 +1,1923 @@
+60
+32
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+0
+1	Wall2
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0		StartPoint08
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+0
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+0
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+0
+1	Wall2
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+0
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+0
+1	Wall2
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall2
+1	Wall2
+1	Wall2
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+1	Wall
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+1	Wall3
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+0
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+1	Wall3
+WALL=06418.jpg
