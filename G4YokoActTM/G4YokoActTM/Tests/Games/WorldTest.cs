@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Worlds;
+using Charlotte.Games;
 
-namespace Charlotte.Tests.Worlds
+namespace Charlotte.Tests.Games
 {
 	public class WorldTest
 	{

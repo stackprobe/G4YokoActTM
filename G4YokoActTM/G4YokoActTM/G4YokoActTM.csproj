@@ -125,9 +125,9 @@
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Status.cs" />
     <Compile Include="Games\WallPictureManager.cs" />
-    <Compile Include="Tests\Worlds\WorldTest.cs" />
-    <Compile Include="Worlds\World.cs" />
-    <Compile Include="Worlds\WorldMap.cs" />
+    <Compile Include="Tests\Games\WorldTest.cs" />
+    <Compile Include="Games\World.cs" />
+    <Compile Include="Games\WorldMap.cs" />
     <Compile Include="Tests\Games\GameTest.cs" />
     <Compile Include="Games\Enemies\Enemy0001.cs" />
     <Compile Include="Games\Enemies\Enemy0002.cs" />
@@ -140,7 +140,7 @@
     <Compile Include="Games\MapTile.cs" />
     <Compile Include="Games\MapTileManager.cs" />
     <Compile Include="Games\Weapons\Weapon0001.cs" />
-    <Compile Include="TitleMenus\TitleMenu.cs" />
+    <Compile Include="Games\TitleMenu.cs" />
     <Compile Include="Ground.cs" />
     <Compile Include="MainWin.cs">
       <SubType>Form</SubType>

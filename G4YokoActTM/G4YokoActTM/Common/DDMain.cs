@@ -146,7 +146,7 @@ namespace Charlotte.Common
 			{
 				Charlotte.Games.EnemyManager.INIT();
 				Charlotte.Games.MapTileManager.INIT();
-				Charlotte.Worlds.WorldMap.INIT();
+				Charlotte.Games.WorldMap.INIT();
 			}
 
 			MainWin.I.PostGameStart_G3();

@@ -6,7 +6,7 @@ using System.IO;
 using Charlotte.Tools;
 using Charlotte.Common;
 
-namespace Charlotte.Worlds
+namespace Charlotte.Games
 {
 	public static class WorldMap
 	{

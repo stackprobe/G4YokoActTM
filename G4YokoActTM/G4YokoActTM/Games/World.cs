@@ -7,7 +7,7 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using System.IO;
 
-namespace Charlotte.Worlds
+namespace Charlotte.Games
 {
 	public class World : IDisposable
 	{
